@@ -7,4 +7,4 @@ OpenAPI schema for [CDS](https://github.com/openmobilityfoundation/curb-data-spe
 
 A browseable schema is available on [Stoplight](https://openmobilityfnd.stoplight.io/docs/curb-data-specification/branches/main).
 
-The versions are organized by folders.
+The versions are organized by folders, e.g. [v1.0](/v1.0).

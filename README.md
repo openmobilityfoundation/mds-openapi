@@ -1,4 +1,6 @@
-# DRAFT since Aug 19 2022
+### _DRAFT since Aug 19 2022_
+
+Not for production use.
 
 # CDS OpenAPI
 OpenAPI schema for [CDS](https://github.com/openmobilityfoundation/curb-data-specification) (Curb Data Specification) data feeds, managed by the [Open Mobility Foundation](https://github.com/openmobilityfoundation). 

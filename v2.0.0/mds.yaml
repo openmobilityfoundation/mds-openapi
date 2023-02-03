@@ -1,0 +1,21 @@
+openapi: 3.1.0
+x-stoplight:
+  id: xxx
+info:
+  title: MDS - Moblity Data Specification
+  version: '2.0'
+  summary: 'MDS is a data standard to enable right-of-way regulation and two-way communication between mobility companies and local governments.'
+  description: 'The Mobility Data Specification (MDS), a project of the Open Mobility Foundation (OMF), is a data standard to enable right-of-way regulation and two-way communication between mobility companies and local governments.'
+  contact:
+    url: 'https://github.com/openmobilityfoundation/mobility-data-specification/'
+    name: Open Mobility Foundation
+    email: info@openmobilityfoundation.org
+  license:
+    name: Creative Commons Attribution 4.0 International Public License
+    url: 'https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/LICENSE'
+servers:
+  - description: ''
+    url: 'http://localhost:4000/MDS/'
+paths:
+  ...
+security: []

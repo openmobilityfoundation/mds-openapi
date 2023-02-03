@@ -1,10 +1,10 @@
-### _DRAFT since Aug 19 2022_
+### _DRAFT since Feb 3 2023_
 
 Not for production use.
 
-# CDS OpenAPI
-OpenAPI schema for [CDS](https://github.com/openmobilityfoundation/curb-data-specification) (Curb Data Specification) data feeds, managed by the [Open Mobility Foundation](https://github.com/openmobilityfoundation). 
+# MDS OpenAPI
+OpenAPI schema for [MDS](https://github.com/openmobilityfoundation/mobility-data-specification) (Mobility Data Specification) data feeds, managed by the [Open Mobility Foundation](https://github.com/openmobilityfoundation). 
 
-A browseable schema is available on [Stoplight](https://openmobilityfnd.stoplight.io/docs/curb-data-specification/branches/main).
+A browseable schema will be available on [Stoplight](https://openmobilityfnd.stoplight.io/docs/mobility-data-specification/branches/main).
 
-The versions are organized by folders, e.g. [v1.0](/v1.0).
+The versions are organized by folders, e.g. [v2.0](/v2.0).

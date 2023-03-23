@@ -8,4 +8,4 @@ OpenAPI description for [MDS](https://github.com/openmobilityfoundation/mobility
 
 Browseable documentation will be available on [Stoplight](https://openmobilityfnd.stoplight.io/docs/mds-openapi).
 
-The versions are organized by folders, e.g. [`v2.0`](/tree/main/v2.0).
+The versions are organized by folders, e.g. [`v2.0`](https://github.com/openmobilityfoundation/mds-openapi/tree/main/v2.0).

@@ -1,3 +1,7 @@
+ci:
+  autofix_commit_msg: "pre-commit autofix run"
+  autoupdate_commit_msg: "pre-commit autoupdate hooks"
+
 repos:
   - repo: https://github.com/python-openapi/openapi-spec-validator
     rev: 0.5.6

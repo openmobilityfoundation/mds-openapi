@@ -1,0 +1,77 @@
+openapi: 3.1.0
+
+x-stoplight:
+  id: ebvdax2uwqdyo
+
+info:
+  title: MDS - Moblity Data Specification
+  version: "2.0"
+  summary: MDS is a data standard to enable right-of-way regulation and two-way communication between mobility companies and local governments.
+  description: The Mobility Data Specification (MDS), a project of the Open Mobility Foundation (OMF), is a data standard to enable right-of-way regulation and two-way communication between mobility companies and local governments.
+  contact:
+    url: https://github.com/openmobilityfoundation/mobility-data-specification
+    name: Open Mobility Foundation
+    email: info@openmobilityfoundation.org
+  license:
+    name: Creative Commons Attribution 4.0 International Public License
+    url: https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/LICENSE
+
+tags:
+  - name: trips
+
+servers:
+  - description: Sample localhost
+    url: http://localhost:4000
+
+paths:
+  /trips/{end_time}:
+    parameters:
+      - schema:
+          $ref: ../models/data-types.yaml#/properties/iso_dayhour
+        name: end_time
+        in: path
+        required: true
+        description: The UTC hour during which requested trips ended.
+    get:
+      summary: Query historical trip data.
+      responses:
+        "200":
+          description: Hour has been processed.
+          content:
+            application/json: {}
+        "202":
+          description: Data is not yet available for this hour.
+          content:
+            application/json: {}
+        "404":
+          description: Hour is not in the past, or no operations during this hour.
+          content:
+            application/json: {}
+      operationId: get-trips-end_time
+      description: Get all trips with an end time occurring within the hour.
+      tags:
+        - trips
+
+components:
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      description: |-
+        All MDS Provider, Agency, and Metrics APIs require authentication. If implementing MDS Policy, Geography, and/or Jurisdiction APIs and endpoints, an agency must make them unauthenticated and public.
+
+        JSON Web Token ([JWT](https://jwt.io/introduction/)) is RECOMMENDED as the token format.
+
+        MDS API producers MAY include any metadata in the JWT they wish that helps to route, log, permission, or debug agency requests, leaving their internal implementation flexible.
+    oauth:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: ""
+          refreshUrl: ""
+          scopes:
+            example: If an MDS endpoint producer implements this auth scheme, it MAY choose to specify token scopes that define access parameters like allowable time ranges. These guidelines SHOULD be encoded into the returned token in a parsable way.
+      description: |-
+        OAuth 2.0's `client_credentials` grant type (outlined in [RFC6749](https://tools.ietf.org/html/rfc6749#section-4.4)) is RECOMMENDED as the authentication and authorization scheme.
+
+        OAuth 2.0 is an industry standard authorization framework with a variety of existing tooling. The `client_credentials` grant type facilitates generation of tokens that can be used for access by agencies and distributed to data partners.

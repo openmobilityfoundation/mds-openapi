@@ -1,0 +1,55 @@
+openapi: 3.1.0
+
+x-stoplight:
+  id: ebvdax2uwqdyo
+
+info:
+  title: MDS - Moblity Data Specification
+  version: "2.0"
+  summary: MDS is a data standard to enable right-of-way regulation and two-way communication between mobility companies and local governments.
+  description: The Mobility Data Specification (MDS), a project of the Open Mobility Foundation (OMF), is a data standard to enable right-of-way regulation and two-way communication between mobility companies and local governments.
+  contact:
+    url: https://github.com/openmobilityfoundation/mobility-data-specification
+    name: Open Mobility Foundation
+    email: info@openmobilityfoundation.org
+  license:
+    name: Creative Commons Attribution 4.0 International Public License
+    url: https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/LICENSE
+
+tags:
+  - name: trips
+
+servers:
+  - description: Sample localhost
+    url: http://localhost:4000
+
+paths:
+  /trips/{end_time}:
+    parameters:
+      - schema:
+          $ref: ../models/common.yaml#/properties/iso_dayhour
+        name: end_time
+        in: path
+        required: true
+        description: The UTC hour during which requested trips ended.
+    get:
+      summary: Query historical trip data.
+      responses:
+        "200":
+          description: Hour has been processed.
+          content:
+            application/json: {}
+        "202":
+          description: Data is not yet available for this hour.
+          content:
+            application/json: {}
+        "404":
+          description: Hour is not in the past, or no operations during this hour.
+          content:
+            application/json: {}
+      operationId: get-trips-end_time
+      description: Get all trips with an end time occurring within the hour.
+      tags:
+        - trips
+
+components: {}

@@ -52,4 +52,27 @@ paths:
       tags:
         - trips
 
-components: {}
+components:
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      description: |-
+        All MDS Provider, Agency, and Metrics APIs require authentication. If implementing MDS Policy, Geography, and/or Jurisdiction APIs and endpoints, an agency must make them unauthenticated and public.
+
+        JSON Web Token ([JWT](https://jwt.io/introduction/)) is RECOMMENDED as the token format.
+
+        MDS API producers MAY include any metadata in the JWT they wish that helps to route, log, permission, or debug agency requests, leaving their internal implementation flexible.
+    oauth:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: ""
+          refreshUrl: ""
+          scopes:
+            example: If an MDS endpoint producer implements this auth scheme, it MAY choose to specify token scopes that define access parameters like allowable time ranges. These guidelines SHOULD be encoded into the returned token in a parsable way.
+      description: |-
+        OAuth 2.0's `client_credentials` grant type (outlined in [RFC6749](https://tools.ietf.org/html/rfc6749#section-4.4)) is RECOMMENDED as the authentication and authorization scheme.
+
+        OAuth 2.0 is an industry standard authorization framework with a variety of existing tooling. The `client_credentials` grant type facilitates generation of tokens that can be used for access by agencies and distributed to data partners.
+

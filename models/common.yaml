@@ -1,4 +1,4 @@
-title: MDS Common Data Models
+title: MDS common data types
 description: Shared schema definitions used across MDS OpenAPI.
 x-stoplight:
   id: vfaag0vpz3odt
@@ -6,7 +6,7 @@ type: object
 properties:
   area_type:
     type: string
-    description: The type of a service area
+    description: The type of a service area.
     enum:
       - unrestricted
       - restricted
@@ -27,7 +27,7 @@ properties:
       - GBP
   day:
     type: string
-    description: A day of the week
+    description: A day of the week.
     enum:
       - sun
       - mon
@@ -38,18 +38,18 @@ properties:
       - sat
   days:
     type: array
-    description: Array of days of the week
+    description: An array of days of the week.
     items:
       $ref: "#/properties/day"
     uniqueItems: true
   iso_dayhour:
     type: string
-    description: An ISO 8601 extended datetime representing an UTC hour between 00 and 23.
-    pattern: ^\d{4}-\d{2}-\d{2}T\d{2}$
+    description: An ISO 8601 extended datetime representing an UTC hour between 00 and 23 `YYYY-MM-DDTHH`; valid for dates in 2018 and later.
+    pattern: ^(201[89]|20[2-9]\d|2[1-9]\d{2}|[3-9]\d{3})-(0[1-9]|1[02])-([12]\d|0[1-9]|3[01])T([0-2][0-3]|[01]\d)$
   iso_time:
     type: string
-    description: Time-of-day expressed as ISO 8601 hh:mm:ss
-    pattern: ([0-2][0-3]|[0-1][0-9]):[0-5][0-9]:[0-5][0-9]
+    description: Time-of-day expressed as ISO 8601 `hh:mm:ss`.
+    pattern: ([0-2][0-3]|[01]\d):[0-5]\d:[0-5]\d
   links:
     type: object
     required:
@@ -59,7 +59,7 @@ properties:
         type:
           - "null"
           - string
-        title: The URL to the first page of data
+        title: The URL to the first page of data.
         examples:
           - https://data.provider.co/trips/first
         format: uri
@@ -67,7 +67,7 @@ properties:
         type:
           - "null"
           - string
-        title: The URL to the last page of data
+        title: The URL to the last page of data.
         examples:
           - https://data.provider.co/trips/last
         format: uri
@@ -75,7 +75,7 @@ properties:
         type:
           - "null"
           - string
-        title: The URL to the previous page of data
+        title: The URL to the previous page of data.
         examples:
           - https://data.provider.co/trips/prev
         format: uri
@@ -83,7 +83,7 @@ properties:
         type:
           - "null"
           - string
-        title: The URL to the next page of data
+        title: The URL to the next page of data.
         examples:
           - https://data.provider.co/trips/next
         format: uri
@@ -115,22 +115,22 @@ properties:
             $ref: "#/properties/uuid"
           altitude:
             type: number
-            description: Altitude above mean sea level in meters
+            description: Altitude above mean sea level in meters.
           heading:
             type: number
-            description: Degrees - clockwise starting at 0 degrees at true North
+            description: Degrees - clockwise starting at 0 degrees at true North.
           speed:
             type: number
-            description: Estimated speed in meters / sec as reported by the GPS chipset
+            description: Estimated speed in meters / sec as reported by the GPS chipset.
           accuracy:
             type: number
-            description: Horizontal accuracy, in meters
+            description: Horizontal accuracy, in meters.
           hdop:
             type: number
-            description: Horizontal GPS or GNSS accuracy value
+            description: Horizontal GPS or GNSS accuracy value.
           satellites:
             type: integer
-            description: Number of GPS or GNSS satellites
+            description: Number of GPS or GNSS satellites.
       geometry:
         $ref: "#/properties/Point"
       bbox:
@@ -167,7 +167,7 @@ properties:
           type: number
   propulsion_type:
     type: string
-    description: The type of propulsion
+    description: The type of propulsion.
     enum:
       - combustion
       - electric
@@ -175,7 +175,7 @@ properties:
       - human
   propulsion_types:
     type: array
-    description: Array of propulsion types, allowing multiple values
+    description: Array of propulsion types, allowing multiple values.
     items:
       $ref: "#/properties/propulsion_type"
     uniqueItems: true
@@ -195,7 +195,7 @@ properties:
     uniqueItems: true
   stop:
     type: object
-    description: The common schema elements for a Stop in MDS
+    description: The common schema elements for a Stop in MDS.
     required:
       - stop_id
       - name
@@ -208,28 +208,28 @@ properties:
     properties:
       stop_id:
         $ref: "#/properties/uuid"
-        description: UUID for the Stop
+        description: UUID for the Stop.
       name:
         $ref: "#/properties/string"
-        description: Name of the Stop
+        description: Name of the Stop.
       last_reported:
         $ref: "#/properties/timestamp"
-        description: Date/Time of the last status update for this Stop
+        description: Date/Time of the last status update for this Stop.
       location:
         $ref: "#/properties/MDS_Feature_Point"
-        description: Location of the stop
+        description: Location of the stop.
       status:
         $ref: "#/properties/stop_status"
-        description: The status of the Stop
+        description: The status of the Stop.
       capacity:
         $ref: "#/properties/vehicle_type_counts"
-        description: Number of total places per vehicle_type
+        description: Number of total places per vehicle_type.
       num_vehicles_available:
         $ref: "#/properties/vehicle_type_counts"
-        description: Number of available vehicles per vehicle_type
+        description: Number of available vehicles per vehicle_type.
       num_vehicles_disabled:
         $ref: "#/properties/vehicle_type_counts"
-        description: Number of non_operational/reserved vehicles per vehicle_type
+        description: Number of non_operational/reserved vehicles per vehicle_type.
       provider_id:
         $ref: "#/properties/uuid"
         description:
@@ -237,7 +237,7 @@ properties:
           by an Agency.
       geography_id:
         $ref: "#/properties/uuid"
-        description: UUID for the Stop
+        description: UUID for the Stop.
       region_id:
         $ref: "#/properties/string"
         description:
@@ -245,31 +245,31 @@ properties:
           Information.
       short_name:
         $ref: "#/properties/string"
-        description: Abbreviated Stop name
+        description: Abbreviated Stop name.
       address:
         $ref: "#/properties/string"
-        description: Postal address (useful for directions)
+        description: Postal address (useful for directions).
       post_code:
         $ref: "#/properties/string"
-        description: Postal code (e.g. 10036)
+        description: Postal code (e.g. 10036).
       cross_street:
         $ref: "#/properties/string"
-        description: Cross street of where Stop is located
+        description: Cross street of where Stop is located.
       num_places_available:
         $ref: "#/properties/vehicle_type_counts"
-        description: Number of places free to be populated per vehicle_type
+        description: Number of places free to be populated per vehicle_type.
       num_places_disabled:
         $ref: "#/properties/vehicle_type_counts"
-        description: Number of places disabled an unable to accept vehicles per vehicle_type
+        description: Number of places disabled an unable to accept vehicles per vehicle_type.
       parent_stop:
         $ref: "#/properties/uuid"
-        description: Describe a basic hierarchy of Stops (e.g. a Stop inside a greater Stop)
+        description: Describe a basic hierarchy of Stops (e.g. a Stop inside a greater Stop).
       devices:
         $ref: "#/properties/uuid_array"
         description: List of device_id for vehicles currently at this Stop.
   stop_status:
     type: object
-    description: Status object for a Stop in MDS
+    description: Status object for a Stop in MDS.
     required:
       - is_installed
       - is_renting
@@ -283,7 +283,7 @@ properties:
         type: boolean
   string:
     type: string
-    description: A length-limited string type
+    description: A length-limited string type.
     maxLength: 255
     default: ""
     examples:
@@ -291,34 +291,34 @@ properties:
     pattern: ^(.*)$
   telemetry:
     type: object
-    description: A telemetry datum
+    description: A telemetry datum.
     additionalProperties: false
     properties:
       altitude:
         type: number
-        description: Altitude above mean sea level in meters
+        description: Altitude above mean sea level in meters.
       heading:
         type: number
-        description: Degrees - clockwise starting at 0 degrees at true North
+        description: Degrees - clockwise starting at 0 degrees at true North.
       speed:
         type: number
-        description: Estimated speed in meters / sec as reported by the GPS chipset
+        description: Estimated speed in meters / sec as reported by the GPS chipset.
       accuracy:
         type: number
-        description: Horizontal accuracy, in meters
+        description: Horizontal accuracy, in meters.
       hdop:
         type: number
-        description: Horizontal GPS or GNSS accuracy value
+        description: Horizontal GPS or GNSS accuracy value.
       satellites:
         type: integer
-        description: Number of GPS or GNSS satellites
+        description: Number of GPS or GNSS satellites.
   timestamp:
     type: number
-    description: Integer milliseconds since Unix epoch
+    description: Integer milliseconds since Unix epoch.
     multipleOf: 1
     minimum: 1514764800000
   trip_id_reference:
-    description: Conditionally require a trip_id reference
+    description: Conditionally require a trip_id reference.
     anyOf:
       - not:
           properties:
@@ -334,24 +334,24 @@ properties:
           - trip_id
   ttl:
     type: integer
-    description: Integer milliseconds until next data update (0 if the data is
+    description: Integer milliseconds until next data update (0 if the data is.
       always refreshed)
     minimum: 0
     maximum: 300000
   uuid:
     type: string
-    description: A UUID used to uniquely identifty an object
+    description: A UUID used to uniquely identifty an object.
     examples:
       - 3c9604d6-b5ee-11e8-96f8-529269fb1459
     pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
   uuid_array:
     type: array
-    description: Array of UUID
+    description: Array of UUID.
     items:
       $ref: "#/properties/uuid"
   vehicle:
     type: object
-    description: The common schema elements for a Vehicle in MDS
+    description: The common schema elements for a Vehicle in MDS.
     required:
       - provider_name
       - provider_id
@@ -362,27 +362,27 @@ properties:
     properties:
       provider_name:
         $ref: "#/properties/string"
-        description: The public-facing name of the Provider
+        description: The public-facing name of the Provider.
       provider_id:
         $ref: "#/properties/uuid"
-        description: The UUID for the Provider, unique within MDS
+        description: The UUID for the Provider, unique within MDS.
       device_id:
         $ref: "#/properties/uuid"
-        description: A unique device ID in UUID format
+        description: A unique device ID in UUID format.
       vehicle_id:
         $ref: "#/properties/string"
-        description: The Vehicle Identification Number visible on the vehicle itself
+        description: The Vehicle Identification Number visible on the vehicle itself.
       vehicle_type:
         $ref: "#/properties/vehicle_type"
-        description: The type of vehicle
+        description: The type of vehicle.
       propulsion_types:
         $ref: "#/properties/propulsion_types"
-        description: The type of propulsion; allows multiple values
+        description: The type of propulsion; allows multiple values.
         minItems: 1
     additionalProperties: false
   vehicle_event:
     type: string
-    description: An event that changes a vehicle's state
+    description: An event that changes a vehicle's state.
     enum:
       - agency_drop_off
       - agency_pick_up
@@ -412,14 +412,14 @@ properties:
       - unspecified
   vehicle_events:
     type: array
-    description: Array of events indicating a change to a vehicle's state
+    description: Array of events indicating a change to a vehicle's state.
     uniqueItems: true
     minItems: 1
     items:
       $ref: "#/properties/vehicle_event"
   vehicle_state:
     type: string
-    description: The state of a vehicle
+    description: The state of a vehicle.
     enum:
       - available
       - elsewhere
@@ -429,7 +429,7 @@ properties:
       - reserved
       - unknown
   vehicle_state_transitions:
-    description: valid vehicle_state and vehicle_events combinations
+    description: valid vehicle_state and vehicle_events combinations.
     oneOf:
       - properties:
           vehicle_state:
@@ -518,7 +518,7 @@ properties:
                 - unspecified
   vehicle_telemetry:
     type: object
-    description: A telemetry datum for a specific vehicle at a specific time
+    description: A telemetry datum for a specific vehicle at a specific time.
     required:
       - device_id
       - timestamp
@@ -538,22 +538,22 @@ properties:
         properties:
           lat:
             type: number
-            description: Latitude of the location
+            description: Latitude of the location.
             minimum: -90
             maximum: 90
           lng:
             type: number
-            description: Longitude of the location
+            description: Longitude of the location.
             minimum: -180
             maximum: 180
       charge:
         type: number
-        description: Fraction of charge of the vehicle (required if applicable)
+        description: Fraction of charge of the vehicle (required if applicable).
         minimum: 0
         maximum: 1
   vehicle_type:
     type: string
-    description: The type of vehicle
+    description: The type of vehicle.
     enum:
       - bicycle
       - cargo_bicycle
@@ -563,7 +563,7 @@ properties:
       - other
   vehicle_types:
     type: array
-    description: Array of vehicle types
+    description: Array of vehicle types.
     items:
       $ref: "#/properties/vehicle_type"
     uniqueItems: true
@@ -591,7 +591,7 @@ properties:
     additionalProperties: false
   version:
     type: string
-    description: The version of MDS this data represents
+    description: The version of MDS this data represents.
     examples:
       - 2.0.0
     pattern: ^2\.[0-9]+\.[0-9]+$

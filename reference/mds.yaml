@@ -27,7 +27,7 @@ paths:
   /trips/{end_time}:
     parameters:
       - schema:
-          $ref: ../models/common.yaml#/properties/iso_dayhour
+          $ref: ../models/data-types.yaml#/properties/iso_dayhour
         name: end_time
         in: path
         required: true

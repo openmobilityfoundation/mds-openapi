@@ -1,0 +1,20 @@
+ci:
+  autofix_commit_msg: "pre-commit autofix run"
+  autoupdate_commit_msg: "pre-commit autoupdate hooks"
+
+repos:
+  - repo: https://github.com/python-openapi/openapi-spec-validator
+    rev: 0.5.6
+    hooks:
+      - id: openapi-spec-validator
+        files: ^reference/
+        types: [yaml]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: mixed-line-ending
+      - id: end-of-file-fixer
+      - id: check-yaml
+        args: ["--unsafe"]

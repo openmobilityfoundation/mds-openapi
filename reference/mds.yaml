@@ -4,7 +4,7 @@ x-stoplight:
   id: ebvdax2uwqdyo
 
 info:
-  title: MDS - Moblity Data Specification
+  title: MDS - Mobility Data Specification
   version: "2.0"
   summary: MDS is a data standard to enable right-of-way regulation and two-way communication between mobility companies and local governments.
   description: The Mobility Data Specification (MDS), a project of the Open Mobility Foundation (OMF), is a data standard to enable right-of-way regulation and two-way communication between mobility companies and local governments.

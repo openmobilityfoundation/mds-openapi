@@ -1,0 +1,218 @@
+openapi: 3.1.0
+
+x-stoplight:
+  id: uffrjoub3dm0o
+
+info:
+  title: "Mobility Data Specification: Provider"
+  version: "2.0"
+  description: |-
+    <img src="https://i.imgur.com/yzXrKpo.png" width="120" align="right" alt="MDS Provider Icon" border="0">
+
+    The Provider API endpoints are intended to be implemented by mobility providers and consumed by regulatory agencies.
+
+    Data is pulled from providers by agencies. When a municipality queries information from a mobility provider, the Provider API has a historical view of operations in a standard format.
+
+    This specification contains a data standard for _mobility as a service_ providers to define a RESTful API for municipalities to access on-demand.
+
+components:
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      description: |-
+        All MDS Provider, Agency, and Metrics APIs require authentication. If implementing MDS Policy, Geography, and/or Jurisdiction APIs and endpoints, an agency must make them unauthenticated and public.
+
+        JSON Web Token ([JWT](https://jwt.io/introduction/)) is RECOMMENDED as the token format.
+
+        MDS API producers MAY include any metadata in the JWT they wish that helps to route, log, permission, or debug agency requests, leaving their internal implementation flexible.
+
+paths:
+  /vehicles/{device_id}:
+    parameters:
+      - name: device_id
+        schema:
+          $ref: ../models/data-types.yaml#/properties/uuid
+        in: path
+        required: false
+        description: If provided, retrieve the specified vehicle.
+    get:
+      operationId: get-vehicles-device_id
+      description: Get the specified vehicle or a list of known vehicles, with properties that do not change often.
+      summary: Get near-realtime vehicle information.
+      responses:
+        "200":
+          description: Vehicle(s) found.
+          content:
+            application/vnd.mds+json: {}
+        "404":
+          description: Vehicle(s) not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+
+  /vehicles/status/{device_id}:
+    parameters:
+      - name: device_id
+        schema:
+          $ref: ../models/data-types.yaml#/properties/uuid
+        in: path
+        required: false
+        description: If provided, retrieve the specified vehicle
+    get:
+      operationId: get-vehicles-status-device_id
+      description: Get the specified vehicle or a list of known vehicles, with specific vehicle status records that are updated frequently.
+      summary: Get near-realtime vehicle status.
+      responses:
+        "200":
+          description: Vehicle(s) found.
+          content:
+            application/vnd.mds+json: {}
+        "404":
+          description: Vehicle(s) not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+
+  /trips:
+    parameters:
+      - name: end_time
+        schema:
+          $ref: ../models/data-types.yaml#/properties/iso_dayhour
+        in: query
+        required: true
+        description: The UTC hour during which requested trips ended.
+    get:
+      operationId: get-trips-end_time
+      description: Get all trips with an end time occurring within the hour.
+      summary: Query historical trip data.
+      responses:
+        "200":
+          description: Hour has been processed.
+          content:
+            application/vnd.mds+json: {}
+        "202":
+          description: Data is not yet available for this hour.
+        "400":
+          description: Request did not contain an `end_time`.
+        "404":
+          description: Hour is not in the past, or no operations during this hour.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+
+  /telemetry:
+    parameters:
+      - name: telemetry_time
+        schema:
+          $ref: ../models/data-types.yaml#/properties/iso_dayhour
+        in: query
+        required: true
+        description: The UTC hour during which telemetry events occurred.
+    get:
+      operationId: get-telemetry-telemetry_time
+      description: Get all telemetry with timestamp occurring within the hour.
+      summary: Query historical vehicle telemetry data.
+      responses:
+        "200":
+          description: Hour has been processed.
+          content:
+            application/vnd.mds+json: {}
+        "400":
+          description: Request did not contain a `telemetry_time`.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+
+  /events/historical:
+    parameters:
+      - name: event_time
+        schema:
+          $ref: ../models/data-types.yaml#/properties/iso_dayhour
+        in: query
+        required: true
+        description: The UTC hour during which events occurred.
+    get:
+      operationId: get-events-historical-event_time
+      description: Get all status changes with an event time occurring within the hour.
+      summary: Query historical vehicle activity.
+      responses:
+        "200":
+          description: Hour has been processed.
+          content:
+            application/vnd.mds+json: {}
+        "202":
+          description: Data is not yet available for this hour.
+        "400":
+          description: Request did not contain an `event_time`.
+        "404":
+          description: Hour is not in the past, or no operations during this hour.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+
+  /events/recent:
+    parameters:
+      - name: start_time
+        schema:
+          $ref: ../models/data-types.yaml#/properties/timestamp
+        in: query
+        required: true
+        description: status changes where start_time <= event.timestamp
+      - name: end_time
+        schema:
+          $ref: ../models/data-types.yaml#/properties/timestamp
+        in: query
+        required: true
+        description: status changes where event.timestamp < end_time
+    get:
+      operationId: get-events-recent-start_time-end_time
+      description: Get all status changes at most two weeks old.
+      summary: Query recent vehicle activity.
+      responses:
+        "200":
+          description: Range was valid and within the prior two weeks.
+          content:
+            application/vnd.mds+json: {}
+        "400":
+          description: Request did not contain a `start_time`, `end_time`, or the range was more than 2 weeks in the past.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+
+  /stops/{stop_id}:
+    parameters:
+      - name: stop_id
+        schema:
+          $ref: ../models/data-types.yaml#/properties/uuid
+        in: path
+        required: false
+        description: If provided, retrieve the specified stop.
+    get:
+      operationId: get-stops-stop_id
+      description: Stop information should be updated on a near-realtime basis by providers who operate docked mobility devices in a given municipality.
+      summary: Get near-realtime stop information.
+      responses:
+        "200":
+          description: Stop(s) found.
+          content:
+            application/vnd.mds+json: {}
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+
+  /reports/{filename}:
+    parameters:
+      - name: filename
+        schema:
+          type: string
+          pattern: \d{4}-\d{2}\.csv
+        in: path
+        required: true
+        description: The name of the report to retrieve, formatted by year and month like `YYYY-MM.csv`
+        examples:
+          - "2023-12.csv"
+    get:
+      operationId: get-reports-filename
+      description: Reports are information that providers can send back to agencies containing aggregated data that is not contained within other MDS endpoints, like counts of special groups of riders.
+      summary: Get a monthly CSV report.
+      responses:
+        "200":
+          description: Report found.
+          content:
+            text/vnd.mds+csv: {}
+        "404":
+          description: Report not found.

@@ -1,8 +1,10 @@
 title: MDS common data types
 description: Shared schema definitions used across MDS OpenAPI.
+type: object
+
 x-stoplight:
   id: vfaag0vpz3odt
-type: object
+
 properties:
   area_type:
     type: string
@@ -12,6 +14,7 @@ properties:
       - restricted
       - preferred_pick_up
       - preferred_drop_off
+
   currency:
     type:
       - string
@@ -25,6 +28,7 @@ properties:
       - USD
       - EUR
       - GBP
+
   day:
     type: string
     description: A day of the week.
@@ -36,20 +40,30 @@ properties:
       - thu
       - fri
       - sat
+
   days:
     type: array
     description: An array of days of the week.
     items:
       $ref: "#/properties/day"
     uniqueItems: true
+
   iso_dayhour:
     type: string
     description: An ISO 8601 extended datetime representing an UTC hour between 00 and 23 `YYYY-MM-DDTHH`; valid for dates in 2018 and later.
     pattern: ^(201[89]|20[2-9]\d|2[1-9]\d{2}|[3-9]\d{3})-(0[1-9]|1[02])-([12]\d|0[1-9]|3[01])T([0-2][0-3]|[01]\d)$
+    examples:
+      - "2023-12-31T23"
+      - "2024-01-01T01"
+
   iso_time:
     type: string
     description: Time-of-day expressed as ISO 8601 `hh:mm:ss`.
     pattern: ([0-2][0-3]|[01]\d):[0-5]\d:[0-5]\d
+    examples:
+      - "23:59:59"
+      - "00:00:01"
+
   links:
     type: object
     required:
@@ -89,6 +103,7 @@ properties:
         format: uri
         pattern: ^(.*)$
     additionalProperties: false
+
   MDS_Feature_Point:
     type: object
     required:
@@ -138,6 +153,7 @@ properties:
         minItems: 4
         items:
           type: number
+
   Point:
     title: GeoJSON Point
     type: object
@@ -165,6 +181,7 @@ properties:
         minItems: 4
         items:
           type: number
+
   propulsion_type:
     type: string
     description: The type of propulsion.
@@ -173,12 +190,14 @@ properties:
       - electric
       - electric_assist
       - human
+
   propulsion_types:
     type: array
     description: Array of propulsion types, allowing multiple values.
     items:
       $ref: "#/properties/propulsion_type"
     uniqueItems: true
+
   rental_methods:
     type: array
     description: Payment methods accepted at this Stop. From GBFS Station Information.
@@ -193,6 +212,7 @@ properties:
         - ACCOUNTNUMBER
         - PHONE
     uniqueItems: true
+
   stop:
     type: object
     description: The common schema elements for a Stop in MDS.
@@ -267,6 +287,7 @@ properties:
       devices:
         $ref: "#/properties/uuid_array"
         description: List of device_id for vehicles currently at this Stop.
+
   stop_status:
     type: object
     description: Status object for a Stop in MDS.
@@ -281,6 +302,7 @@ properties:
         type: boolean
       is_returning:
         type: boolean
+
   string:
     type: string
     description: A length-limited string type.
@@ -289,6 +311,7 @@ properties:
     examples:
       - ABC123
     pattern: ^(.*)$
+
   telemetry:
     type: object
     description: A telemetry datum.
@@ -312,11 +335,13 @@ properties:
       satellites:
         type: integer
         description: Number of GPS or GNSS satellites.
+
   timestamp:
     type: number
     description: Integer milliseconds since Unix epoch.
     multipleOf: 1
     minimum: 1514764800000
+
   trip_id_reference:
     description: Conditionally require a trip_id reference.
     anyOf:
@@ -332,23 +357,27 @@ properties:
                   - trip_start
       - required:
           - trip_id
+
   ttl:
     type: integer
     description: Integer milliseconds until next data update (0 if the data is.
       always refreshed)
     minimum: 0
     maximum: 300000
+
   uuid:
     type: string
     description: A UUID used to uniquely identity an object.
     examples:
       - 3c9604d6-b5ee-11e8-96f8-529269fb1459
     pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+
   uuid_array:
     type: array
     description: Array of UUID.
     items:
       $ref: "#/properties/uuid"
+
   vehicle:
     type: object
     description: The common schema elements for a Vehicle in MDS.
@@ -380,6 +409,7 @@ properties:
         description: The type of propulsion; allows multiple values.
         minItems: 1
     additionalProperties: false
+
   vehicle_event:
     type: string
     description: An event that changes a vehicle's state.
@@ -410,6 +440,7 @@ properties:
       - trip_leave_jurisdiction
       - trip_start
       - unspecified
+
   vehicle_events:
     type: array
     description: Array of events indicating a change to a vehicle's state.
@@ -417,6 +448,7 @@ properties:
     minItems: 1
     items:
       $ref: "#/properties/vehicle_event"
+
   vehicle_state:
     type: string
     description: The state of a vehicle.
@@ -428,6 +460,7 @@ properties:
       - removed
       - reserved
       - unknown
+
   vehicle_state_transitions:
     description: valid vehicle_state and vehicle_events combinations.
     oneOf:
@@ -516,6 +549,7 @@ properties:
                 - comms_lost
                 - missing
                 - unspecified
+
   vehicle_telemetry:
     type: object
     description: A telemetry datum for a specific vehicle at a specific time.
@@ -551,6 +585,7 @@ properties:
         description: Fraction of charge of the vehicle (required if applicable).
         minimum: 0
         maximum: 1
+
   vehicle_type:
     type: string
     description: The type of vehicle.
@@ -561,12 +596,14 @@ properties:
       - scooter
       - moped
       - other
+
   vehicle_types:
     type: array
     description: Array of vehicle types.
     items:
       $ref: "#/properties/vehicle_type"
     uniqueItems: true
+
   vehicle_type_counts:
     type: object
     properties:
@@ -589,6 +626,7 @@ properties:
         type: integer
         minimum: 0
     additionalProperties: false
+
   version:
     type: string
     description: The version of MDS this data represents.

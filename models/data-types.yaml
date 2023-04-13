@@ -151,12 +151,16 @@ properties:
 
   propulsion_type:
     type: string
-    description: The type of propulsion.
+    description: The allowed types of propulsion in MDS. Based off of `propulsion_type` in [GBFS vehicle_types](https://github.com/MobilityData/gbfs/blob/master/gbfs.md#vehicle_typesjson)
     enum:
-      - combustion
-      - electric
-      - electric_assist
       - human
+      - electric_assist
+      - electric
+      - combustion
+      - combustion_diesel
+      - hybrid
+      - hydrogen_fuel_cell
+      - plug_in_hybrid
 
   propulsion_types:
     type: array
@@ -274,7 +278,6 @@ properties:
     type: string
     description: A length-limited string type.
     maxLength: 255
-    default: ""
     examples:
       - ABC123
     pattern: ^(.*)$
@@ -344,38 +347,6 @@ properties:
     description: Array of UUID.
     items:
       $ref: "#/properties/uuid"
-
-  vehicle:
-    type: object
-    description: The common schema elements for a Vehicle in MDS.
-    required:
-      - provider_name
-      - provider_id
-      - device_id
-      - vehicle_id
-      - vehicle_type
-      - propulsion_types
-    properties:
-      provider_name:
-        $ref: "#/properties/string"
-        description: The public-facing name of the Provider.
-      provider_id:
-        $ref: "#/properties/uuid"
-        description: The UUID for the Provider, unique within MDS.
-      device_id:
-        $ref: "#/properties/uuid"
-        description: A unique device ID in UUID format.
-      vehicle_id:
-        $ref: "#/properties/string"
-        description: The Vehicle Identification Number visible on the vehicle itself.
-      vehicle_type:
-        $ref: "#/properties/vehicle_type"
-        description: The type of vehicle.
-      propulsion_types:
-        $ref: "#/properties/propulsion_types"
-        description: The type of propulsion; allows multiple values.
-        minItems: 1
-    additionalProperties: false
 
   vehicle_event:
     type: string
@@ -555,13 +526,18 @@ properties:
 
   vehicle_type:
     type: string
-    description: The type of vehicle.
+    description: The allowed types of of vehicles in MDS. Based off of `form_factor` in [GBFS vehicle_types](https://github.com/MobilityData/gbfs/blob/master/gbfs.md#vehicle_typesjson), with some additional to support MDS modes.
     enum:
       - bicycle
+      - bus
       - cargo_bicycle
       - car
-      - scooter
+      - delivery_robot
       - moped
+      - motorcycle
+      - scooter_standing
+      - scooter_seated
+      - truck
       - other
 
   vehicle_types:

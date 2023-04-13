@@ -1,0 +1,44 @@
+title: Vehicle
+description: Common definition for a Vehicle object in MDS.
+type: object
+
+x-stoplight:
+  id: e7es4zmeat7ai
+
+required:
+  - device_id
+  - provider_id
+  - vehicle_id
+  - vehicle_type
+  - propulsion_types
+  - accessibility_options
+
+properties:
+  device_id:
+    $ref: ./data-types.yaml#/properties/uuid
+    description: A unique device ID in UUID format, should match this device in Provider.
+  provider_id:
+    $ref: ./data-types.yaml#/properties/uuid
+    description: A UUID for the Provider, unique within MDS. See MDS [provider list](https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/providers.csv).
+  data_provider_id:
+    $ref: ./data-types.yaml#/properties/uuid
+    description: If different than `provider_id`, a UUID for the data solution provider managing the data feed in this endpoint.
+  vehicle_id:
+    $ref: ./data-types.yaml#/properties/string
+    description: A unique vehicle identifier (visible code, license plate, etc), visible on the vehicle itself.
+  vehicle_type:
+    $ref: ./data-types.yaml#/properties/vehicle_type
+    description: The type of vehicle.
+  propulsion_types:
+    $ref: ./data-types.yaml#/properties/propulsion_types
+    description: The type of propulsion; allows multiple values.
+    minItems: 1
+  battery_capacity:
+    $ref: ./data-types.yaml#/properties/integer_positive
+    description: Capacity of battery expressed as milliamp hours (mAh).
+  fuel_capacity:
+    $ref: ./data-types.yaml#/properties/integer_positive
+    description: Capacity of fuel tank (liquid, solid, gaseous) expressed in liters.
+  maximum_speed:
+    $ref: ./data-types.yaml#/properties/integer_positive
+    description: Maximum speed (kph) possible with vehicle under normal, flat incline, smooth surface conditions. Applicable if the device has a built-in or intelligent speed limiter/governor.

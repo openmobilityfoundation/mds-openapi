@@ -48,6 +48,34 @@ properties:
       $ref: "#/properties/day"
     uniqueItems: true
 
+  geojson_point:
+    description: GeoJSON [Point](https://geojson.org/schema/Point.json) schema.
+    type: object
+    required:
+      - type
+      - coordinates
+    properties:
+      type:
+        type: string
+        enum:
+          - Point
+      coordinates:
+        type: array
+        minItems: 2
+        items:
+          - type: number
+            minimum: -180
+            maximum: 180
+          - type: number
+            minimum: -90
+            maximum: 90
+        maxItems: 2
+      bbox:
+        type: array
+        minItems: 4
+        items:
+          type: number
+
   iso_dayhour:
     type: string
     description: An ISO 8601 extended datetime representing an UTC hour between 00 and 23 `YYYY-MM-DDTHH`; valid for dates in 2018 and later.
@@ -104,8 +132,9 @@ properties:
         pattern: ^(.*)$
     additionalProperties: false
 
-  MDS_Feature_Point:
+  mds_geojson_feature:
     type: object
+    description: MDS-specific definition of the [GeoJSON Feature](https://geojson.org/schema/Feature.json) restricting `geometry` to [Point](https://geojson.org/schema/Point.json).
     required:
       - type
       - properties
@@ -147,40 +176,13 @@ properties:
             type: integer
             description: Number of GPS or GNSS satellites.
       geometry:
-        $ref: "#/properties/Point"
+        $ref: "#/properties/geojson_point"
       bbox:
         type: array
         minItems: 4
         items:
           type: number
 
-  Point:
-    title: GeoJSON Point
-    type: object
-    required:
-      - type
-      - coordinates
-    properties:
-      type:
-        type: string
-        enum:
-          - Point
-      coordinates:
-        type: array
-        minItems: 2
-        items:
-          - type: number
-            minimum: -180
-            maximum: 180
-          - type: number
-            minimum: -90
-            maximum: 90
-        maxItems: 2
-      bbox:
-        type: array
-        minItems: 4
-        items:
-          type: number
 
   propulsion_type:
     type: string
@@ -236,7 +238,7 @@ properties:
         $ref: "#/properties/timestamp"
         description: Date/Time of the last status update for this Stop.
       location:
-        $ref: "#/properties/MDS_Feature_Point"
+        $ref: "#/properties/mds_geojson_feature"
         description: Location of the stop.
       status:
         $ref: "#/properties/stop_status"

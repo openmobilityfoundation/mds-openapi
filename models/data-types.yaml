@@ -148,6 +148,10 @@ properties:
         items:
           type: number
 
+  minimum_year:
+    type: integer
+    minimum: 1970
+    description: Represents a minimum for fields that capture a year as an integer. Derived from Unix timestamp 0.
 
   propulsion_type:
     type: string

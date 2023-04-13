@@ -1,0 +1,29 @@
+title: modes/micromobility
+description: Mode-specific definitions for the `micromobility` mode.
+type: object
+
+x-stoplight:
+  id: ii72nhqky41mp
+
+properties:
+  vehicle:
+    type: object
+    properties:
+      accessibility_options:
+        type: array
+        description: The accessibility options available on a given vehicle, or the accessibility options utilized for a given trip.
+        items:
+          type: string
+          enum:
+            - adaptive
+
+      vehicle_attributes:
+        type: object
+        additionalProperties: false
+        properties:
+          year:
+            $ref: ../data-types.yaml#/properties/minimum_year
+          make:
+            $ref: ../data-types.yaml#/properties/string
+          model:
+            $ref: ../data-types.yaml#/properties/string

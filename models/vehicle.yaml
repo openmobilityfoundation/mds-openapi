@@ -42,3 +42,6 @@ properties:
   maximum_speed:
     $ref: ./data-types.yaml#/properties/integer_positive
     description: Maximum speed (kph) possible with vehicle under normal, flat incline, smooth surface conditions. Applicable if the device has a built-in or intelligent speed limiter/governor.
+
+oneOf:
+  - $ref: ./modes/micromobility.yaml#/properties/vehicle

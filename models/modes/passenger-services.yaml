@@ -1,0 +1,43 @@
+title: modes/passenger-services
+description: Mode-specific definitions for the `passenger-services` mode.
+type: object
+
+x-stoplight:
+  id: diqnymt2vyq3m
+
+properties:
+  vehicle:
+    type: object
+    properties:
+      accessibility_options:
+        type: array
+        description: The accessibility options available on a given vehicle, or the accessibility options utilized for a given trip.
+        items:
+          type: string
+          enum:
+            - wheelchair_accessible
+
+      vehicle_attributes:
+        type: object
+        additionalProperties: false
+        properties:
+          year:
+            $ref: ../data-types.yaml#/properties/minimum_year
+          make:
+            $ref: ../data-types.yaml#/properties/string
+          model:
+            $ref: ../data-types.yaml#/properties/string
+          color:
+            $ref: ../data-types.yaml#/properties/string
+          vin:
+            $ref: ../data-types.yaml#/properties/string
+            description: The vehicle's Vehicle Identification Number.
+          placard_number:
+            $ref: ../data-types.yaml#/properties/string
+            description: The registered placard number of the vehicle.
+          license_plate:
+            $ref: ../data-types.yaml#/properties/string
+            description: The registered vehicle license/number/registration plate identifier on the vehicle.
+          inspection_date:
+            $ref: ../data-types.yaml#/properties/iso_date
+            description: The date of the last inspection of the vehicle in ISO 8601 `YYYY-MM-DD`.

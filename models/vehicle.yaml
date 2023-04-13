@@ -47,3 +47,4 @@ oneOf:
   - $ref: ./modes/car-share.yaml#/properties/vehicle
   - $ref: ./modes/delivery-robots.yaml#/properties/vehicle
   - $ref: ./modes/micromobility.yaml#/properties/vehicle
+  - $ref: ./modes/passenger-services.yaml#/properties/vehicle

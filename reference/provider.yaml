@@ -21,7 +21,7 @@ components:
       type: http
       scheme: bearer
       description: |-
-        All MDS Provider, Agency, and Metrics APIs require authentication. If implementing MDS Policy, Geography, and/or Jurisdiction APIs and endpoints, an agency must make them unauthenticated and public.
+        All MDS Provider endpoints require authentication.
 
         JSON Web Token ([JWT](https://jwt.io/introduction/)) is RECOMMENDED as the token format.
 

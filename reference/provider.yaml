@@ -44,7 +44,12 @@ paths:
         "200":
           description: Vehicle(s) found.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response.yaml#/properties/payload
+                  - $ref: ../models/response.yaml#/properties/data_latency
         "404":
           description: Vehicle(s) not found.
         "406":

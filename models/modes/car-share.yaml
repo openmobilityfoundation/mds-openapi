@@ -1,0 +1,101 @@
+title: modes/car-share
+description: Mode-specific definitions for the `car-share` mode.
+type: object
+
+x-stoplight:
+  id: ept949jym2d7l
+
+properties:
+  vehicle:
+    description: Many of these attributes come from fields in [GBFS vehicle_types](https://github.com/MobilityData/gbfs/blob/v2.3/gbfs.md#vehicle_typesjson).
+    type: object
+    properties:
+      accessibility_options:
+        description: The accessibility options available on a given vehicle, or the accessibility options utilized for a given trip.
+        type: array
+        items:
+          type: string
+          enum:
+            - wheelchair_accessible
+
+      vehicle_attributes:
+        type: object
+        additionalProperties: false
+        required:
+          - year
+          - make
+          - model
+          - color
+          - vin
+          - license_plate
+        properties:
+          year:
+            $ref: ../data-types.yaml#/properties/minimum_year
+          make:
+            $ref: ../data-types.yaml#/properties/string
+          model:
+            $ref: ../data-types.yaml#/properties/string
+          color:
+            $ref: ../data-types.yaml#/properties/string
+          vin:
+            $ref: ../data-types.yaml#/properties/string
+            description: The vehicle's Vehicle Identification Number.
+          placard_number:
+            $ref: ../data-types.yaml#/properties/string
+            description: The registered placard number of the vehicle.
+          license_plate:
+            $ref: ../data-types.yaml#/properties/string
+            description: The registered vehicle license/number/registration plate identifier on the vehicle.
+          inspection_date:
+            $ref: ../data-types.yaml#/properties/iso_date
+            description: The date of the last inspection of the vehicle in ISO 8601 `YYYY-MM-DD`.
+          snow_shovel:
+            type: boolean
+            description: Vehicle has a shovel for removing snow or ice from around vehicle or vehicle path.
+          snow_brush:
+            type: boolean
+            description: Vehicle has brushes for removing snow or ice from vehicle.
+          bike_rack:
+            type: boolean
+            description: Vehicle has car roof or trunk mounted bike rack.
+          park_access:
+            type: boolean
+            description: Vehicle has an access pass to a national/regional/municipal park system.
+          toll_transponder:
+            type: boolean
+            description: Vehicle has a toll transponder for national/regional toll system.
+          phone_charger:
+            type: boolean
+            description: Vehicle has a place to charge a cellphone.
+          sunshade:
+            type: boolean
+            description: Vehicle has a sunshade available (i.e. for windshield).
+          cargo_volume_capacity:
+            $ref: ../data-types.yaml#/properties/integer_positive
+            description: Cargo volume available in the vehicle, expressed in liters. For cars, it corresponds to the space between the boot floor, including the storage under the hatch, to the rear shelf in the trunk.
+          cargo_load_capacity:
+            $ref: ../data-types.yaml#/properties/integer_positive
+            description: The capacity of the vehicle cargo space (excluding passengers), expressed in kilograms.
+          door_count:
+            $ref: ../data-types.yaml#/properties/integer_positive
+            description: The number of doors this vehicle type has.
+          wheel_count:
+            $ref: ../data-types.yaml#/properties/integer_positive
+            description: The number of doors this vehicle type has.
+          air_conditioning:
+            type: boolean
+            description: Vehicle has air conditioning.
+          gear_switch:
+            type: string
+            enum:
+              - automatic
+              - manual
+          convertible:
+            type: boolean
+            description: Vehicle has a retractable roof.
+          cruise_control:
+            type: boolean
+            description: Vehicle has a cruise control system.
+          navigation:
+            type: boolean
+            description: Vehicle has a built-in navigation system.

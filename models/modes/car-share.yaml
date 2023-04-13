@@ -7,7 +7,8 @@ x-stoplight:
 
 properties:
   vehicle:
-    description: Many of these attributes come from fields in [GBFS vehicle_types](https://github.com/MobilityData/gbfs/blob/v2.3/gbfs.md#vehicle_typesjson).
+    title: car-share
+    description: Vehicle definition for the `car-share` mode.
     type: object
     properties:
       accessibility_options:
@@ -20,6 +21,7 @@ properties:
 
       vehicle_attributes:
         type: object
+        description: Many of these attributes come from fields in [GBFS vehicle_types](https://github.com/MobilityData/gbfs/blob/v2.3/gbfs.md#vehicle_typesjson).
         additionalProperties: false
         required:
           - year

@@ -7,6 +7,8 @@ x-stoplight:
 
 properties:
   vehicle:
+    title: micromobility
+    description: Vehicle definition for the `micromobility` mode.
     type: object
     properties:
       accessibility_options:

@@ -7,6 +7,8 @@ x-stoplight:
 
 properties:
   vehicle:
+    title: delivery-robots
+    description: Vehicle definition for the `delivery-robots` mode.
     type: object
     properties:
       accessibility_options:

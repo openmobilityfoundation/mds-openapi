@@ -7,6 +7,8 @@ x-stoplight:
 
 properties:
   vehicle:
+    title: passenger-services
+    description: Vehicle definition for the `passenger-services` mode.
     type: object
     properties:
       accessibility_options:

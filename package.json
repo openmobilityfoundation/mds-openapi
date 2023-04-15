@@ -1,0 +1,6 @@
+{
+  "name": "mds-openapi",
+  "dependencies": {
+    "@stoplight/spectral-cli": "^6.6.0"
+  }
+}

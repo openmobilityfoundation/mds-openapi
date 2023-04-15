@@ -2,6 +2,8 @@ extends:
   - "spectral:oas"
 
 rules:
+  oas3-api-servers: off
+
   openapi-tags: off
 
   operation-tags: off

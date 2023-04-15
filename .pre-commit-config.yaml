@@ -3,10 +3,12 @@ ci:
   autoupdate_commit_msg: "pre-commit autoupdate hooks"
 
 repos:
-  - repo: https://github.com/python-openapi/openapi-spec-validator
-    rev: 0.5.6
+  - repo: local
     hooks:
-      - id: openapi-spec-validator
+      - id: spectral-linter
+        name: spectral-linter
+        language: node
+        entry: npx spectral lint ./reference/**/*.yaml
         files: ^reference/
         types: [yaml]
 

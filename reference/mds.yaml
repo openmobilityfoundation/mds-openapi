@@ -16,14 +16,6 @@ info:
     name: Creative Commons Attribution 4.0 International Public License
     url: https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/LICENSE
 
-tags:
-  - name: provider
-  - name: agency
-  - name: policy
-  - name: geography
-  - name: jurisdiction
-  - name: metrics
-
 components:
   oauth:
     type: oauth2

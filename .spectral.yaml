@@ -1,0 +1,17 @@
+extends:
+  - "spectral:oas"
+
+rules:
+  openapi-tags: off
+
+  operation-tags: off
+
+  paths-snake-case:
+    description: Paths should be snake-case.
+    message: "{{property}} should be snake-case (lower-case and separated with underscore)"
+    severity: warn
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(\/|[a-z0-9_.]+|{[a-zA-Z0-9_]+})+$"

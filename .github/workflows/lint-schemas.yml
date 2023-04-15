@@ -1,0 +1,20 @@
+name: Lint JSON Schemas
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  lint-schemas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - run: npm install @stoplight/spectral-cli
+
+      - run: npx spectral lint ./reference/**/*.yaml

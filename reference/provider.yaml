@@ -38,21 +38,14 @@ components:
         MDS API producers MAY include any metadata in the JWT they wish that helps to route, log, permission, or debug agency requests, leaving their internal implementation flexible.
 
 paths:
-  /vehicles/{device_id}:
-    parameters:
-      - name: device_id
-        schema:
-          $ref: ../models/data-types.yaml#/properties/uuid
-        in: path
-        required: false
-        description: If provided, retrieve the specified vehicle.
+  /vehicles:
     get:
-      operationId: get-vehicles-device_id
-      description: Get the specified vehicle or a list of known vehicles, with properties that do not change often.
+      operationId: get-vehicles
+      description: Get a list of known vehicles, with properties that do not change often.
       summary: Get near-realtime vehicle information.
       responses:
         "200":
-          description: Vehicle(s) found.
+          description: Vehicles found.
           content:
             application/vnd.mds+json:
               schema:
@@ -72,7 +65,62 @@ paths:
                             items:
                               $ref: ../models/vehicle.yaml
         "404":
-          description: Vehicle(s) not found.
+          description: Vehicles not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+
+  /vehicles/{device_id}:
+    parameters:
+      - name: device_id
+        schema:
+          $ref: ../models/data-types.yaml#/properties/uuid
+        in: path
+        required: true
+        description: The `device_id` of a Provider's Vehicle.
+    get:
+      operationId: get-vehicles-device_id
+      description: Get the specified vehicle, with properties that do not change often.
+      summary: Get near-realtime vehicle information.
+      responses:
+        "200":
+          description: Vehicle found.
+          content:
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response.yaml#/properties/payload
+                  - $ref: ../models/response.yaml#/properties/data_latency
+                  - type: object
+                    description: Vehicle data payload
+                    properties:
+                      data:
+                        type: object
+                        additionalProperties: false
+                        properties:
+                          vehicles:
+                            type: array
+                            maxItems: 1
+                            items:
+                              $ref: ../models/vehicle.yaml
+
+        "404":
+          description: Vehicle not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+
+  /vehicles/status:
+    get:
+      operationId: get-vehicles-status
+      description: Get a list of known vehicles, with specific vehicle status records that are updated frequently.
+      summary: Get near-realtime vehicle status.
+      responses:
+        "200":
+          description: Vehicles found.
+          content:
+            application/vnd.mds+json: {}
+        "404":
+          description: Vehicles not found.
         "406":
           description: MDS version in Accept header is unsupported or invalid.
 
@@ -82,19 +130,19 @@ paths:
         schema:
           $ref: ../models/data-types.yaml#/properties/uuid
         in: path
-        required: false
-        description: If provided, retrieve the specified vehicle
+        required: true
+        description: The `device_id` of a Provider's Vehicle.
     get:
       operationId: get-vehicles-status-device_id
-      description: Get the specified vehicle or a list of known vehicles, with specific vehicle status records that are updated frequently.
+      description: Get the specified vehicle, with specific vehicle status records that are updated frequently.
       summary: Get near-realtime vehicle status.
       responses:
         "200":
-          description: Vehicle(s) found.
+          description: Vehicle found.
           content:
             application/vnd.mds+json: {}
         "404":
-          description: Vehicle(s) not found.
+          description: Vehicle not found.
         "406":
           description: MDS version in Accept header is unsupported or invalid.
 
@@ -200,21 +248,34 @@ paths:
         "406":
           description: MDS version in Accept header is unsupported or invalid.
 
+  /stops:
+    get:
+      operationId: get-stops
+      description: Stop information should be updated on a near-realtime basis by providers who operate docked mobility devices in a given municipality.
+      summary: Get near-realtime stop information.
+      responses:
+        "200":
+          description: Stops found.
+          content:
+            application/vnd.mds+json: {}
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+
   /stops/{stop_id}:
     parameters:
       - name: stop_id
         schema:
           $ref: ../models/data-types.yaml#/properties/uuid
         in: path
-        required: false
-        description: If provided, retrieve the specified stop.
+        required: true
+        description: The `stop_id` for a Provider's Stop.
     get:
       operationId: get-stops-stop_id
       description: Stop information should be updated on a near-realtime basis by providers who operate docked mobility devices in a given municipality.
       summary: Get near-realtime stop information.
       responses:
         "200":
-          description: Stop(s) found.
+          description: Stop found.
           content:
             application/vnd.mds+json: {}
         "406":
@@ -226,11 +287,11 @@ paths:
         schema:
           type: string
           pattern: \d{4}-\d{2}\.csv
+          examples:
+            - "2023-12.csv"
         in: path
         required: true
         description: The name of the report to retrieve, formatted by year and month like `YYYY-MM.csv`
-        examples:
-          - "2023-12.csv"
     get:
       operationId: get-reports-filename
       description: Reports are information that providers can send back to agencies containing aggregated data that is not contained within other MDS endpoints, like counts of special groups of riders.

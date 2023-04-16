@@ -6,14 +6,24 @@ x-stoplight:
 info:
   title: "Mobility Data Specification: Provider"
   version: "2.0"
+  summary: The Provider API endpoints are intended to be implemented by mobility providers and consumed by regulatory agencies.
+  contact:
+    url: https://github.com/openmobilityfoundation/mobility-data-specification
+    name: Open Mobility Foundation
+    email: info@openmobilityfoundation.org
+  license:
+    name: Creative Commons Attribution 4.0 International Public License
+    url: https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/LICENSE
   description: |-
-    <img src="https://i.imgur.com/yzXrKpo.png" width="120" align="right" alt="MDS Provider Icon" border="0">
-
     The Provider API endpoints are intended to be implemented by mobility providers and consumed by regulatory agencies.
 
-    Data is pulled from providers by agencies. When a municipality queries information from a mobility provider, the Provider API has a historical view of operations in a standard format.
+    Data is **pulled** from providers by agencies. When a municipality queries information from a mobility provider, the
+    Provider API has a historical view of operations in a standard format.
 
-    This specification contains a data standard for _mobility as a service_ providers to define a RESTful API for municipalities to access on-demand.
+    This specification contains a data standard for _mobility as a service_ providers to define a RESTful API for
+    municipalities to access on-demand.
+
+    <img src="https://i.imgur.com/yzXrKpo.png" width="120" align="right" alt="MDS Provider Icon" border="0">
 
 components:
   securitySchemes:

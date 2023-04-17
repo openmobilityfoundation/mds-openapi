@@ -19,20 +19,12 @@ properties:
       ttl:
         $ref: ./data-types.yaml#/properties/integer_positive
         description: Integer representing the number of milliseconds before the data in this feed will be updated again (0 if the data should always be refreshed).
+        maximum: 300000 # 5 minutes in milliseconds
 
-  payload:
+  paging:
     type: object
-    description: Shared schema definition for an MDS API response payload. Does not include `data` property, but requires it.
-    required:
-      - version
-      - data
+    description: Shared schema definition for how request paging is represented in responses, for APIs that support it.
     properties:
-      version:
-        type: string
-        description: The version of MDS this data represents.
-        pattern: ^2\.(\d|[1-9]\d+)\.(\d|[1-9]\d+)$
-        examples:
-          - 2.0.0
       links:
         type: object
         required:
@@ -72,3 +64,17 @@ properties:
               - https://data.provider.co/trips/next
             format: uri
             pattern: ^(.*)$
+
+  payload:
+    type: object
+    description: Shared schema definition for an MDS API response payload. Does not include `data` property, but requires it.
+    required:
+      - version
+      - data
+    properties:
+      version:
+        type: string
+        description: The version of MDS this data represents.
+        pattern: ^2\.(\d|[1-9]\d+)\.(\d|[1-9]\d+)$
+        examples:
+          - 2.0.0

@@ -48,6 +48,18 @@ properties:
       $ref: "#/properties/day"
     uniqueItems: true
 
+  device:
+    type: object
+    required:
+      - device_id
+    description: Common properties for all device-related objects.
+    properties:
+      device_id:
+        $ref: "#/properties/uuid"
+        description: A unique device ID in UUID format, should match this device in Provider.
+    allOf:
+      - $ref: "#/properties/provider"
+
   geojson_point:
     description: GeoJSON [Point](https://geojson.org/schema/Point.json) schema.
     type: object
@@ -180,6 +192,19 @@ properties:
     items:
       $ref: "#/properties/propulsion_type"
     uniqueItems: true
+
+  provider:
+    type: object
+    description: Common properties for all provider-related objects.
+    required:
+      - provider_id
+    properties:
+      provider_id:
+        $ref: "#/properties/uuid"
+        description: A UUID for the Provider, unique within MDS. See MDS [provider list](https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/providers.csv).
+      data_provider_id:
+        $ref: "#/properties/uuid"
+        description: If different than `provider_id`, a UUID for the data solution provider managing the data feed in this endpoint.
 
   rental_methods:
     type: array

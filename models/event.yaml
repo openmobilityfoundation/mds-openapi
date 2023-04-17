@@ -53,3 +53,4 @@ allOf:
 oneOf:
   - $ref: ./modes/car-share.yaml#/properties/event
   - $ref: ./modes/delivery-robots.yaml#/properties/event
+  - $ref: ./modes/micromobility.yaml#/properties/event

@@ -377,13 +377,15 @@ properties:
     type: string
     description: The state of a vehicle.
     enum:
-      - available
-      - elsewhere
-      - non_operational
-      - on_trip
       - removed
+      - available
+      - non_operational
       - reserved
-      - unknown
+      - on_trip
+      - stopped
+      - non_contactable
+      - missing
+      - elsewhere
 
   vehicle_state_transitions:
     description: valid vehicle_state and vehicle_events combinations.

@@ -49,3 +49,6 @@ properties:
 
 allOf:
   - $ref: ./data-types.yaml#/properties/device
+
+oneOf:
+  - $ref: ./modes/car-share.yaml#/properties/event

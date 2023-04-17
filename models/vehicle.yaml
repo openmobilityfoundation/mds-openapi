@@ -18,10 +18,16 @@ properties:
   vehicle_type:
     $ref: ./data-types.yaml#/properties/vehicle_type
     description: The type of vehicle.
+  vehicle_attributes:
+    type: object
   propulsion_types:
     $ref: ./data-types.yaml#/properties/propulsion_types
     description: The type of propulsion; allows multiple values.
     minItems: 1
+  accessibility_options:
+    type:
+      - array
+      - object
   battery_capacity:
     $ref: ./data-types.yaml#/properties/integer_positive
     description: Capacity of battery expressed as milliamp hours (mAh).

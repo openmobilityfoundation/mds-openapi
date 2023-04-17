@@ -1,0 +1,51 @@
+title: Event
+description: Events represent changes in [Vehicle Status](./vehicle-status.yaml).
+type: object
+
+x-stoplight:
+  id: 34niv0zuhmwmg
+
+required:
+  - event_id
+  - vehicle_state
+  - event_types
+  - timestamp
+  - location
+
+properties:
+  event_id:
+    $ref: ./data-types.yaml#/properties/uuid
+    description: A unique event ID in UUID format.
+  vehicle_state:
+    $ref: ./data-types.yaml#/properties/vehicle_state
+  event_types:
+    $ref: ./data-types.yaml#/properties/event_type_array
+  timestamp:
+    $ref: ./data-types.yaml#/properties/timestamp
+    description: Date/time that event occurred.
+  publication_time:
+    $ref: ./data-types.yaml#/properties/timestamp
+    description: Date/time event became available through the status changes endpoint.
+  location:
+    $ref: ./data-types.yaml#/properties/gps_data
+    description: Location of the event.
+  event_geographies:
+    $ref: ./data-types.yaml#/properties/uuid_array
+    description: Array of Geography UUIDs consisting of every Geography that contains the location of the status change. See Geography Driven Events. Required if location is not present.
+  battery_percent:
+    $ref: ./data-types.yaml#/properties/integer_positive
+    description: Percent battery charge of vehicle, expressed between 0 and 100.
+    maximum: 100
+  fuel_percent:
+    $ref: ./data-types.yaml#/properties/integer_positive
+    description: Percent fuel in vehicle, expressed between 0 and 100.
+    maximum: 100
+  trip_ids:
+    $ref: ./data-types.yaml#/properties/uuid_array
+    description: Trip UUIDs (foreign key to /trips endpoint), required if event_types contains `trip_start`, `trip_end`, `trip_cancel`, `trip_enter_jurisdiction`, or `trip_leave_jurisdiction`
+  associated_ticket:
+    $ref: ./data-types.yaml#/properties/string
+    description: Identifier for an associated ticket inside an Agency-maintained 311 or CRM system.
+
+allOf:
+  - $ref: ./data-types.yaml#/properties/device

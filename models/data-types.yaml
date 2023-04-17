@@ -106,7 +106,7 @@ properties:
       - trip_resume
       - unspecified
 
-  event_types:
+  event_type_array:
     type: array
     description: Array of events indicating a change to a vehicle's state.
     uniqueItems: true
@@ -340,7 +340,7 @@ properties:
     anyOf:
       - not:
           properties:
-            event_types:
+            event_type_array:
               contains:
                 enum:
                   - trip_cancel

@@ -1,0 +1,73 @@
+title: telemetry
+description: |-
+  A standard point of vehicle telemetry. References to latitude and longitude imply coordinates encoded in the
+  [WGS 84 (EPSG:4326)](https://en.wikipedia.org/wiki/World_Geodetic_System) standard GPS or GNSS projection expressed
+  as [Decimal Degrees](https://en.wikipedia.org/wiki/Decimal_degrees).
+
+type: object
+
+x-stoplight:
+  id: 47oju05zyh09f
+
+components:
+  schemas:
+    optional_uuid:
+      oneOf:
+        - $ref: ./data-types.yaml#/properties/uuid
+          description: If telemetry occurred during a trip and journeys are used for the mode, the ID of the journey.
+        - type: "null"
+          description: If not in a trip, null.
+    optional_uuid_array:
+      oneOf:
+        - $ref: ./data-types.yaml#/properties/uuid_array
+          description: If telemetry occurred during a trip, the ID of the trip(s).
+        - type: "null"
+          description: If not in a trip, null.
+
+required:
+  - telemetry_id
+  - timestamp
+  - trip_ids
+  - journey_id
+  - location
+
+properties:
+  telemetry_id:
+    $ref: ./data-types.yaml#/properties/uuid
+    description: ID used for uniquely-identifying a Telemetry entry.
+  timestamp:
+    $ref: ./data-types.yaml#/properties/timestamp
+    description: Date/time that event occurred.
+  trip_ids:
+    $ref: "#/components/schemas/optional_uuid_array"
+  journey_id:
+    $ref: "#/components/schemas/optional_uuid"
+  stop_id:
+    $ref: ./data-types.yaml#/properties/uuid
+    description: Stop that the vehicle is currently located at.
+  location:
+    $ref: ./data-types.yaml#/properties/gps_data
+    description: Telemetry position data.
+  location_type:
+    type: string
+    enum:
+      - street
+      - sidewalk
+      - crosswalk
+      - garage
+      - bike_lane
+  battery_percent:
+    $ref: ./data-types.yaml#/properties/integer_positive
+    description: Percent battery charge of vehicle, expressed between 0 and 100.
+    maximum: 100
+  fuel_percent:
+    $ref: ./data-types.yaml#/properties/integer_positive
+    description: Percent fuel in vehicle, expressed between 0 and 100.
+    maximum: 100
+  tipped_over:
+    type: boolean
+    description: If detectable and known, is the device tipped over or not?
+    default: false
+
+allOf:
+  - $ref: ./data-types.yaml#/properties/device

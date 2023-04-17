@@ -92,6 +92,7 @@ properties:
       - provider_cancellation
       - provider_drop_off
       - rebalance_pick_up
+      - recommission
       - remote_end
       - remote_start
       - reservation_cancel

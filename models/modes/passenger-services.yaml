@@ -6,6 +6,50 @@ x-stoplight:
   id: diqnymt2vyq3m
 
 properties:
+  event:
+    title: passenger-services
+    description: Event definition for the `passenger-services` mode.
+    type: object
+    properties:
+      vehicle_state:
+        description: The state of the vehicle.
+        enum:
+          - removed
+          - available
+          - non_operational
+          - reserved
+          - on_trip
+          - stopped
+          - non_contactable
+          - elsewhere
+      event_types:
+        description: Vehicle event types for state change.
+        items:
+          type: string
+          enum:
+            - comms_lost
+            - comms_restored
+            - driver_cancellation
+            - maintenance
+            - maintenance_end
+            - maintenance_pick_up
+            # added to main data-type list
+            - passenger_cancellation
+            - provider_cancellation
+            - reservation_start
+            - reservation_stop
+            # added to main data-type list
+            - service_end
+            # added to main data-type list
+            - service_start
+            - trip_end
+            - trip_enter_jurisdiction
+            - trip_leave_jurisdiction
+            - trip_resume
+            - trip_start
+            # added to main data-type list
+            - trip_stop
+
   vehicle:
     title: passenger-services
     description: Vehicle definition for the `passenger-services` mode.
@@ -18,7 +62,6 @@ properties:
           type: string
           enum:
             - wheelchair_accessible
-
       vehicle_attributes:
         type: object
         additionalProperties: false

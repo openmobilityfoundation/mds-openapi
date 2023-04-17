@@ -498,13 +498,6 @@ properties:
       - truck
       - other
 
-  vehicle_types:
-    type: array
-    description: Array of vehicle types.
-    items:
-      $ref: "#/properties/vehicle_type"
-    uniqueItems: true
-
   vehicle_type_counts:
     type: object
     properties:

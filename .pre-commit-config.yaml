@@ -9,7 +9,7 @@ repos:
         name: spectral linter
         language: node
         entry: npx spectral lint ./reference/**/*.yaml
-        files: ^reference/
+        files: ^reference/|models/
         additional_dependencies: ["@stoplight/spectral-cli@6.6.0"]
         types: [yaml]
 

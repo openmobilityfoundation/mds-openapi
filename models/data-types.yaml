@@ -340,6 +340,9 @@ properties:
     description: Integer milliseconds since Unix epoch.
     multipleOf: 1
     minimum: 1514764800000
+    examples:
+      - 1514764800000
+      - 1681855703000
 
   trip_id_reference:
     description: Conditionally require a trip_id reference.
@@ -359,8 +362,7 @@ properties:
 
   ttl:
     type: integer
-    description: Integer milliseconds until next data update (0 if the data is.
-      always refreshed)
+    description: Integer milliseconds until next data update (0 if the data is always refreshed)
     minimum: 0
     maximum: 300000
 

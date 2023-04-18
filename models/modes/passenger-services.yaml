@@ -58,6 +58,7 @@ properties:
       accessibility_options:
         type: array
         description: The accessibility options available on a given vehicle, or the accessibility options utilized for a given trip.
+        uniqueItems: true
         items:
           type: string
           enum:

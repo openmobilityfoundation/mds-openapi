@@ -6,12 +6,23 @@ x-stoplight:
   id: e7es4zmeat7ai
 
 required:
+  - device_id
+  - provider_id
   - vehicle_id
   - vehicle_type
   - propulsion_types
   - accessibility_options
 
 properties:
+  device_id:
+    $ref: ./data-types.yaml#/properties/uuid
+    description: A unique device ID in UUID format.
+  provider_id:
+    $ref: ./data-types.yaml#/properties/uuid
+    description: A UUID for the Provider, unique within MDS. See MDS [provider list](https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/providers.csv).
+  data_provider_id:
+    $ref: ./data-types.yaml#/properties/uuid
+    description: If different than `provider_id`, a UUID for the data solution provider managing the data feed in this endpoint.
   vehicle_id:
     $ref: ./data-types.yaml#/properties/string
     description: A unique vehicle identifier (visible code, license plate, etc), visible on the vehicle itself.
@@ -37,9 +48,6 @@ properties:
   maximum_speed:
     $ref: ./data-types.yaml#/properties/integer_positive
     description: Maximum speed (kph) possible with vehicle under normal, flat incline, smooth surface conditions. Applicable if the device has a built-in or intelligent speed limiter/governor.
-
-allOf:
-  - $ref: ./data-types.yaml#/properties/device
 
 oneOf:
   - $ref: ./modes/car-share.yaml#/properties/vehicle

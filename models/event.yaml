@@ -6,6 +6,8 @@ x-stoplight:
   id: 34niv0zuhmwmg
 
 required:
+  - device_id
+  - provider_id
   - event_id
   - vehicle_state
   - event_types
@@ -13,6 +15,15 @@ required:
   - location
 
 properties:
+  device_id:
+    $ref: ./data-types.yaml#/properties/uuid
+    description: A unique device ID in UUID format.
+  provider_id:
+    $ref: ./data-types.yaml#/properties/uuid
+    description: A UUID for the Provider, unique within MDS. See MDS [provider list](https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/providers.csv).
+  data_provider_id:
+    $ref: ./data-types.yaml#/properties/uuid
+    description: If different than `provider_id`, a UUID for the data solution provider managing the data feed in this endpoint.
   event_id:
     $ref: ./data-types.yaml#/properties/uuid
     description: A unique event ID in UUID format.
@@ -46,9 +57,6 @@ properties:
   associated_ticket:
     $ref: ./data-types.yaml#/properties/string
     description: Identifier for an associated ticket inside an Agency-maintained 311 or CRM system.
-
-allOf:
-  - $ref: ./data-types.yaml#/properties/device
 
 oneOf:
   - $ref: ./modes/car-share.yaml#/properties/event

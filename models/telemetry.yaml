@@ -25,6 +25,8 @@ components:
           description: If not in a trip, null.
 
 required:
+  - device_id
+  - provider_id
   - telemetry_id
   - timestamp
   - trip_ids
@@ -32,6 +34,15 @@ required:
   - location
 
 properties:
+  device_id:
+    $ref: ./data-types.yaml#/properties/uuid
+    description: A unique device ID in UUID format.
+  provider_id:
+    $ref: ./data-types.yaml#/properties/uuid
+    description: A UUID for the Provider, unique within MDS. See MDS [provider list](https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/providers.csv).
+  data_provider_id:
+    $ref: ./data-types.yaml#/properties/uuid
+    description: If different than `provider_id`, a UUID for the data solution provider managing the data feed in this endpoint.
   telemetry_id:
     $ref: ./data-types.yaml#/properties/uuid
     description: ID used for uniquely-identifying a Telemetry entry.
@@ -68,6 +79,3 @@ properties:
     type: boolean
     description: If detectable and known, is the device tipped over or not?
     default: false
-
-allOf:
-  - $ref: ./data-types.yaml#/properties/device

@@ -6,14 +6,22 @@ x-stoplight:
   id: cuu383rzjelef
 
 required:
+  - device_id
+  - provider_id
   - last_event
   - last_telemetry
 
 properties:
+  device_id:
+    $ref: ./data-types.yaml#/properties/uuid
+    description: A unique device ID in UUID format.
+  provider_id:
+    $ref: ./data-types.yaml#/properties/uuid
+    description: A UUID for the Provider, unique within MDS. See MDS [provider list](https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/providers.csv).
+  data_provider_id:
+    $ref: ./data-types.yaml#/properties/uuid
+    description: If different than `provider_id`, a UUID for the data solution provider managing the data feed in this endpoint.
   last_event:
     $ref: ./event.yaml
   last_telemetry:
     $ref: ./telemetry.yaml
-
-allOf:
-  - $ref: ./data-types.yaml#/properties/device

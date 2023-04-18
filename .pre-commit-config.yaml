@@ -5,11 +5,12 @@ ci:
 repos:
   - repo: local
     hooks:
-      - id: spectral-linter
-        name: spectral-linter
+      - id: spectral-lint
+        name: spectral linter
         language: node
         entry: npx spectral lint ./reference/**/*.yaml
         files: ^reference/
+        additional_dependencies: ["@stoplight/spectral-cli@6.6.0"]
         types: [yaml]
 
   - repo: https://github.com/pre-commit/pre-commit-hooks

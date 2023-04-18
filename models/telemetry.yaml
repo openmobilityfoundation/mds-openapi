@@ -9,21 +9,6 @@ type: object
 x-stoplight:
   id: 47oju05zyh09f
 
-components:
-  schemas:
-    optional_uuid:
-      oneOf:
-        - $ref: ./data-types.yaml#/properties/uuid
-          description: If telemetry occurred during a trip and journeys are used for the mode, the ID of the journey.
-        - type: "null"
-          description: If not in a trip, null.
-    optional_uuid_array:
-      oneOf:
-        - $ref: ./data-types.yaml#/properties/uuid_array
-          description: If telemetry occurred during a trip, the ID of the trip(s).
-        - type: "null"
-          description: If not in a trip, null.
-
 required:
   - device_id
   - provider_id
@@ -50,9 +35,17 @@ properties:
     $ref: ./data-types.yaml#/properties/timestamp
     description: Date/time that event occurred.
   trip_ids:
-    $ref: "#/components/schemas/optional_uuid_array"
+    oneOf:
+      - $ref: ./data-types.yaml#/properties/uuid_array
+        description: If telemetry occurred during a trip, the ID of the trip(s).
+      - type: "null"
+        description: If not in a trip, null.
   journey_id:
-    $ref: "#/components/schemas/optional_uuid"
+    oneOf:
+      - $ref: ./data-types.yaml#/properties/uuid
+        description: If telemetry occurred during a trip and journeys are used for the mode, the ID of the journey.
+      - type: "null"
+        description: If not in a trip, null.
   stop_id:
     $ref: ./data-types.yaml#/properties/uuid
     description: Stop that the vehicle is currently located at.

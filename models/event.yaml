@@ -14,52 +14,53 @@ required:
   - timestamp
   - location
 
-properties:
-  device_id:
-    $ref: ./data-types/uuid.yaml
-    description: A unique device ID in UUID format.
-  provider_id:
-    $ref: ./data-types/uuid.yaml
-    description: A UUID for the Provider, unique within MDS. See MDS [provider list](https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/providers.csv).
-  data_provider_id:
-    $ref: ./data-types/uuid.yaml
-    description: If different than `provider_id`, a UUID for the data solution provider managing the data feed in this endpoint.
-  event_id:
-    $ref: ./data-types/uuid.yaml
-    description: A unique event ID in UUID format.
-  vehicle_state:
-    $ref: ./data-types/vehicle_state.yaml
-  event_types:
-    $ref: ./data-types/event_type_array.yaml
-  timestamp:
-    $ref: ./data-types/timestamp.yaml
-    description: Date/time that event occurred.
-  publication_time:
-    $ref: ./data-types/timestamp.yaml
-    description: Date/time event became available through the status changes endpoint.
-  location:
-    $ref: ./data-types/gps_data.yaml
-    description: Location of the event.
-  event_geographies:
-    $ref: ./data-types/uuid_array.yaml
-    description: Array of Geography UUIDs consisting of every Geography that contains the location of the status change. See Geography Driven Events. Required if location is not present.
-  battery_percent:
-    $ref: ./data-types/integer_positive.yaml
-    description: Percent battery charge of vehicle, expressed between 0 and 100.
-    maximum: 100
-  fuel_percent:
-    $ref: ./data-types/integer_positive.yaml
-    description: Percent fuel in vehicle, expressed between 0 and 100.
-    maximum: 100
-  trip_ids:
-    $ref: ./data-types/uuid_array.yaml
-    description: Trip UUIDs (foreign key to /trips endpoint), required if event_types contains `trip_start`, `trip_end`, `trip_cancel`, `trip_enter_jurisdiction`, or `trip_leave_jurisdiction`
-  associated_ticket:
-    $ref: ./data-types/string.yaml
-    description: Identifier for an associated ticket inside an Agency-maintained 311 or CRM system.
+allOf:
+  - properties:
+      device_id:
+        $ref: ./data-types/uuid.yaml
+        description: A unique device ID in UUID format.
+      provider_id:
+        $ref: ./data-types/uuid.yaml
+        description: A UUID for the Provider, unique within MDS. See MDS [provider list](https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/providers.csv).
+      data_provider_id:
+        $ref: ./data-types/uuid.yaml
+        description: If different than `provider_id`, a UUID for the data solution provider managing the data feed in this endpoint.
+      event_id:
+        $ref: ./data-types/uuid.yaml
+        description: A unique event ID in UUID format.
+      vehicle_state:
+        $ref: ./data-types/vehicle_state.yaml
+      event_types:
+        $ref: ./data-types/event_type_array.yaml
+      timestamp:
+        $ref: ./data-types/timestamp.yaml
+        description: Date/time that event occurred.
+      publication_time:
+        $ref: ./data-types/timestamp.yaml
+        description: Date/time event became available through the status changes endpoint.
+      location:
+        $ref: ./data-types/gps_data.yaml
+        description: Location of the event.
+      event_geographies:
+        $ref: ./data-types/uuid_array.yaml
+        description: Array of Geography UUIDs consisting of every Geography that contains the location of the status change. See Geography Driven Events. Required if location is not present.
+      battery_percent:
+        $ref: ./data-types/integer_positive.yaml
+        description: Percent battery charge of vehicle, expressed between 0 and 100.
+        maximum: 100
+      fuel_percent:
+        $ref: ./data-types/integer_positive.yaml
+        description: Percent fuel in vehicle, expressed between 0 and 100.
+        maximum: 100
+      trip_ids:
+        $ref: ./data-types/uuid_array.yaml
+        description: Trip UUIDs (foreign key to /trips endpoint), required if event_types contains `trip_start`, `trip_end`, `trip_cancel`, `trip_enter_jurisdiction`, or `trip_leave_jurisdiction`
+      associated_ticket:
+        $ref: ./data-types/string.yaml
+        description: Identifier for an associated ticket inside an Agency-maintained 311 or CRM system.
 
-oneOf:
-  - $ref: ./modes/car-share.yaml#/properties/event
-  - $ref: ./modes/delivery-robots.yaml#/properties/event
-  - $ref: ./modes/micromobility.yaml#/properties/event
-  - $ref: ./modes/passenger-services.yaml#/properties/event
+  - oneOf:
+      - $ref: ./modes/car-share/event.yaml
+      - $ref: ./modes/delivery-robots/event.yaml
+      - $ref: ./modes/micromobility/event.yaml
+      - $ref: ./modes/passenger-services/event.yaml

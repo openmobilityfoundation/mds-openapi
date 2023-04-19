@@ -1,3 +1,5 @@
+title: data-types/vehicle-type-counts
+description: A dictionary of vehicle counts, keyed by `vehicle_type`.
 additionalProperties: false
 properties:
   bicycle:

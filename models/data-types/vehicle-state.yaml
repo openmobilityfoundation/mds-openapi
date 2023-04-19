@@ -1,3 +1,4 @@
+title: data-types/vehicle-state
 description: The state of a vehicle.
 enum:
   - removed

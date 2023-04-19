@@ -1,3 +1,4 @@
+title: data-types/iso-dayhour
 description:
   An ISO 8601 extended datetime representing an UTC hour between 00 and 23 `YYYY-MM-DDTHH`; valid for dates in 1970 and
   later.

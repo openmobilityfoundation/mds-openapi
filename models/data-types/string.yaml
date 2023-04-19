@@ -1,3 +1,4 @@
+title: data-types/string
 description: A length-limited string type.
 examples:
   - ABC123

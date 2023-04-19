@@ -1,3 +1,4 @@
+title: data-types/trip-id-reference
 anyOf:
   - not:
       properties:

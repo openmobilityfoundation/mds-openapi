@@ -1,3 +1,4 @@
+title: data-types/vehicle-state-transitions
 description: valid vehicle_state and vehicle_events combinations.
 oneOf:
   - properties:

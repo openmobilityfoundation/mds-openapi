@@ -1,3 +1,4 @@
+title: data-types/iso-date
 description: Date expressed as ISO 8601 `YYYY-MM-DD`; valid for dates in 1970 and later.
 examples:
   - "2023-12-31"

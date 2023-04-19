@@ -1,3 +1,4 @@
+title: data-types/days
 description: An array of days of the week.
 items:
   $ref: day.yaml

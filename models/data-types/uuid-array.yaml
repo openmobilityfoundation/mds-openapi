@@ -1,3 +1,4 @@
+title: data-types/uuid-array
 description: Array of UUID.
 items:
   $ref: uuid.yaml

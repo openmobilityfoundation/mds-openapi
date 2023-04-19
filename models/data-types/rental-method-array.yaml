@@ -1,3 +1,4 @@
+title: data-types/rental-method-array
 description: Payment methods accepted at this Stop. From GBFS Station Information.
 items:
   enum:

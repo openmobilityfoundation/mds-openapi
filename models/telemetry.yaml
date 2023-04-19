@@ -36,7 +36,7 @@ properties:
     description: Date/time that event occurred.
   trip_ids:
     oneOf:
-      - $ref: ./data-types/uuid_array.yaml
+      - $ref: ./data-types/uuid-array.yaml
         description: If telemetry occurred during a trip, the ID of the trip(s).
       - type: "null"
         description: If not in a trip, null.
@@ -50,7 +50,7 @@ properties:
     $ref: ./data-types/uuid.yaml
     description: Stop that the vehicle is currently located at.
   location:
-    $ref: ./data-types/gps_data.yaml
+    $ref: ./data-types/gps.yaml
     description: Telemetry position data.
   location_type:
     type: string
@@ -61,11 +61,11 @@ properties:
       - garage
       - bike_lane
   battery_percent:
-    $ref: ./data-types/integer_positive.yaml
+    $ref: ./data-types/integer-positive.yaml
     description: Percent battery charge of vehicle, expressed between 0 and 100.
     maximum: 100
   fuel_percent:
-    $ref: ./data-types/integer_positive.yaml
+    $ref: ./data-types/integer-positive.yaml
     description: Percent fuel in vehicle, expressed between 0 and 100.
     maximum: 100
   tipped_over:

@@ -1,3 +1,4 @@
+title: data-types/timestamp
 description: Integer milliseconds since Unix epoch.
 examples:
   - 1514764800000

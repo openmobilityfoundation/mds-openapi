@@ -1,3 +1,4 @@
+title: data-types/integer-positive
 description: An integer greater than or equal to 0.
 minimum: 0
 type: integer

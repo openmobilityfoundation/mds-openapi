@@ -1,3 +1,4 @@
+title: data-types/currency
 default: USD
 description: An ISO 4217 Alphabetic Currency Code representing currency of the payee. If null, USD cents is implied.
 examples:

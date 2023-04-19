@@ -20,7 +20,7 @@ properties:
     additionalProperties: false
     properties:
       year:
-        $ref: ../../data-types/minimum_year.yaml
+        $ref: ../../data-types/minimum-year.yaml
       make:
         $ref: ../../data-types/string.yaml
       model:

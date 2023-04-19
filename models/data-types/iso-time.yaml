@@ -1,3 +1,4 @@
+title: data-types/iso-time
 description: Time-of-day expressed as ISO 8601 `hh:mm:ss`.
 examples:
   - "23:59:59"

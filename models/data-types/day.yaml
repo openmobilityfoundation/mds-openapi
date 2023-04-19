@@ -1,3 +1,4 @@
+title: data-types/day
 description: A day of the week.
 enum:
   - sun

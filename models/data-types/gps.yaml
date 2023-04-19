@@ -1,3 +1,4 @@
+title: data-types/gps
 properties:
   altitude:
     description: Altitude above mean sea level in meters.
@@ -19,7 +20,7 @@ properties:
     minimum: -180
     type: number
   satellites:
-    $ref: integer_positive.yaml
+    $ref: integer-positive.yaml
     description: Number of GPS or GNSS satellites.
   speed:
     description: Estimated speed in meters / sec as reported by the GPS chipset.

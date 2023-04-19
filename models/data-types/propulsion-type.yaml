@@ -1,3 +1,4 @@
+title: data-types/propulsion-type
 description: The allowed types of propulsion in MDS. Based off of `propulsion_type` in [GBFS vehicle_types](https://github.com/MobilityData/gbfs/blob/master/gbfs.md#vehicle_typesjson)
 enum:
   - human

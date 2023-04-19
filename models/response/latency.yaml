@@ -14,6 +14,6 @@ properties:
     $ref: ../data-types/timestamp.yaml
     description: Timestamp indicating the last time the data in this feed was updated.
   ttl:
-    $ref: ../data-types/integer_positive.yaml
+    $ref: ../data-types/integer-positive.yaml
     description: Integer representing the number of milliseconds before the data in this feed will be updated again (0 if the data should always be refreshed).
     maximum: 300000 # 5 minutes in milliseconds

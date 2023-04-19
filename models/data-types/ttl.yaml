@@ -1,6 +1,0 @@
-description: Integer milliseconds until next data update (0 if the data is always refreshed)
-maximum: 300000
-minimum: 0
-type: integer
-x-stoplight:
-  id: 8whu1th1z2l0t

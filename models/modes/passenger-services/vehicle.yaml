@@ -20,7 +20,7 @@ properties:
     additionalProperties: false
     properties:
       year:
-        $ref: ../../data-types/minimum_year.yaml
+        $ref: ../../data-types/minimum-year.yaml
       make:
         $ref: ../../data-types/string.yaml
       model:
@@ -37,5 +37,5 @@ properties:
         $ref: ../../data-types/string.yaml
         description: The registered vehicle license/number/registration plate identifier on the vehicle.
       inspection_date:
-        $ref: ../../data-types/iso_date.yaml
+        $ref: ../../data-types/iso-date.yaml
         description: The date of the last inspection of the vehicle in ISO 8601 `YYYY-MM-DD`.

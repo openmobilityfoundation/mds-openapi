@@ -1,3 +1,4 @@
+title: data-types/area-type
 description: The type of a service area.
 enum:
   - unrestricted

@@ -1,3 +1,4 @@
+title: data-types/event-type
 description: Events are possible transitions between vehicle states.
 enum:
   - agency_drop_off

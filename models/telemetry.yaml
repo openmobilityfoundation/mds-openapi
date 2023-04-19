@@ -20,37 +20,37 @@ required:
 
 properties:
   device_id:
-    $ref: ./data-types.yaml#/properties/uuid
+    $ref: ./data-types/uuid.yaml
     description: A unique device ID in UUID format.
   provider_id:
-    $ref: ./data-types.yaml#/properties/uuid
+    $ref: ./data-types/uuid.yaml
     description: A UUID for the Provider, unique within MDS. See MDS [provider list](https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/providers.csv).
   data_provider_id:
-    $ref: ./data-types.yaml#/properties/uuid
+    $ref: ./data-types/uuid.yaml
     description: If different than `provider_id`, a UUID for the data solution provider managing the data feed in this endpoint.
   telemetry_id:
-    $ref: ./data-types.yaml#/properties/uuid
+    $ref: ./data-types/uuid.yaml
     description: ID used for uniquely-identifying a Telemetry entry.
   timestamp:
-    $ref: ./data-types.yaml#/properties/timestamp
+    $ref: ./data-types/timestamp.yaml
     description: Date/time that event occurred.
   trip_ids:
     oneOf:
-      - $ref: ./data-types.yaml#/properties/uuid_array
+      - $ref: ./data-types/uuid_array.yaml
         description: If telemetry occurred during a trip, the ID of the trip(s).
       - type: "null"
         description: If not in a trip, null.
   journey_id:
     oneOf:
-      - $ref: ./data-types.yaml#/properties/uuid
+      - $ref: ./data-types/uuid.yaml
         description: If telemetry occurred during a trip and journeys are used for the mode, the ID of the journey.
       - type: "null"
         description: If not in a trip, null.
   stop_id:
-    $ref: ./data-types.yaml#/properties/uuid
+    $ref: ./data-types/uuid.yaml
     description: Stop that the vehicle is currently located at.
   location:
-    $ref: ./data-types.yaml#/properties/gps_data
+    $ref: ./data-types/gps_data.yaml
     description: Telemetry position data.
   location_type:
     type: string
@@ -61,11 +61,11 @@ properties:
       - garage
       - bike_lane
   battery_percent:
-    $ref: ./data-types.yaml#/properties/integer_positive
+    $ref: ./data-types/integer_positive.yaml
     description: Percent battery charge of vehicle, expressed between 0 and 100.
     maximum: 100
   fuel_percent:
-    $ref: ./data-types.yaml#/properties/integer_positive
+    $ref: ./data-types/integer_positive.yaml
     description: Percent fuel in vehicle, expressed between 0 and 100.
     maximum: 100
   tipped_over:

@@ -73,8 +73,8 @@ properties:
         additionalProperties: false
         properties:
           year:
-            $ref: ../data-types.yaml#/properties/minimum_year
+            $ref: ../data-types/minimum_year.yaml
           make:
-            $ref: ../data-types.yaml#/properties/string
+            $ref: ../data-types/string.yaml
           model:
-            $ref: ../data-types.yaml#/properties/string
+            $ref: ../data-types/string.yaml

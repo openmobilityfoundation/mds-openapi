@@ -74,7 +74,7 @@ paths:
     parameters:
       - name: device_id
         schema:
-          $ref: ../models/data-types.yaml#/properties/uuid
+          $ref: ../models/data-types/uuid.yaml
         in: path
         required: true
         description: The `device_id` of a Provider's Vehicle.
@@ -147,7 +147,7 @@ paths:
     parameters:
       - name: device_id
         schema:
-          $ref: ../models/data-types.yaml#/properties/uuid
+          $ref: ../models/data-types/uuid.yaml
         in: path
         required: true
         description: The `device_id` of a Provider's Vehicle.
@@ -188,7 +188,7 @@ paths:
     parameters:
       - name: end_time
         schema:
-          $ref: ../models/data-types.yaml#/properties/iso_dayhour
+          $ref: ../models/data-types/iso_dayhour.yaml
         in: query
         required: true
         description: The UTC hour during which requested trips ended.
@@ -214,7 +214,7 @@ paths:
     parameters:
       - name: telemetry_time
         schema:
-          $ref: ../models/data-types.yaml#/properties/iso_dayhour
+          $ref: ../models/data-types/iso_dayhour.yaml
         in: query
         required: true
         description: The UTC hour during which telemetry events occurred.
@@ -251,7 +251,7 @@ paths:
     parameters:
       - name: event_time
         schema:
-          $ref: ../models/data-types.yaml#/properties/iso_dayhour
+          $ref: ../models/data-types/iso_dayhour.yaml
         in: query
         required: true
         description: The UTC hour during which events occurred.
@@ -292,13 +292,13 @@ paths:
     parameters:
       - name: start_time
         schema:
-          $ref: ../models/data-types.yaml#/properties/timestamp
+          $ref: ../models/data-types/timestamp.yaml
         in: query
         required: true
         description: status changes where start_time <= event.timestamp
       - name: end_time
         schema:
-          $ref: ../models/data-types.yaml#/properties/timestamp
+          $ref: ../models/data-types/timestamp.yaml
         in: query
         required: true
         description: status changes where event.timestamp < end_time
@@ -349,7 +349,7 @@ paths:
     parameters:
       - name: stop_id
         schema:
-          $ref: ../models/data-types.yaml#/properties/uuid
+          $ref: ../models/data-types/uuid.yaml
         in: path
         required: true
         description: The `stop_id` for a Provider's Stop.

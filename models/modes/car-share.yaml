@@ -83,24 +83,24 @@ properties:
           - license_plate
         properties:
           year:
-            $ref: ../data-types.yaml#/properties/minimum_year
+            $ref: ../data-types/minimum_year.yaml
           make:
-            $ref: ../data-types.yaml#/properties/string
+            $ref: ../data-types/string.yaml
           model:
-            $ref: ../data-types.yaml#/properties/string
+            $ref: ../data-types/string.yaml
           color:
-            $ref: ../data-types.yaml#/properties/string
+            $ref: ../data-types/string.yaml
           vin:
-            $ref: ../data-types.yaml#/properties/string
+            $ref: ../data-types/string.yaml
             description: The vehicle's Vehicle Identification Number.
           placard_number:
-            $ref: ../data-types.yaml#/properties/string
+            $ref: ../data-types/string.yaml
             description: The registered placard number of the vehicle.
           license_plate:
-            $ref: ../data-types.yaml#/properties/string
+            $ref: ../data-types/string.yaml
             description: The registered vehicle license/number/registration plate identifier on the vehicle.
           inspection_date:
-            $ref: ../data-types.yaml#/properties/iso_date
+            $ref: ../data-types/iso_date.yaml
             description: The date of the last inspection of the vehicle in ISO 8601 `YYYY-MM-DD`.
           snow_shovel:
             type: boolean
@@ -124,16 +124,16 @@ properties:
             type: boolean
             description: Vehicle has a sunshade available (i.e. for windshield).
           cargo_volume_capacity:
-            $ref: ../data-types.yaml#/properties/integer_positive
+            $ref: ../data-types/integer_positive.yaml
             description: Cargo volume available in the vehicle, expressed in liters. For cars, it corresponds to the space between the boot floor, including the storage under the hatch, to the rear shelf in the trunk.
           cargo_load_capacity:
-            $ref: ../data-types.yaml#/properties/integer_positive
+            $ref: ../data-types/integer_positive.yaml
             description: The capacity of the vehicle cargo space (excluding passengers), expressed in kilograms.
           door_count:
-            $ref: ../data-types.yaml#/properties/integer_positive
+            $ref: ../data-types/integer_positive.yaml
             description: The number of doors this vehicle type has.
           wheel_count:
-            $ref: ../data-types.yaml#/properties/integer_positive
+            $ref: ../data-types/integer_positive.yaml
             description: The number of doors this vehicle type has.
           air_conditioning:
             type: boolean

@@ -1,0 +1,35 @@
+properties:
+  altitude:
+    description: Altitude above mean sea level in meters.
+    type: number
+  heading:
+    description: Degrees - clockwise starting at 0 degrees at true North.
+    type: number
+  horizontal_accuracy:
+    description: Horizontal accuracy in meters.
+    type: number
+  lat:
+    description: Latitude coordinate.
+    maximum: 90
+    minimum: -90
+    type: number
+  lng:
+    description: Longitude coordinate.
+    maximum: 180
+    minimum: -180
+    type: number
+  satellites:
+    $ref: integer_positive.yaml
+    description: Number of GPS or GNSS satellites.
+  speed:
+    description: Estimated speed in meters / sec as reported by the GPS chipset.
+    type: number
+  vertical_accuracy:
+    description: Vertical accuracy in meters.
+    type: number
+required:
+  - lat
+  - lng
+type: object
+x-stoplight:
+  id: 8aooo5ag7x7vh

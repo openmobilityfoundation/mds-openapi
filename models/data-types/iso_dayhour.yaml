@@ -1,0 +1,10 @@
+description:
+  An ISO 8601 extended datetime representing an UTC hour between 00 and 23 `YYYY-MM-DDTHH`; valid for dates in 1970 and
+  later.
+examples:
+  - 2023-12-31T23
+  - 2024-01-01T01
+pattern: (19[789]\d|[2-9]\d{3})-(0[1-9]|1[02])-([12]\d|0[1-9]|3[01])T([0-2][0-3]|[01]\d)
+type: string
+x-stoplight:
+  id: rc4v7nsrgdqpm

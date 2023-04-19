@@ -1,0 +1,23 @@
+additionalProperties: false
+properties:
+  bicycle:
+    minimum: 0
+    type: integer
+  car:
+    minimum: 0
+    type: integer
+  cargo_bicycle:
+    minimum: 0
+    type: integer
+  moped:
+    minimum: 0
+    type: integer
+  other:
+    minimum: 0
+    type: integer
+  scooter:
+    minimum: 0
+    type: integer
+type: object
+x-stoplight:
+  id: isobk3kg3rr8r

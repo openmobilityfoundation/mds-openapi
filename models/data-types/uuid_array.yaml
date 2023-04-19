@@ -1,0 +1,8 @@
+description: Array of UUID.
+items:
+  $ref: uuid.yaml
+minItems: 1
+type: array
+uniqueItems: true
+x-stoplight:
+  id: v932clitbqv31

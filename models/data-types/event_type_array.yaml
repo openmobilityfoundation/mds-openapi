@@ -1,0 +1,8 @@
+description: Array of events indicating a change to a vehicle's state.
+items:
+  $ref: event_type.yaml
+minItems: 1
+type: array
+uniqueItems: true
+x-stoplight:
+  id: 1dq8fejw6intb

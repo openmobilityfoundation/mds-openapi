@@ -1,0 +1,15 @@
+description: Payment methods accepted at this Stop. From GBFS Station Information.
+items:
+  enum:
+    - KEY
+    - CREDITCARD
+    - PAYPASS
+    - APPLEPAY
+    - ANDROIDPAY
+    - TRANSITCARD
+    - ACCOUNTNUMBER
+    - PHONE
+type: array
+uniqueItems: true
+x-stoplight:
+  id: 33putagkphp1z

@@ -1,0 +1,12 @@
+default: USD
+description: An ISO 4217 Alphabetic Currency Code representing currency of the payee. If null, USD cents is implied.
+examples:
+  - USD
+  - EUR
+  - GBP
+pattern: ^[A-Z]{3}$
+type:
+  - string
+  - "null"
+x-stoplight:
+  id: 85j2txhx6x32o

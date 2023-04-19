@@ -1,0 +1,18 @@
+description:
+  The allowed types of of vehicles in MDS. Based off of `form_factor` in [GBFS vehicle_types](https://github.com/MobilityData/gbfs/blob/master/gbfs.md#vehicle_typesjson),
+  with some additional to support MDS modes.
+enum:
+  - bicycle
+  - bus
+  - cargo_bicycle
+  - car
+  - delivery_robot
+  - moped
+  - motorcycle
+  - scooter_standing
+  - scooter_seated
+  - truck
+  - other
+type: string
+x-stoplight:
+  id: gbhhyditnvs5w

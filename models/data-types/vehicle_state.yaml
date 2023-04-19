@@ -1,0 +1,14 @@
+description: The state of a vehicle.
+enum:
+  - removed
+  - available
+  - non_operational
+  - reserved
+  - on_trip
+  - stopped
+  - non_contactable
+  - missing
+  - elsewhere
+type: string
+x-stoplight:
+  id: 3j1h7u4vvc7kr

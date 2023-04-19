@@ -1,0 +1,5 @@
+description: An integer greater than or equal to 0.
+minimum: 0
+type: integer
+x-stoplight:
+  id: nfkphjmpm8yay

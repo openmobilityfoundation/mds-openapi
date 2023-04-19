@@ -1,0 +1,15 @@
+description: Status object for a Stop in MDS.
+properties:
+  is_installed:
+    type: boolean
+  is_renting:
+    type: boolean
+  is_returning:
+    type: boolean
+required:
+  - is_installed
+  - is_renting
+  - is_returning
+type: object
+x-stoplight:
+  id: m053lbo5j5vqr

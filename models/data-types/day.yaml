@@ -1,0 +1,12 @@
+description: A day of the week.
+enum:
+  - sun
+  - mon
+  - tue
+  - wed
+  - thu
+  - fri
+  - sat
+type: string
+x-stoplight:
+  id: g5u1fwovxmhc3

@@ -1,0 +1,5 @@
+description: Represents a minimum for fields that capture a year as an integer. Derived from Unix timestamp 0.
+minimum: 1970
+type: integer
+x-stoplight:
+  id: fa7v7itv8mti4

@@ -1,0 +1,7 @@
+description: Array of propulsion types, allowing multiple values.
+items:
+  $ref: propulsion_type.yaml
+type: array
+uniqueItems: true
+x-stoplight:
+  id: 4ao4xw23z8wrf

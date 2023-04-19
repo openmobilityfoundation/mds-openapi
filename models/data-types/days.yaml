@@ -1,0 +1,7 @@
+description: An array of days of the week.
+items:
+  $ref: day.yaml
+type: array
+uniqueItems: true
+x-stoplight:
+  id: g7wntphhazfhv

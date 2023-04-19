@@ -1,0 +1,16 @@
+anyOf:
+  - not:
+      properties:
+        event_type_array:
+          contains:
+            enum:
+              - trip_cancel
+              - trip_end
+              - trip_enter_jurisdiction
+              - trip_leave_jurisdiction
+              - trip_start
+  - required:
+      - trip_id
+description: Conditionally require a trip_id reference.
+x-stoplight:
+  id: bzjwz1zr688i6

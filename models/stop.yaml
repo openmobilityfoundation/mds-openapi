@@ -1,6 +1,110 @@
 title: models/stop
-description: A Stop in MDS.
+description: |-
+  Stops describe vehicle trip start and end locations in a pre-designated physical place. They can vary from docking stations
+  with or without charging, corrals with lock-to railings, or suggested parking areas marked with spray paint.
+  Stops are used in both [Provider](../reference/provider.yaml) and [Agency](#) telemetry data.
+
 type: object
 
 x-stoplight:
   id: m0f816guajcjj
+
+required:
+  - stop_id
+  - name
+  - last_reported
+  - location
+  - status
+  - capacity
+  - num_vehicles_available
+  - num_vehicles_disabled
+
+properties:
+  stop_id:
+    $ref: ./data-types/uuid.yaml
+    description: UUID for the stop.
+  name:
+    $ref: ./data-types/string.yaml
+    description: Name of the stop.
+  last_reported:
+    $ref: ./data-types/timestamp.yaml
+    description: Date/Time of the the stop was last updated.
+  location:
+    $ref: ./data-types/gps.yaml
+    description: Simple centerpoint location of the Stop. The use of the optional `geography_id` is recommended to provide more detail.
+  status:
+    type: object
+    required:
+      - is_installed
+      - is_renting
+      - is_returning
+    properties:
+      is_installed:
+        type: boolean
+        description: See GBFS [station_status.json](https://github.com/NABSA/gbfs/blob/master/gbfs.md#station_statusjson)
+      is_renting:
+        type: boolean
+        description: See GBFS [station_status.json](https://github.com/NABSA/gbfs/blob/master/gbfs.md#station_statusjson)
+      is_returning:
+        type: boolean
+        description: See GBFS [station_status.json](https://github.com/NABSA/gbfs/blob/master/gbfs.md#station_statusjson)
+    description: The status of the stop.
+  capacity:
+    $ref: ./data-types/vehicle-type-counts.yaml
+    description: Number of total places per [`vehicle_type`](./data-types/vehicle-type.yaml).
+  num_vehicles_available:
+    $ref: ./data-types/vehicle-type-counts.yaml
+    description: How many vehicles are available per [`vehicle_type`](./data-types/vehicle-type.yaml) at this stop?.
+  num_vehicles_disabled:
+    $ref: ./data-types/vehicle-type-counts.yaml
+    description: How many vehicles are unavailable/reserved per [`vehicle_type`](./data-types/vehicle-type.yaml) at this stop?.
+  provider_id:
+    $ref: ./data-types/uuid.yaml
+    description: |-
+      UUID for the Provider managing this Stop. Null/undefined if managed by an Agency.
+      See MDS [provider list](https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/providers.csv).
+  data_provider_id:
+    $ref: ./data-types/uuid.yaml
+    description: |-
+      UUID for the data provider managing the data coming from this stop.
+      Null/undefined if managed by an agency or a provider. Null/undefined if managed by an Agency.
+      See MDS [provider list](https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/providers.csv).
+  geography_id:
+    $ref: ./data-types/uuid.yaml
+    description: Pointer to the [Geography](#) that represents the Stop geospatially via Polygon or MultiPolygon.
+  region_id:
+    $ref: ./data-types/string.yaml
+    description: ID of the region where station is located. See [GBFS Station Information](https://github.com/NABSA/gbfs/blob/master/gbfs.md#station_informationjson).
+  short_name:
+    $ref: ./data-types/string.yaml
+    description: Abbreviated stop name.
+  address:
+    $ref: ./data-types/string.yaml
+    description: Postal address (useful for directions).
+  post_code:
+    $ref: ./data-types/string.yaml
+    description: Postal code.
+    examples:
+      - 10036
+  rental_methods:
+    $ref: ./data-types/rental-method-array.yaml
+    description: List of payment methods accepted at stop, see [GBFS Rental Methods](https://github.com/NABSA/gbfs/blob/master/gbfs.md#station_informationjson).
+  cross_street:
+    $ref: ./data-types/string.yaml
+    description: Cross street of where station is located.
+  num_places_available:
+    $ref: ./data-types/vehicle-type-counts.yaml
+    description: How many places are free to be populated with vehicles per [`vehicle_type`](./data-types/vehicle-type.yaml) at this stop?
+  num_places_disabled:
+    $ref: ./data-types/vehicle-type-counts.yaml
+    description: How many places are disabled and unable to accept vehicles per [`vehicle_type`](./data-types/vehicle-type.yaml) at this stop?
+  parent_stop:
+    $ref: ./data-types/uuid.yaml
+    description: Describe a basic hierarchy of stops (e.g. a stop inside a greater stop).
+  devices:
+    $ref: ./data-types/uuid-array.yaml
+    description: List of `device_id` for [vehicles](./vehicle.yaml) currently at this stop.
+  image_url:
+    type: string
+    format: uri
+    description: Link to an image, photo, or diagram of the stop. Could be used by providers to help riders find or use the stop.

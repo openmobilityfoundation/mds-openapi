@@ -226,7 +226,22 @@ paths:
         "200":
           description: Hour has been processed.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response.yaml#/properties/payload
+                  - type: object
+                    description: Telemetry data payload
+                    properties:
+                      data:
+                        type: object
+                        additionalProperties: false
+                        properties:
+                          telemetry:
+                            type: array
+                            items:
+                              $ref: ../models/telemetry.yaml
         "400":
           description: Request did not contain a `telemetry_time`.
         "406":

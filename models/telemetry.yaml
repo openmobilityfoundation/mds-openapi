@@ -1,4 +1,4 @@
-title: telemetry
+title: models/telemetry
 description: |-
   A standard point of vehicle telemetry. References to latitude and longitude imply coordinates encoded in the
   [WGS 84 (EPSG:4326)](https://en.wikipedia.org/wiki/World_Geodetic_System) standard GPS or GNSS projection expressed

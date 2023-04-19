@@ -1,5 +1,5 @@
-title: Vehicle
-description: Common definition for a Vehicle object in MDS.
+title: models/vehicle
+description: Vehicle object in MDS.
 type: object
 
 x-stoplight:

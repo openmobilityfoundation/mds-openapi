@@ -1,0 +1,6 @@
+title: models/stop
+description: A Stop in MDS.
+type: object
+
+x-stoplight:
+  id: m0f816guajcjj

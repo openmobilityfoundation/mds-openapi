@@ -1,4 +1,4 @@
-title: Vehicle Status
+title: models/vehicles-status
 description: A vehicle status record represents the current or last-known event and telemetry from a [vehicle](./vehicle.yaml).
 type: object
 

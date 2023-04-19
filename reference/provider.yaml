@@ -263,7 +263,22 @@ paths:
         "200":
           description: Hour has been processed.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response.yaml#/properties/payload
+                  - type: object
+                    description: Events data payload
+                    properties:
+                      data:
+                        type: object
+                        additionalProperties: false
+                        properties:
+                          events:
+                            type: array
+                            items:
+                              $ref: ../models/event.yaml
         "202":
           description: Data is not yet available for this hour.
         "400":
@@ -295,7 +310,23 @@ paths:
         "200":
           description: Range was valid and within the prior two weeks.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response.yaml#/properties/payload
+                  - $ref: ../models/response.yaml#/properties/paging
+                  - type: object
+                    description: Events data payload
+                    properties:
+                      data:
+                        type: object
+                        additionalProperties: false
+                        properties:
+                          events:
+                            type: array
+                            items:
+                              $ref: ../models/event.yaml
         "400":
           description: Request did not contain a `start_time`, `end_time`, or the range was more than 2 weeks in the past.
         "406":

@@ -1,25 +1,32 @@
 title: data-types/vehicle-type-counts
-description: A dictionary of vehicle counts, keyed by `vehicle_type`.
-additionalProperties: false
-properties:
-  bicycle:
-    minimum: 0
-    type: integer
-  car:
-    minimum: 0
-    type: integer
-  cargo_bicycle:
-    minimum: 0
-    type: integer
-  moped:
-    minimum: 0
-    type: integer
-  other:
-    minimum: 0
-    type: integer
-  scooter:
-    minimum: 0
-    type: integer
+description: A dictionary of vehicle counts, keyed by [`vehicle_type`](./vehicle-type.yaml).
 type: object
+
 x-stoplight:
   id: isobk3kg3rr8r
+
+additionalProperties: false
+
+properties:
+  bicycle:
+    $ref: integer-positive.yaml
+  bus:
+    $ref: integer-positive.yaml
+  cargo_bicycle:
+    $ref: integer-positive.yaml
+  car:
+    $ref: integer-positive.yaml
+  delivery_robot:
+    $ref: integer-positive.yaml
+  moped:
+    $ref: integer-positive.yaml
+  motorcycle:
+    $ref: integer-positive.yaml
+  scooter_standing:
+    $ref: integer-positive.yaml
+  scooter_seated:
+    $ref: integer-positive.yaml
+  truck:
+    $ref: integer-positive.yaml
+  other:
+    $ref: integer-positive.yaml

@@ -1,0 +1,18 @@
+title: MDS API Response payload
+description: Shared schema definition for an MDS API response payload. Does not include `data` property, but requires it.
+type: object
+
+x-stoplight:
+  id: ivd8jadc3rqf7
+
+required:
+  - version
+  - data
+
+properties:
+  version:
+    type: string
+    description: The version of MDS this data represents.
+    pattern: ^2\.(\d|[1-9]\d+)\.(\d|[1-9]\d+)$
+    examples:
+      - 2.0.0

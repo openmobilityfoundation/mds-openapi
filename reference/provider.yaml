@@ -341,7 +341,23 @@ paths:
         "200":
           description: Stops found.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/payload.yaml
+                  - $ref: ../models/response/latency.yaml
+                  - type: object
+                    description: Stops data payload
+                    properties:
+                      data:
+                        type: object
+                        additionalProperties: false
+                        properties:
+                          stops:
+                            type: array
+                            items:
+                              $ref: ../models/stop.yaml
         "406":
           description: MDS version in Accept header is unsupported or invalid.
 
@@ -361,7 +377,27 @@ paths:
         "200":
           description: Stop found.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/payload.yaml
+                  - $ref: ../models/response/latency.yaml
+                  - type: object
+                    description: Stops data payload
+                    properties:
+                      data:
+                        type: object
+                        additionalProperties: false
+                        properties:
+                          stops:
+                            type: array
+                            minItems: 1
+                            maxItems: 1
+                            items:
+                              $ref: ../models/stop.yaml
+        "404":
+          description: Stop not found.
         "406":
           description: MDS version in Accept header is unsupported or invalid.
 

@@ -1,5 +1,5 @@
-title: MDS API Response payload
-description: Shared schema definition for an MDS API response payload. Does not include `data` property, but requires it.
+title: response/payload
+description: Response bodies must be a UTF-8 encoded JSON object and must minimally include the MDS `version` and a `data` payload.
 type: object
 
 x-stoplight:

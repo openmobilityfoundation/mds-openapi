@@ -53,7 +53,7 @@ paths:
                 allOf:
                   - $ref: ../models/response/payload.yaml
                   - $ref: ../models/response/paging.yaml
-                  - $ref: ../models/response/data_latency.yaml
+                  - $ref: ../models/response/latency.yaml
                   - type: object
                     description: Vehicles data payload
                     properties:
@@ -92,7 +92,7 @@ paths:
                 allOf:
                   - $ref: ../models/response/payload.yaml
                   - $ref: ../models/response/paging.yaml
-                  - $ref: ../models/response/data_latency.yaml
+                  - $ref: ../models/response/latency.yaml
                   - type: object
                     description: Vehicle data payload
                     properties:
@@ -126,7 +126,7 @@ paths:
                 allOf:
                   - $ref: ../models/response/payload.yaml
                   - $ref: ../models/response/paging.yaml
-                  - $ref: ../models/response/data_latency.yaml
+                  - $ref: ../models/response/latency.yaml
                   - type: object
                     description: Vehicles status data payload
                     properties:
@@ -165,7 +165,7 @@ paths:
                 allOf:
                   - $ref: ../models/response/payload.yaml
                   - $ref: ../models/response/paging.yaml
-                  - $ref: ../models/response/data_latency.yaml
+                  - $ref: ../models/response/latency.yaml
                   - type: object
                     description: Vehicles status data payload
                     properties:

@@ -1,4 +1,4 @@
-title: MDS API Response data latency
+title: response/latency
 description: The data returned by a near-realtime endpoint should be as close to realtime as possible, but in no case should it be more than 5 minutes out-of-date.
 type: object
 

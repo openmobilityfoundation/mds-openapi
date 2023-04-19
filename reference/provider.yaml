@@ -51,9 +51,9 @@ paths:
               schema:
                 type: object
                 allOf:
-                  - $ref: ../models/response.yaml#/properties/payload
-                  - $ref: ../models/response.yaml#/properties/paging
-                  - $ref: ../models/response.yaml#/properties/data_latency
+                  - $ref: ../models/response/payload.yaml
+                  - $ref: ../models/response/paging.yaml
+                  - $ref: ../models/response/data_latency.yaml
                   - type: object
                     description: Vehicles data payload
                     properties:
@@ -90,9 +90,9 @@ paths:
               schema:
                 type: object
                 allOf:
-                  - $ref: ../models/response.yaml#/properties/payload
-                  - $ref: ../models/response.yaml#/properties/paging
-                  - $ref: ../models/response.yaml#/properties/data_latency
+                  - $ref: ../models/response/payload.yaml
+                  - $ref: ../models/response/paging.yaml
+                  - $ref: ../models/response/data_latency.yaml
                   - type: object
                     description: Vehicle data payload
                     properties:
@@ -124,9 +124,9 @@ paths:
               schema:
                 type: object
                 allOf:
-                  - $ref: ../models/response.yaml#/properties/payload
-                  - $ref: ../models/response.yaml#/properties/paging
-                  - $ref: ../models/response.yaml#/properties/data_latency
+                  - $ref: ../models/response/payload.yaml
+                  - $ref: ../models/response/paging.yaml
+                  - $ref: ../models/response/data_latency.yaml
                   - type: object
                     description: Vehicles status data payload
                     properties:
@@ -163,9 +163,9 @@ paths:
               schema:
                 type: object
                 allOf:
-                  - $ref: ../models/response.yaml#/properties/payload
-                  - $ref: ../models/response.yaml#/properties/paging
-                  - $ref: ../models/response.yaml#/properties/data_latency
+                  - $ref: ../models/response/payload.yaml
+                  - $ref: ../models/response/paging.yaml
+                  - $ref: ../models/response/data_latency.yaml
                   - type: object
                     description: Vehicles status data payload
                     properties:
@@ -230,7 +230,7 @@ paths:
               schema:
                 type: object
                 allOf:
-                  - $ref: ../models/response.yaml#/properties/payload
+                  - $ref: ../models/response/payload.yaml
                   - type: object
                     description: Telemetry data payload
                     properties:
@@ -267,7 +267,7 @@ paths:
               schema:
                 type: object
                 allOf:
-                  - $ref: ../models/response.yaml#/properties/payload
+                  - $ref: ../models/response/payload.yaml
                   - type: object
                     description: Events data payload
                     properties:
@@ -314,8 +314,8 @@ paths:
               schema:
                 type: object
                 allOf:
-                  - $ref: ../models/response.yaml#/properties/payload
-                  - $ref: ../models/response.yaml#/properties/paging
+                  - $ref: ../models/response/payload.yaml
+                  - $ref: ../models/response/paging.yaml
                   - type: object
                     description: Events data payload
                     properties:

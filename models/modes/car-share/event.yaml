@@ -1,0 +1,54 @@
+title: modes/car-share/event
+description: Event definition for the `car-share` mode.
+type: object
+
+x-stoplight:
+  id: 0jy8uoz32ksy8
+
+properties:
+  vehicle_state:
+    description: The state of the vehicle.
+    enum:
+      - removed
+      - available
+      - non_operational
+      - reserved
+      - on_trip
+      - stopped
+      - non_contactable
+      - elsewhere
+
+  event_types:
+    description: Vehicle event types for state change.
+    items:
+      type: string
+      enum:
+        - charging_end
+        - charging_start
+        - comms_lost
+        - comms_restored
+        - driver_cancellation
+        - fueling_start
+        - fueling_end
+        # added to main data-type list
+        - maintenance
+        - maintenance_end
+        - maintenance_pick_up
+        # added to main data-type list
+        - passenger_cancellation
+        - provider_cancellation
+        - remote_start
+        - remote_end
+        - reservation_start
+        - reservation_stop
+        # added to main data-type list
+        - service_end
+        # added to main data-type list
+        - service_start
+        - trip_end
+        - trip_enter_jurisdiction
+        - trip_leave_jurisdiction
+        - trip_resume
+        - trip_start
+        # added to main data-type list
+        - trip_stop

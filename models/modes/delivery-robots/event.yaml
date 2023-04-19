@@ -1,0 +1,52 @@
+title: modes/delivery-robots/event
+description: Event definition for the `delivery-robots` mode.
+type: object
+
+x-stoplight:
+  id: sksecq6lesbxa
+
+properties:
+  vehicle_state:
+    description: The state of the robot device.
+    enum:
+      - removed
+      - available
+      - non_operational
+      - reserved
+      - on_trip
+      - stopped
+      - non_contactable
+      - missing
+      - elsewhere
+
+  event_types:
+    description: Robot device event types for state change.
+    items:
+      type: string
+      enum:
+        - comms_lost
+        - comms_restored
+        - compliance_pick_up
+        - customer_cancellation
+        - decommissioned
+        - driver_cancellation
+        - located
+        - maintenance
+        - maintenance_end
+        - maintenance_pick_up
+        - not_located
+        - order_drop_off
+        - order_pick_up
+        - provider_cancellation
+        # added to main data-types list
+        - recommission
+        - reservation_start
+        - reservation_stop
+        - service_end
+        - service_start
+        - trip_end
+        - trip_enter_jurisdiction
+        - trip_leave_jurisdiction
+        - trip_pause
+        - trip_resume
+        - trip_start

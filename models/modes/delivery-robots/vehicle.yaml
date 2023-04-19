@@ -1,0 +1,65 @@
+title: modes/delivery-robots/vehicle
+description: Vehicle definition for the `delivery-robots` mode.
+type: object
+
+x-stoplight:
+  id: 01xpq0lxoywf6
+
+properties:
+  accessibility_options:
+    description: The accessibility options available on a given delivery robot device.
+    type: object
+    additionalProperties: false
+    properties:
+      audio_cue:
+        type: boolean
+        description: Is the device equipped with audio cues upon delivery.
+      visual_cue:
+        type: boolean
+        description: Is the device equipped with visual cues upon delivery.
+      remote_open:
+        type: boolean
+        description: Can the device door be remotely opened to retrieve cargo upon delivery.
+
+  vehicle_attributes:
+    type: object
+    additionalProperties: false
+    properties:
+      year:
+        $ref: ../../data-types/minimum_year.yaml
+      make:
+        $ref: ../../data-types/string.yaml
+      model:
+        $ref: ../../data-types/string.yaml
+      color:
+        $ref: ../../data-types/string.yaml
+      inspection_date:
+        $ref: ../../data-types/iso_date.yaml
+        description: The date of the last inspection of the vehicle in ISO 8601 `YYYY-MM-DD`.
+      equipped_cameras:
+        $ref: ../../data-types/integer_positive.yaml
+        description: The number of cameras equipped on device.
+      equipped_lighting:
+        $ref: ../../data-types/integer_positive.yaml
+        description: The  number of lights used to illuminate the environment on the the device.
+      wheel_count:
+        $ref: ../../data-types/integer_positive.yaml
+        description: The number of wheels on the device.
+      width:
+        $ref: ../../data-types/integer_positive.yaml
+        description: The width in meters of the device.
+      length:
+        $ref: ../../data-types/integer_positive.yaml
+        description: The length in meters of the device.
+      height:
+        $ref: ../../data-types/integer_positive.yaml
+        description: The height in meters of the device (minus flexible elements like flags).
+      weight:
+        $ref: ../../data-types/integer_positive.yaml
+        description: The weight in kilograms rounded up of the device not including cargo.
+      top_speed:
+        $ref: ../../data-types/integer_positive.yaml
+        description: The theoretical top speed in meters per second of the device.
+      storage_capacity:
+        $ref: ../../data-types/integer_positive.yaml
+        description: The volume in cubic centimeters of cargo space available not including any cargo.

@@ -110,3 +110,4 @@ allOf:
   - oneOf:
       - $ref: ./modes/delivery-robots/trip.yaml
       - $ref: ./modes/micromobility/trip.yaml
+      - $ref: ./modes/passenger-services/trip.yaml

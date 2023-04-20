@@ -116,3 +116,6 @@ allOf:
           - 520
       currency:
         $ref: ./data-types/currency.yaml
+
+  - oneOf:
+      - $ref: ./modes/micromobility/trip.yaml

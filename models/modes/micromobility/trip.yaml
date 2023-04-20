@@ -1,0 +1,15 @@
+title: modes/micromobility/trip
+description: Trip definition for the `micromobility` mode.
+type: object
+
+x-stoplight:
+  id: mtd16mz6d70ve
+
+properties:
+  trip_type:
+    maxItems: 1
+    items:
+      enum:
+        - rider
+        - rebalance
+        - maintenance

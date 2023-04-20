@@ -60,6 +60,8 @@ paths:
                       data:
                         type: object
                         additionalProperties: false
+                        required:
+                          - vehicles
                         properties:
                           vehicles:
                             type: array
@@ -99,6 +101,8 @@ paths:
                       data:
                         type: object
                         additionalProperties: false
+                        required:
+                          - vehicles
                         properties:
                           vehicles:
                             type: array
@@ -133,6 +137,8 @@ paths:
                       data:
                         type: object
                         additionalProperties: false
+                        required:
+                          - vehicles_status
                         properties:
                           vehicles_status:
                             type: array
@@ -172,6 +178,8 @@ paths:
                       data:
                         type: object
                         additionalProperties: false
+                        required:
+                          - vehicles_status
                         properties:
                           vehicles_status:
                             type: array
@@ -253,6 +261,8 @@ paths:
                       data:
                         type: object
                         additionalProperties: false
+                        required:
+                          - telemetry
                         properties:
                           telemetry:
                             type: array
@@ -290,6 +300,8 @@ paths:
                       data:
                         type: object
                         additionalProperties: false
+                        required:
+                          - events
                         properties:
                           events:
                             type: array
@@ -338,6 +350,8 @@ paths:
                       data:
                         type: object
                         additionalProperties: false
+                        required:
+                          - events
                         properties:
                           events:
                             type: array
@@ -369,6 +383,8 @@ paths:
                       data:
                         type: object
                         additionalProperties: false
+                        required:
+                          - stops
                         properties:
                           stops:
                             type: array
@@ -405,6 +421,8 @@ paths:
                       data:
                         type: object
                         additionalProperties: false
+                        required:
+                          - stops
                         properties:
                           stops:
                             type: array

@@ -95,23 +95,13 @@ allOf:
           - other_valid
           - invalid
       standard_cost:
-        type:
-          - integer
-          - "null"
-        description:
-          The cost, in the currency defined in `currency`, that it would cost
-          to perform that trip in the standard operation of the System.
-        minimum: 0
+        $ref: ./data-types/currency-cost.yaml
+        description: The cost, in the currency defined in `currency`, that it would cost to perform that trip in the standard operation of the System.
         examples:
           - 500
       actual_cost:
-        type:
-          - integer
-          - "null"
-        description:
-          The actual cost, in the currency defined in `currency`, paid by the
-          customer of the _mobility as a service_ provider.
-        minimum: 0
+        $ref: ./data-types/currency-cost.yaml
+        description: The actual cost, in the currency defined in `currency`, paid by the customer of the _mobility as a service_ provider.
         examples:
           - 520
       currency:

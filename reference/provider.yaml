@@ -200,7 +200,23 @@ paths:
         "200":
           description: Hour has been processed.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/payload.yaml
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - trips
+                        properties:
+                          trips:
+                            type: array
+                            items:
+                              $ref: ../models/trip.yaml
         "202":
           description: Data is not yet available for this hour.
         "400":

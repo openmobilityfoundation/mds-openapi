@@ -108,6 +108,7 @@ allOf:
         $ref: ./data-types/currency.yaml
 
   - oneOf:
+      - $ref: ./modes/car-share/trip.yaml
       - $ref: ./modes/delivery-robots/trip.yaml
       - $ref: ./modes/micromobility/trip.yaml
       - $ref: ./modes/passenger-services/trip.yaml

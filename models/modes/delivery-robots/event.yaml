@@ -38,7 +38,6 @@ properties:
         - order_drop_off
         - order_pick_up
         - provider_cancellation
-        # added to main data-types list
         - recommission
         - reservation_start
         - reservation_stop
@@ -50,3 +49,24 @@ properties:
         - trip_pause
         - trip_resume
         - trip_start
+
+if:
+  properties:
+    event_types:
+      contains:
+        - customer_cancellation
+        - driver_cancellation
+        - provider_cancellation
+        - reservation_start
+        - reservation_stop
+        - trip_cancel
+        - trip_end
+        - trip_enter_jurisdiction
+        - trip_leave_jurisdiction
+        - trip_pause
+        - trip_resume
+        - trip_start
+then:
+  properties:
+    trip_ids:
+      minItems: 1

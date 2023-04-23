@@ -54,7 +54,7 @@ allOf:
         maximum: 100
       trip_ids:
         $ref: ./data-types/uuid-array.yaml
-        description: Trip UUIDs (foreign key to /trips endpoint), required if event_types contains `trip_start`, `trip_end`, `trip_cancel`, `trip_enter_jurisdiction`, or `trip_leave_jurisdiction`
+        description: Trip UUIDs (foreign key to /trips endpoint), conditionally required for different modes.
       associated_ticket:
         $ref: ./data-types/string.yaml
         description: Identifier for an associated ticket inside an Agency-maintained 311 or CRM system.

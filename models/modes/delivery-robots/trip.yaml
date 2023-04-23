@@ -9,6 +9,11 @@ required:
   - trip_type
 
 properties:
+  journey_id:
+    $ref: ../../data-types/uuid.yaml
+    description: |-
+      The `journey_id` field shall have a consistent value in overlapping trips. Journeys may be point-to-point, multi-segment,
+      or multi-segment overlapping.
   trip_type:
     minItems: 1
     maxItems: 1
@@ -19,7 +24,6 @@ properties:
         - advertising
         - mapping
         - roaming
-
   trip_attributes:
     required:
       - driver_type
@@ -41,7 +45,6 @@ properties:
       has_payload:
         type: boolean
         description: is there any payload for any delivery included in the device at trip start.
-
   fare_attributes:
     properties:
       payment_type:

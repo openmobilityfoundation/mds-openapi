@@ -28,11 +28,6 @@ allOf:
       device_id:
         $ref: ./data-types/uuid.yaml
         description: A unique device ID in UUID format.
-      journey_id:
-        $ref: ./data-types/uuid.yaml
-        description: A unique journey ID for associating collections of trips for its mode.
-      journey_attributes:
-        type: object
       trip_id:
         $ref: ./data-types/uuid.yaml
         description: A unique ID for each trip

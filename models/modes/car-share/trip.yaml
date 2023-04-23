@@ -9,6 +9,20 @@ required:
   - trip_type
 
 properties:
+  journey_id:
+    $ref: ../../data-types/uuid.yaml
+    description: |-
+      A unique journey ID for associating collections of trips. The journey_id field shall have a consistent value in
+      overlapping trips for a single reservation period, e.g. trips taken by a customer between ignition states over the
+      duration of their reservation. A reservation is the duration the customer has continuous exclusive access to the vehicle
+      whether parked or in motion. Journeys may be point-to-point or multi-segment.
+  journey_attributes:
+    type: object
+    additionalProperties: false
+    properties:
+      reservation_id:
+        $ref: ../../data-types/uuid.yaml
+        description: A unique identifier for an entire car share reservation, tied across multiple journeys and therefore trips.
   trip_type:
     minItems: 1
     maxItems: 1
@@ -17,7 +31,6 @@ properties:
         - private
         - reservation
         - empty
-
   trip_attributes:
     required:
       - reservation_type
@@ -40,7 +53,6 @@ properties:
       driver_id:
         $ref: ../../data-types/string.yaml
         description: Universal identifier of a specific driver, static across operators, like a driver's license number, for company employees in `reservation` or `empty` trip types, not `private` trips. Could also be used as a lookup in an agency's internal driver system.
-
   fare_attributes:
     required:
       - payment_type

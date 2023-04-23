@@ -9,6 +9,19 @@ required:
   - trip_type
 
 properties:
+  journey_id:
+    $ref: ../../data-types/uuid.yaml
+    description: |-
+      A unique journey ID for associating collections of trips. The `journey_id` field shall have a consistent value in
+      overlapping trips, e.g. "pooled" or "shared" rides with different start and/or end locations. Journeys may be
+      point-to-point, multi-segment, or multi-segment overlapping.
+  journey_attributes:
+    type: object
+    additionalProperties: false
+    properties:
+      shift_id:
+        $ref: ../../data-types/uuid.yaml
+        description: A unique identifier for an entire driver's work shift, tied across multiple journeys and therefore trips.
   trip_type:
     minItems: 1
     maxItems: 1
@@ -18,7 +31,6 @@ properties:
         - shared
         - reservation
         - empty
-
   trip_attributes:
     required:
       - hail_type
@@ -75,7 +87,6 @@ properties:
       cancellation_reason:
         $ref: ../../data-types/string.yaml
         description: The reason why a _driver_ cancelled a reservation. (required if a driver cancelled a trip, and a `driver_cancellation` event_type was part of the trip)
-
   fare_attributes:
     required:
       - payment_type

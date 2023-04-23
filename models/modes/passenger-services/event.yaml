@@ -29,19 +29,36 @@ properties:
         - maintenance
         - maintenance_end
         - maintenance_pick_up
-        # added to main data-type list
         - passenger_cancellation
         - provider_cancellation
         - reservation_start
         - reservation_stop
-        # added to main data-type list
         - service_end
-        # added to main data-type list
         - service_start
         - trip_end
         - trip_enter_jurisdiction
         - trip_leave_jurisdiction
         - trip_resume
         - trip_start
-        # added to main data-type list
         - trip_stop
+
+if:
+  properties:
+    event_types:
+      contains:
+        - customer_cancellation
+        - driver_cancellation
+        - provider_cancellation
+        - reservation_start
+        - reservation_stop
+        - trip_cancel
+        - trip_end
+        - trip_enter_jurisdiction
+        - trip_leave_jurisdiction
+        - trip_pause
+        - trip_resume
+        - trip_start
+then:
+  properties:
+    trip_ids:
+      minItems: 1

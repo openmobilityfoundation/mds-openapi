@@ -37,6 +37,7 @@ properties:
   trip_ids:
     oneOf:
       - $ref: ./data-types/uuid-array.yaml
+        minItems: 1
         description: If telemetry occurred during a trip, the ID of the trip(s).
       - type: "null"
         description: If not in a trip, null.

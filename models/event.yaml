@@ -12,7 +12,6 @@ required:
   - vehicle_state
   - event_types
   - timestamp
-  - location
 
 allOf:
   - properties:
@@ -58,6 +57,15 @@ allOf:
       associated_ticket:
         $ref: ./data-types/string.yaml
         description: Identifier for an associated ticket inside an Agency-maintained 311 or CRM system.
+
+  - anyOf:
+      - required:
+          - location
+      - required:
+          - event_geographies
+        properties:
+          event_geographies:
+            minItems: 1
 
   - oneOf:
       - $ref: ./modes/car-share/event.yaml

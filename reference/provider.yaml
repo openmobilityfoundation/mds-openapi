@@ -56,17 +56,13 @@ paths:
                   - $ref: ../models/response/latency.yaml
                   - type: object
                     description: Vehicles data payload
+                    required:
+                      - vehicles
                     properties:
-                      data:
-                        type: object
-                        additionalProperties: false
-                        required:
-                          - vehicles
-                        properties:
-                          vehicles:
-                            type: array
-                            items:
-                              $ref: ../models/vehicle.yaml
+                      vehicles:
+                        type: array
+                        items:
+                          $ref: ../models/vehicle.yaml
         "404":
           description: Vehicles not found.
         "406":
@@ -97,19 +93,16 @@ paths:
                   - $ref: ../models/response/latency.yaml
                   - type: object
                     description: Vehicle data payload
+                    required:
+                      - vehicles
                     properties:
-                      data:
-                        type: object
-                        additionalProperties: false
-                        required:
-                          - vehicles
-                        properties:
-                          vehicles:
-                            type: array
-                            minItems: 1
-                            maxItems: 1
-                            items:
-                              $ref: ../models/vehicle.yaml
+                      vehicles:
+                        type: array
+                        minItems: 1
+                        maxItems: 1
+                        items:
+                          $ref: ../models/vehicle.yaml
+
         "404":
           description: Vehicle not found.
         "406":
@@ -133,17 +126,14 @@ paths:
                   - $ref: ../models/response/latency.yaml
                   - type: object
                     description: Vehicles status data payload
+                    required:
+                      - vehicles_status
                     properties:
-                      data:
-                        type: object
-                        additionalProperties: false
-                        required:
-                          - vehicles_status
-                        properties:
-                          vehicles_status:
-                            type: array
-                            items:
-                              $ref: ../models/vehicle-status.yaml
+                      vehicles_status:
+                        type: array
+                        items:
+                          $ref: ../models/vehicle-status.yaml
+
         "404":
           description: Vehicles not found.
         "406":
@@ -174,19 +164,16 @@ paths:
                   - $ref: ../models/response/latency.yaml
                   - type: object
                     description: Vehicles status data payload
+                    required:
+                      - vehicles_status
                     properties:
-                      data:
-                        type: object
-                        additionalProperties: false
-                        required:
-                          - vehicles_status
-                        properties:
-                          vehicles_status:
-                            type: array
-                            minItems: 1
-                            maxItems: 1
-                            items:
-                              $ref: ../models/vehicle-status.yaml
+                      vehicles_status:
+                        type: array
+                        minItems: 1
+                        maxItems: 1
+                        items:
+                          $ref: ../models/vehicle-status.yaml
+
         "404":
           description: Vehicle not found.
         "406":
@@ -214,17 +201,14 @@ paths:
                 allOf:
                   - $ref: ../models/response/payload.yaml
                   - type: object
+                    required:
+                      - trips
                     properties:
-                      data:
-                        type: object
-                        additionalProperties: false
-                        required:
-                          - trips
-                        properties:
-                          trips:
-                            type: array
-                            items:
-                              $ref: ../models/trip.yaml
+                      trips:
+                        type: array
+                        items:
+                          $ref: ../models/trip.yaml
+
         "202":
           description: Data is not yet available for this hour.
         "400":
@@ -257,17 +241,14 @@ paths:
                   - $ref: ../models/response/payload.yaml
                   - type: object
                     description: Telemetry data payload
+                    required:
+                      - telemetry
                     properties:
-                      data:
-                        type: object
-                        additionalProperties: false
-                        required:
-                          - telemetry
-                        properties:
-                          telemetry:
-                            type: array
-                            items:
-                              $ref: ../models/telemetry.yaml
+                      telemetry:
+                        type: array
+                        items:
+                          $ref: ../models/telemetry.yaml
+
         "400":
           description: Request did not contain a `telemetry_time`.
         "406":
@@ -296,17 +277,14 @@ paths:
                   - $ref: ../models/response/payload.yaml
                   - type: object
                     description: Events data payload
+                    required:
+                      - events
                     properties:
-                      data:
-                        type: object
-                        additionalProperties: false
-                        required:
-                          - events
-                        properties:
-                          events:
-                            type: array
-                            items:
-                              $ref: ../models/event.yaml
+                      events:
+                        type: array
+                        items:
+                          $ref: ../models/event.yaml
+
         "202":
           description: Data is not yet available for this hour.
         "400":
@@ -346,17 +324,14 @@ paths:
                   - $ref: ../models/response/paging.yaml
                   - type: object
                     description: Events data payload
+                    required:
+                      - events
                     properties:
-                      data:
-                        type: object
-                        additionalProperties: false
-                        required:
-                          - events
-                        properties:
-                          events:
-                            type: array
-                            items:
-                              $ref: ../models/event.yaml
+                      events:
+                        type: array
+                        items:
+                          $ref: ../models/event.yaml
+
         "400":
           description: Request did not contain a `start_time`, `end_time`, or the range was more than 2 weeks in the past.
         "406":
@@ -379,17 +354,14 @@ paths:
                   - $ref: ../models/response/latency.yaml
                   - type: object
                     description: Stops data payload
+                    required:
+                      - stops
                     properties:
-                      data:
-                        type: object
-                        additionalProperties: false
-                        required:
-                          - stops
-                        properties:
-                          stops:
-                            type: array
-                            items:
-                              $ref: ../models/stop.yaml
+                      stops:
+                        type: array
+                        items:
+                          $ref: ../models/stop.yaml
+
         "406":
           description: MDS version in Accept header is unsupported or invalid.
 
@@ -417,19 +389,16 @@ paths:
                   - $ref: ../models/response/latency.yaml
                   - type: object
                     description: Stops data payload
+                    required:
+                      - stops
                     properties:
-                      data:
-                        type: object
-                        additionalProperties: false
-                        required:
-                          - stops
-                        properties:
-                          stops:
-                            type: array
-                            minItems: 1
-                            maxItems: 1
-                            items:
-                              $ref: ../models/stop.yaml
+                      stops:
+                        type: array
+                        minItems: 1
+                        maxItems: 1
+                        items:
+                          $ref: ../models/stop.yaml
+
         "404":
           description: Stop not found.
         "406":

@@ -1,4 +1,4 @@
-title: response/latency
+title: response/ttl
 description: The data returned by a near-realtime endpoint should be as close to realtime as possible, but in no case should it be more than 5 minutes out-of-date.
 type: object
 
@@ -6,14 +6,10 @@ x-stoplight:
   id: kejk1tkl7fdd2
 
 required:
-  - last_updated
   - ttl
 
 properties:
-  last_updated:
-    $ref: ../data-types/timestamp.yaml
-    description: Timestamp indicating the last time the data in this feed was updated.
   ttl:
     $ref: ../data-types/integer-positive.yaml
     description: Integer representing the number of milliseconds before the data in this feed will be updated again (0 if the data should always be refreshed).
-    maximum: 300000 # 5 minutes in milliseconds
+    maximum: 300000

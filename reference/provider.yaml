@@ -51,9 +51,10 @@ paths:
               schema:
                 type: object
                 allOf:
-                  - $ref: ../models/response/payload.yaml
+                  - $ref: ../models/response/version.yaml
                   - $ref: ../models/response/paging.yaml
-                  - $ref: ../models/response/latency.yaml
+                  - $ref: ../models/response/last_updated.yaml
+                  - $ref: ../models/response/ttl.yaml
                   - type: object
                     description: Vehicles data payload
                     required:
@@ -88,9 +89,10 @@ paths:
               schema:
                 type: object
                 allOf:
-                  - $ref: ../models/response/payload.yaml
+                  - $ref: ../models/response/version.yaml
                   - $ref: ../models/response/paging.yaml
-                  - $ref: ../models/response/latency.yaml
+                  - $ref: ../models/response/last_updated.yaml
+                  - $ref: ../models/response/ttl.yaml
                   - type: object
                     description: Vehicle data payload
                     required:
@@ -121,9 +123,10 @@ paths:
               schema:
                 type: object
                 allOf:
-                  - $ref: ../models/response/payload.yaml
+                  - $ref: ../models/response/version.yaml
                   - $ref: ../models/response/paging.yaml
-                  - $ref: ../models/response/latency.yaml
+                  - $ref: ../models/response/last_updated.yaml
+                  - $ref: ../models/response/ttl.yaml
                   - type: object
                     description: Vehicles status data payload
                     required:
@@ -159,9 +162,10 @@ paths:
               schema:
                 type: object
                 allOf:
-                  - $ref: ../models/response/payload.yaml
+                  - $ref: ../models/response/version.yaml
                   - $ref: ../models/response/paging.yaml
-                  - $ref: ../models/response/latency.yaml
+                  - $ref: ../models/response/last_updated.yaml
+                  - $ref: ../models/response/ttl.yaml
                   - type: object
                     description: Vehicles status data payload
                     required:
@@ -199,7 +203,7 @@ paths:
               schema:
                 type: object
                 allOf:
-                  - $ref: ../models/response/payload.yaml
+                  - $ref: ../models/response/version.yaml
                   - type: object
                     required:
                       - trips
@@ -238,7 +242,7 @@ paths:
               schema:
                 type: object
                 allOf:
-                  - $ref: ../models/response/payload.yaml
+                  - $ref: ../models/response/version.yaml
                   - type: object
                     description: Telemetry data payload
                     required:
@@ -274,7 +278,7 @@ paths:
               schema:
                 type: object
                 allOf:
-                  - $ref: ../models/response/payload.yaml
+                  - $ref: ../models/response/version.yaml
                   - type: object
                     description: Events data payload
                     required:
@@ -320,7 +324,7 @@ paths:
               schema:
                 type: object
                 allOf:
-                  - $ref: ../models/response/payload.yaml
+                  - $ref: ../models/response/version.yaml
                   - $ref: ../models/response/paging.yaml
                   - type: object
                     description: Events data payload
@@ -350,8 +354,9 @@ paths:
               schema:
                 type: object
                 allOf:
-                  - $ref: ../models/response/payload.yaml
-                  - $ref: ../models/response/latency.yaml
+                  - $ref: ../models/response/version.yaml
+                  - $ref: ../models/response/last_updated.yaml
+                  - $ref: ../models/response/ttl.yaml
                   - type: object
                     description: Stops data payload
                     required:
@@ -385,8 +390,9 @@ paths:
               schema:
                 type: object
                 allOf:
-                  - $ref: ../models/response/payload.yaml
-                  - $ref: ../models/response/latency.yaml
+                  - $ref: ../models/response/version.yaml
+                  - $ref: ../models/response/last_updated.yaml
+                  - $ref: ../models/response/ttl.yaml
                   - type: object
                     description: Stops data payload
                     required:

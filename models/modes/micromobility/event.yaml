@@ -5,50 +5,108 @@ type: object
 x-stoplight:
   id: ii72nhqky41mp
 
-properties:
-  vehicle_state:
-    description: The state of the vehicle.
-    enum:
-      - removed
-      - available
-      - non_operational
-      - reserved
-      - on_trip
-      - non_contactable
-      - missing
-      - elsewhere
-  event_types:
-    description: Vehicle event types for state change.
-    items:
-      type: string
-      enum:
-        - agency_drop_off
-        - agency_pick_up
-        - battery_charged
-        - battery_low
-        - changed_geographies
-        - comms_lost
-        - comms_restored
-        - compliance_pick_up
-        - decommissioned
-        - located
-        - maintenance
-        - maintenance_pick_up
-        - not_located
-        - off_hours
-        - on_hours
-        - provider_drop_off
-        - rebalance_pick_up
-        - reservation_cancel
-        - reservation_start
-        - system_resume
-        - system_suspend
-        - trip_cancel
-        - trip_end
-        - trip_enter_jurisdiction
-        - trip_leave_jurisdiction
-        - trip_start
-        - unspecified
+oneOf:
+  - title: vehicle_state - removed
+    properties:
+      vehicle_state:
+        const: removed
+      event_types:
+        items:
+          enum:
+            - agency_pick_up
+            - comms_restored
+            - compliance_pick_up
+            - decommissioned
+            - located
+            - maintenance_pick_up
+            - rebalance_pick_up
+            - unspecified
+  - title: vehicle_state - available
+    properties:
+      vehicle_state:
+        const: available
+      event_types:
+        items:
+          enum:
+            - agency_drop_off
+            - battery_charged
+            - comms_restored
+            - located
+            - maintenance
+            - on_hours
+            - provider_drop_off
+            - reservation_cancel
+            - system_resume
+            - trip_cancel
+            - trip_end
+            - unspecified
+  - title: vehicle_state - non_operational
+    properties:
+      vehicle_state:
+        const: non_operational
+      event_types:
+        items:
+          enum:
+            - battery_low
+            - comms_restored
+            - located
+            - maintenance
+            - off_hours
+            - system_suspend
+            - unspecified
+  - title: vehicle_state - reserved
+    properties:
+      vehicle_state:
+        const: reserved
+      event_types:
+        items:
+          enum:
+            - comms_restored
+            - located
+            - reservation_start
+            - unspecified
+  - title: vehicle_state - on_trip
+    properties:
+      vehicle_state:
+        const: on_trip
+      event_types:
+        items:
+          enum:
+            - changed_geographies
+            - comms_restored
+            - located
+            - trip_enter_jurisdiction
+            - trip_start
+            - unspecified
+  - title: vehicle_state - non_contactable
+    properties:
+      vehicle_state:
+        const: non_contactable
+      event_types:
+        items:
+          enum:
+            - comms_lost
+            - unspecified
+  - title: vehicle_state - missing
+    properties:
+      vehicle_state:
+        const: missing
+      event_types:
+        items:
+          enum:
+            - not_located
+            - unspecified
+  - title: vehicle_state - elsewhere
+    properties:
+      vehicle_state:
+        const: elsewhere
+      event_types:
+        items:
+          enum:
+            - comms_restored
+            - located
+            - trip_leave_jurisdiction
+            - unspecified
 
 if:
   properties:

@@ -29,8 +29,10 @@ allOf:
         description: A unique event ID in UUID format.
       vehicle_state:
         $ref: ./data-types/vehicle-state.yaml
+        description: The state of the vehicle as of this event.
       event_types:
         $ref: ./data-types/event-type-array.yaml
+        description: Vehicle event types for state change.
       timestamp:
         $ref: ./data-types/timestamp.yaml
         description: Date/time that event occurred.

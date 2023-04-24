@@ -60,17 +60,23 @@ allOf:
         $ref: ./data-types/string.yaml
         description: Identifier for an associated ticket inside an Agency-maintained 311 or CRM system.
 
+  - oneOf:
+      - title: modes/car-share
+        $ref: ./modes/car-share/event.yaml
+      - title: modes/delivery-robots
+        $ref: ./modes/delivery-robots/event.yaml
+      - title: modes/micromobility
+        $ref: ./modes/micromobility/event.yaml
+      - title: modes/passenger-services
+        $ref: ./modes/passenger-services/event.yaml
+
   - anyOf:
-      - required:
+      - title: Location-based event
+        required:
           - location
-      - required:
+      - title: Geography-driven event
+        required:
           - event_geographies
         properties:
           event_geographies:
             minItems: 1
-
-  - oneOf:
-      - $ref: ./modes/car-share/event.yaml
-      - $ref: ./modes/delivery-robots/event.yaml
-      - $ref: ./modes/micromobility/event.yaml
-      - $ref: ./modes/passenger-services/event.yaml

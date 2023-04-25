@@ -5,48 +5,98 @@ type: object
 x-stoplight:
   id: 0jy8uoz32ksy8
 
-properties:
-  vehicle_state:
-    description: The state of the vehicle.
-    enum:
-      - removed
-      - available
-      - non_operational
-      - reserved
-      - on_trip
-      - stopped
-      - non_contactable
-      - elsewhere
-  event_types:
-    description: Vehicle event types for state change.
-    items:
-      type: string
-      enum:
-        - charging_end
-        - charging_start
-        - comms_lost
-        - comms_restored
-        - customer_cancellation
-        - driver_cancellation
-        - fueling_start
-        - fueling_end
-        - maintenance
-        - maintenance_end
-        - maintenance_pick_up
-        - provider_cancellation
-        - remote_start
-        - remote_end
-        - reservation_start
-        - reservation_stop
-        - service_end
-        - service_start
-        - trip_end
-        - trip_enter_jurisdiction
-        - trip_leave_jurisdiction
-        - trip_pause
-        - trip_resume
-        - trip_start
-        - trip_stop
+oneOf:
+  - title: vehicle_state - removed
+    properties:
+      vehicle_state:
+        const: removed
+      event_types:
+        items:
+          enum:
+            - comms_restored
+            - decommissioned
+            - maintenance
+            - maintenance_pick_up
+  - title: vehicle_state - available
+    properties:
+      vehicle_state:
+        const: available
+      event_types:
+        items:
+          enum:
+            - comms_restored
+            - driver_cancellation
+            - passenger_cancellation
+            - provider_cancellation
+            - service_start
+            - trip_end
+            - trip_enter_jurisdiction
+  - title: vehicle_state - non_operational
+    properties:
+      vehicle_state:
+        const: non_operational
+      event_types:
+        items:
+          enum:
+            - comms_restored
+            - maintenance_end
+            - recommissioned
+            - service_end
+            - trip_enter_jurisdiction
+  - title: vehicle_state - reserved
+    properties:
+      vehicle_state:
+        const: reserved
+      event_types:
+        items:
+          enum:
+            - comms_restored
+            - reservation_start
+            - trip_enter_jurisdiction
+  - title: vehicle_state - on_trip
+    properties:
+      vehicle_state:
+        const: on_trip
+      event_types:
+        items:
+          enum:
+            - comms_restored
+            - trip_enter_jurisdiction
+            - trip_resume
+            - trip_start
+  - title: vehicle_state - non_contactable
+    properties:
+      vehicle_state:
+        const: non_contactable
+      event_types:
+        items:
+          enum:
+            - comms_lost
+  - title: vehicle_state - stopped
+    properties:
+      vehicle_state:
+        const: stopped
+      event_types:
+        items:
+          enum:
+            - charging_end
+            - charging_start
+            - comms_restored
+            - fueling_end
+            - fueling_start
+            - remote_end
+            - remote_start
+            - reservation_stop
+            - trip_stop
+  - title: vehicle_state - elsewhere
+    properties:
+      vehicle_state:
+        const: elsewhere
+      event_types:
+        items:
+          enum:
+            - comms_restored
+            - trip_leave_jurisdiction
 
 if:
   properties:

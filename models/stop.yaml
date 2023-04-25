@@ -87,7 +87,18 @@ properties:
     examples:
       - 10036
   rental_methods:
-    $ref: ./data-types/rental-method-array.yaml
+    type: array
+    uniqueItems: true
+    items:
+      enum:
+        - key
+        - creditcard
+        - paypass
+        - applepay
+        - androidpay
+        - transitcard
+        - accountnumber
+        - phone
     description: List of payment methods accepted at stop, see [GBFS Rental Methods](https://github.com/NABSA/gbfs/blob/master/gbfs.md#station_informationjson).
   cross_street:
     $ref: ./data-types/string.yaml

@@ -7,14 +7,13 @@ x-stoplight:
 
 properties:
   accessibility_options:
-    description: The accessibility options available on a given vehicle, or the accessibility options utilized for a given trip.
+    description: The accessibility options available on a given vehicle, or the accessibility options utilized for a given trip. Required if available.
     type: array
     uniqueItems: true
     items:
       type: string
       enum:
         - wheelchair_accessible
-
   vehicle_attributes:
     type: object
     description: Many of these attributes come from fields in [GBFS vehicle_types](https://github.com/MobilityData/gbfs/blob/v2.3/gbfs.md#vehicle_typesjson).

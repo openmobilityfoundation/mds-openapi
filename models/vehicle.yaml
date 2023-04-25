@@ -11,7 +11,6 @@ required:
   - vehicle_id
   - vehicle_type
   - propulsion_types
-  - accessibility_options
 
 allOf:
   - properties:

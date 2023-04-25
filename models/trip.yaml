@@ -15,7 +15,6 @@ required:
   - end_location
   - duration
   - distance
-  - accessibility_options
 
 allOf:
   - properties:

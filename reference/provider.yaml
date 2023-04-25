@@ -64,6 +64,8 @@ paths:
                         type: array
                         items:
                           $ref: ../models/vehicle.yaml
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":
           description: Vehicles not found.
         "406":
@@ -104,7 +106,8 @@ paths:
                         maxItems: 1
                         items:
                           $ref: ../models/vehicle.yaml
-
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":
           description: Vehicle not found.
         "406":
@@ -136,7 +139,8 @@ paths:
                         type: array
                         items:
                           $ref: ../models/vehicle-status.yaml
-
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":
           description: Vehicles not found.
         "406":
@@ -177,7 +181,8 @@ paths:
                         maxItems: 1
                         items:
                           $ref: ../models/vehicle-status.yaml
-
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":
           description: Vehicle not found.
         "406":
@@ -212,11 +217,12 @@ paths:
                         type: array
                         items:
                           $ref: ../models/trip.yaml
-
         "202":
           description: Data is not yet available for this hour.
         "400":
           description: Request did not contain an `end_time`.
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":
           description: Hour is not in the past, or no operations during this hour.
         "406":
@@ -252,9 +258,10 @@ paths:
                         type: array
                         items:
                           $ref: ../models/telemetry.yaml
-
         "400":
           description: Request did not contain a `telemetry_time`.
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "406":
           description: MDS version in Accept header is unsupported or invalid.
 
@@ -288,11 +295,12 @@ paths:
                         type: array
                         items:
                           $ref: ../models/event.yaml
-
         "202":
           description: Data is not yet available for this hour.
         "400":
           description: Request did not contain an `event_time`.
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":
           description: Hour is not in the past, or no operations during this hour.
         "406":
@@ -335,9 +343,10 @@ paths:
                         type: array
                         items:
                           $ref: ../models/event.yaml
-
         "400":
           description: Request did not contain a `start_time`, `end_time`, or the range was more than 2 weeks in the past.
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "406":
           description: MDS version in Accept header is unsupported or invalid.
 
@@ -366,7 +375,8 @@ paths:
                         type: array
                         items:
                           $ref: ../models/stop.yaml
-
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "406":
           description: MDS version in Accept header is unsupported or invalid.
 
@@ -404,7 +414,8 @@ paths:
                         maxItems: 1
                         items:
                           $ref: ../models/stop.yaml
-
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":
           description: Stop not found.
         "406":
@@ -433,5 +444,7 @@ paths:
               schema:
                 type: string
                 pattern: ^provider_id,start_date,duration,special_group_type,geography_id,vehicle_type,trip_count,rider_count
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":
           description: Report not found.

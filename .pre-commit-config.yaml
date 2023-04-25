@@ -5,10 +5,18 @@ ci:
 repos:
   - repo: local
     hooks:
-      - id: spectral-lint
-        name: spectral linter
+      - id: spectral-lint-references
+        name: "spectral linter: references"
         language: node
-        entry: npx spectral lint ./reference/**/*.yaml
+        entry: npx spectral lint ./reference/**/*.yaml --ruleset .spectral.yaml
+        files: ^reference/|models/
+        additional_dependencies: ["@stoplight/spectral-cli@6.6.0"]
+        types: [yaml]
+
+      - id: spectral-lint-models
+        name: "spectral linter: models"
+        language: node
+        entry: npx spectral lint ./reference/**/*.yaml --ruleset .spectral.models.yaml --fail-severity warn
         files: ^reference/|models/
         additional_dependencies: ["@stoplight/spectral-cli@6.6.0"]
         types: [yaml]

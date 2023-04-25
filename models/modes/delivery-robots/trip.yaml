@@ -58,3 +58,6 @@ properties:
           - test
       price:
         $ref: ../../data-types/currency-cost.yaml
+  accessibility_options:
+    $ref: ./accessibility-options.yaml
+    description: The accessibility options available on a given delivery robot device. Required if available.

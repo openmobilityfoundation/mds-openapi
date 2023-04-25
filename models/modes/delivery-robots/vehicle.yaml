@@ -7,19 +7,8 @@ x-stoplight:
 
 properties:
   accessibility_options:
+    $ref: ./accessibility-options.yaml
     description: The accessibility options available on a given delivery robot device. Required if available.
-    type: object
-    additionalProperties: false
-    properties:
-      audio_cue:
-        type: boolean
-        description: Is the device equipped with audio cues upon delivery.
-      visual_cue:
-        type: boolean
-        description: Is the device equipped with visual cues upon delivery.
-      remote_open:
-        type: boolean
-        description: Can the device door be remotely opened to retrieve cargo upon delivery.
   vehicle_attributes:
     type: object
     additionalProperties: false

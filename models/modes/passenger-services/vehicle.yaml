@@ -7,13 +7,8 @@ x-stoplight:
 
 properties:
   accessibility_options:
-    type: array
-    description: The accessibility options available on a given vehicle, or the accessibility options utilized for a given trip. Required if available.
-    uniqueItems: true
-    items:
-      type: string
-      enum:
-        - wheelchair_accessible
+    $ref: ./accessibility-options.yaml
+    description: The accessibility options available on a given vehicle. Required if available.
   vehicle_attributes:
     type: object
     additionalProperties: false

@@ -96,8 +96,8 @@ if:
   properties:
     event_types:
       contains:
-        - customer_cancellation
         - driver_cancellation
+        - passenger_cancellation
         - provider_cancellation
         - reservation_start
         - reservation_stop

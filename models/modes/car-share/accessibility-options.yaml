@@ -1,0 +1,13 @@
+title: modes/car-share/accessibility-options
+description: Accessibility options definition for the `car-share` mode.
+type: array
+
+x-stoplight:
+  id: e9mpudr8layzh
+
+uniqueItems: true
+
+items:
+  type: string
+  enum:
+    - wheelchair_accessible

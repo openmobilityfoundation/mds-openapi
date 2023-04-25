@@ -5,50 +5,109 @@ type: object
 x-stoplight:
   id: sksecq6lesbxa
 
-properties:
-  vehicle_state:
-    description: The state of the robot device.
-    enum:
-      - removed
-      - available
-      - non_operational
-      - reserved
-      - on_trip
-      - stopped
-      - non_contactable
-      - missing
-      - elsewhere
-
-  event_types:
-    description: Robot device event types for state change.
-    items:
-      type: string
-      enum:
-        - comms_lost
-        - comms_restored
-        - compliance_pick_up
-        - customer_cancellation
-        - decommissioned
-        - driver_cancellation
-        - located
-        - maintenance
-        - maintenance_end
-        - maintenance_pick_up
-        - not_located
-        - order_drop_off
-        - order_pick_up
-        - provider_cancellation
-        - recommission
-        - reservation_start
-        - reservation_stop
-        - service_end
-        - service_start
-        - trip_end
-        - trip_enter_jurisdiction
-        - trip_leave_jurisdiction
-        - trip_pause
-        - trip_resume
-        - trip_start
+oneOf:
+  - title: vehicle_state - removed
+    properties:
+      vehicle_state:
+        const: removed
+      event_types:
+        items:
+          enum:
+            - comms_restored
+            - decommissioned
+            - located
+            - maintenance_pick_up
+  - title: vehicle_state - available
+    properties:
+      vehicle_state:
+        const: available
+      event_types:
+        items:
+          enum:
+            - comms_restored
+            - customer_cancellation
+            - driver_cancellation
+            - located
+            - provider_cancellation
+            - service_start
+            - trip_end
+            - trip_enter_jurisdiction
+  - title: vehicle_state - non_operational
+    properties:
+      vehicle_state:
+        const: non_operational
+      event_types:
+        items:
+          enum:
+            - comms_restored
+            - located
+            - maintenance
+            - maintenance_end
+            - recommissioned
+            - service_end
+            - trip_enter_jurisdiction
+  - title: vehicle_state - reserved
+    properties:
+      vehicle_state:
+        const: reserved
+      event_types:
+        items:
+          enum:
+            - comms_restored
+            - located
+            - reservation_start
+            - trip_enter_jurisdiction
+  - title: vehicle_state - on_trip
+    properties:
+      vehicle_state:
+        const: on_trip
+      event_types:
+        items:
+          enum:
+            - comms_restored
+            - located
+            - trip_enter_jurisdiction
+            - trip_resume
+            - trip_start
+  - title: vehicle_state - stopped
+    properties:
+      vehicle_state:
+        const: stopped
+      event_types:
+        items:
+          enum:
+            - comms_restored
+            - located
+            - order_drop_off
+            - order_pick_up
+            - reservation_stop
+            - trip_pause
+  - title: vehicle_state - non_contactable
+    properties:
+      vehicle_state:
+        const: non_contactable
+      event_types:
+        items:
+          enum:
+            - comms_lost
+  - title: vehicle_state - missing
+    properties:
+      vehicle_state:
+        const: missing
+      event_types:
+        items:
+          enum:
+            - not_located
+  - title: vehicle_state - elsewhere
+    properties:
+      vehicle_state:
+        const: elsewhere
+      event_types:
+        items:
+          enum:
+            - comms_restored
+            - located
+            - trip_leave_jurisdiction
 
 if:
   properties:

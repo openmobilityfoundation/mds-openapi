@@ -66,10 +66,9 @@ allOf:
         $ref: ./data-types/timestamp.yaml
         description: Date/time that trip became available through the trips endpoint.
       accessibility_options:
-        type: array
-        uniqueItems: true
-        items:
-          type: string
+        type:
+          - array
+          - object
       parking_verification_url:
         type:
           - string

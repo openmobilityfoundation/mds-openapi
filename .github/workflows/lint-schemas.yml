@@ -1,4 +1,4 @@
-name: Lint JSON Schemas
+name: Lint OpenAPI documents
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  lint-schemas:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -18,4 +18,8 @@ jobs:
 
       - run: npm ci
 
-      - run: npx spectral lint ./reference/**/*.yaml
+      - name: lint models
+        run: npx spectral lint ./reference/**/*.yaml --ruleset .spectral.models.yaml --fail-severity warn
+
+      - name: lint OpenAPI docs
+        run: npx spectral lint ./reference/**/*.yaml --ruleset .spectral.yaml

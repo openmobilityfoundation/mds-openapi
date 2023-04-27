@@ -1,0 +1,37 @@
+openapi: 3.1.0
+
+x-stoplight:
+  id: f3thjnkfyv60k
+
+info:
+  title: Agency
+  version: "2.0"
+  summary: The Agency API endpoints are intended to be implemented by regulatory agencies and consumed by mobility providers.
+  contact:
+    url: https://github.com/openmobilityfoundation/mobility-data-specification
+    name: Open Mobility Foundation
+    email: info@openmobilityfoundation.org
+  license:
+    name: Creative Commons Attribution 4.0 International Public License
+    url: https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/LICENSE
+  description: |-
+    The Agency API endpoints are intended to be implemented by regulatory agencies and consumed by mobility providers.
+
+    Data is **pushed** to agencies by providers. Providers query the Agency API when events (such as a trip start or vehicle
+    status change) occur in their systems.
+
+    This specification contains a collection of RESTful APIs used to specify the digital relationship between _mobility as a service_
+    providers and the agencies that regulate them.
+
+components:
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      description: |-
+        All MDS Agency endpoints require authentication.
+
+        JSON Web Token ([JWT](https://jwt.io/introduction/)) is RECOMMENDED as the token format.
+
+        When making requests, the endpoints expect `provider_id` to be part of the claims the JWT. The token issuance,
+        expiration and revocation policies are at the discretion of the agency.

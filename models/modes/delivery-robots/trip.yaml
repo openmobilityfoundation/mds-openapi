@@ -60,6 +60,6 @@ properties:
           - voucher
       price:
         $ref: ../../data-types/currency-cost.yaml
-  accessibility_options:
-    $ref: ./accessibility-options.yaml
+  accessibility_attributes:
+    $ref: ./accessibility-attributes.yaml
     description: The accessibility options available on a given delivery robot device. Required if available.

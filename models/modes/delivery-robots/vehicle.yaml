@@ -6,8 +6,8 @@ x-stoplight:
   id: 01xpq0lxoywf6
 
 properties:
-  accessibility_options:
-    $ref: ./accessibility-options.yaml
+  accessibility_attributes:
+    $ref: ./accessibility-attributes.yaml
     description: The accessibility options available on a given delivery robot device. Required if available.
   vehicle_attributes:
     type: object

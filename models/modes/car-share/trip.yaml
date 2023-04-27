@@ -100,6 +100,6 @@ properties:
       surcharge:
         $ref: ../../data-types/currency-cost.yaml
         description: Any surcharge pricing.
-  accessibility_options:
-    $ref: ./accessibility-options.yaml
+  accessibility_attributes:
+    $ref: ./accessibility-attributes.yaml
     description: The accessibility options utilized for a given trip. Required if available.

@@ -6,8 +6,8 @@ x-stoplight:
   id: f0dry8u608trk
 
 properties:
-  accessibility_options:
-    $ref: ./accessibility-options.yaml
+  accessibility_attributes:
+    $ref: ./accessibility-attributes.yaml
     description: The accessibility options available on a given vehicle. Required if available.
   vehicle_attributes:
     type: object

@@ -35,3 +35,36 @@ components:
 
         When making requests, the endpoints expect `provider_id` to be part of the claims the JWT. The token issuance,
         expiration and revocation policies are at the discretion of the agency.
+
+paths:
+  /vehicles:
+    post:
+      operationId: vehicles-register
+      description: Register vehicles for use in the Agency's jurisdiction.
+      summary: Register new vehicles.
+      responses:
+        "201":
+          description: Vehicles registered.
+          content:
+            application/vnd.mds+json: {}
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "404":
+          description: Vehicles not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+    get:
+      operationId: vehicles-list
+      description: Get a list of vehicles in a Provider's registered fleet, with properties that do not change often.
+      summary: Get registered vehicle information.
+      responses:
+        "200":
+          description: Vehicles found.
+          content:
+            application/vnd.mds+json: {}
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "404":
+          description: Vehicles not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.

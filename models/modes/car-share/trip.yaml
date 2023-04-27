@@ -61,11 +61,13 @@ properties:
       payment_type:
         type: string
         enum:
+          - account_number
           - cash
           - credit_card
-          - mobile
-          - voucher
+          - mobile_app
           - no payment
+          - phone
+          - voucher
           - test
       fare_type:
         description: Indicator of which rate was charged.

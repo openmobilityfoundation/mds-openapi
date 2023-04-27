@@ -50,12 +50,14 @@ properties:
       payment_type:
         type: string
         enum:
+          - account_number
           - cash
           - credit_card
-          - mobile
-          - voucher
+          - mobile_app
           - no payment
+          - phone
           - test
+          - voucher
       price:
         $ref: ../../data-types/currency-cost.yaml
   accessibility_options:

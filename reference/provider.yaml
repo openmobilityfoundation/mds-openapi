@@ -30,6 +30,7 @@ components:
     bearer:
       type: http
       scheme: bearer
+      bearerFormat: JWT
       description: |-
         All MDS Provider endpoints require authentication.
 

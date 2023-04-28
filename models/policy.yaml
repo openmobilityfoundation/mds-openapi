@@ -1,0 +1,190 @@
+title: models/policy
+description: A policy describes the digital relationship between _mobility as a service_ providers and the agencies that regulate them.
+type: object
+
+x-stoplight:
+  id: yp7awu2xd5agd
+
+components:
+  schemas:
+    rule:
+      type: object
+      description: An individual rule in a policy
+      additionalProperties: false
+      required:
+        - name
+        - rule_id
+        - rule_type
+        - geographies
+        - states
+      properties:
+        name:
+          $ref: ./data-types/string.yaml
+          description: Name of rule
+        rule_id:
+          $ref: ./data-types/uuid.yaml
+          description: Unique ID of rule
+        rule_type:
+          type: string
+          description: The type of rule
+          enum:
+            - count
+            - time
+            - speed
+            - user
+        geographies:
+          $ref: ./data-types/uuid-array.yaml
+          description: List of Geography UUIDs (non-overlapping) specifying the covered geography.
+          minItems: 1
+        states:
+          type: object
+          description: Vehicle state to which this rule applies. Optionally provide a list of specific vehicle events as a subset of a given state for the rule to apply to. An empty list or null/absent defaults to "all" for the state.
+          propertyNames:
+            $ref: ./data-types/vehicle-state.yaml
+          additionalProperties:
+            type: array
+            uniqueItems: true
+            items:
+              $ref: ./data-types/event-type.yaml
+        rule_units:
+          type: string
+          description: Measured units of policy
+          enum:
+            - seconds
+            - minutes
+            - hours
+            - days
+            - mph
+            - kph
+            - devices
+        vehicle_types:
+          type: array
+          description: Applicable vehicle types, default "all"
+          uniqueItems: true
+          items:
+            $ref: ./data-types/vehicle-type.yaml
+        propulsion_types:
+          $ref: ./data-types/propulsion-type-array.yaml
+          description: Applicable vehicle propulsion types, default "all"
+        minimum:
+          type:
+            - "null"
+            - integer
+          description: Minimum value, if applicable (default 0)
+          default: 0
+        maximum:
+          type:
+            - "null"
+            - integer
+          description: Maximum value, if applicable (default unlimited)
+        inclusive_minimum:
+          type:
+            - "null"
+            - boolean
+          description: Whether the rule minimum is considered in-bounds (default true)
+          default: true
+        inclusive_maximum:
+          type:
+            - "null"
+            - boolean
+          description: Whether the rule maximum is considered in-bounds (default true)
+          default: true
+        rate_amount:
+          type:
+            - "null"
+            - integer
+          description: The amount of the rate.
+        rate_recurrence:
+          type:
+            - string
+            - "null"
+          description: Recurrence of the rate
+          enum:
+            - once_on_match
+            - once_on_unmatch
+            - each_time_unit
+            - per_complete_time_unit
+        rate_applies_when:
+          type:
+            - string
+            - "null"
+          description: Specifies when a rate is applied to a rule (defaults to `out_of_bounds`).
+          enum:
+            - in_bounds
+            - out_of_bounds
+          default: out_of_bounds
+        start_time:
+          $ref: ./data-types/iso-time.yaml
+          description: Beginning time-of-day when the rule is in effect (default 00:00:00)
+          default: "00:00:00"
+        end_time:
+          $ref: ./data-types/iso-time.yaml
+          description: Ending time-of-day when the rule is in effect (default 23:59:59)
+          default: "23:59:59"
+        days:
+          $ref: ./data-types/days.yaml
+          description: Days when the rule is in effect (default all)
+        messages:
+          type:
+            - "null"
+            - object
+          description: Message to rider user, if desired, in various languages, keyed by [BCP 47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag
+          propertyNames:
+            pattern: "([A-Za-z]{2,3})([-][A-Za-z]{3}){0,3}([-]([A-Za-z]{4}))?([-]([A-Za-z]{2}|[0-9]{3}))?"
+          examples:
+            - "en-US": "Remember to stay under 10 MPH on Venice Beach on weekends!"
+              "es-US": "¡Recuerda mantener por debajo 10 millas por hora en Venice Beach los fines de semana!"
+        value_url:
+          type:
+            - "null"
+            - string
+          description: URL to an API endpoint that can provide dynamic information for the measured value
+          format: uri
+
+required:
+  - name
+  - mode_id
+  - policy_id
+  - description
+  - start_date
+  - published_date
+  - rules
+
+properties:
+  name:
+    $ref: ./data-types/string.yaml
+    description: Name of policy.
+  mode_id:
+    $ref: ./data-types/modes.yaml
+    description: Mode this rule should apply, see MDS mode list for options. Default `micromobility` for backwards compatibility (this default will likely be removed in a subsequent MDS release).
+    default: micromobility
+  policy_id:
+    $ref: ./data-types/uuid.yaml
+    description: Unique ID of policy.
+  provider_ids:
+    $ref: ./data-types/uuid-array.yaml
+    description: Providers for whom this policy is applicable; empty arrays and null/absent implies all Providers.
+  description:
+    $ref: ./data-types/string.yaml
+    description: Description of policy.
+  currency:
+    $ref: ./data-types/currency.yaml
+    description: An ISO 4217 Alphabetic Currency Code representing the currency of all Rules with a `rate_amount`.
+  start_date:
+    $ref: ./data-types/timestamp.yaml
+    description: Beginning date/time of policy enforcement. In order to give providers sufficient time to poll, `start_date` must be at least 20 minutes after `published_date`.
+  end_date:
+    $ref: ./data-types/timestamp.yaml
+    description: End date/time of policy enforcement.
+  published_date:
+    $ref: ./data-types/timestamp.yaml
+    description: Timestamp that the policy was published.
+  prev_policies:
+    $ref: ./data-types/uuid-array.yaml
+    description: Unique IDs of prior policies replaced by this one.
+  rules:
+    type: array
+    description: Array of applicable Rule objects
+    minItems: 1
+    items:
+      $ref: "#/components/schemas/rule"

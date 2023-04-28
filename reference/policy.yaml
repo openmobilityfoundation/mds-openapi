@@ -27,6 +27,19 @@ info:
 
 paths:
   /policies:
+    parameters:
+      - name: start_date
+        schema:
+          $ref: ../models/data-types/timestamp.yaml
+        in: query
+        required: false
+        description: Beginning date of the queried time range; the default value is the request time.
+      - name: end_date
+        schema:
+          $ref: ../models/data-types/timestamp.yaml
+        in: query
+        required: false
+        description: Ending date of the queried time range; the default value is null, which captures all policies that are effective in the future.
     get:
       operationId: get-policies
       description: Get all policy documents, optionally between a given date range.
@@ -36,6 +49,8 @@ paths:
           description: Policies found.
           content:
             application/vnd.mds+json: {}
+        "400":
+          description: Bad request.
         "404":
           description: Policies not found.
         "406":

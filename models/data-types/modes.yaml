@@ -1,0 +1,12 @@
+title: data-types/modes
+description: The modes supported in MDS.
+type: string
+
+x-stoplight:
+  id: rjul1mcjyy8y2
+
+enum:
+  - car-share
+  - delivery-robots
+  - micromobility
+  - passenger-services

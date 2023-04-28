@@ -1,0 +1,18 @@
+title: modes/micromobility/trip
+description: Trip definition for the `micromobility` mode.
+type: object
+
+x-stoplight:
+  id: mtd16mz6d70ve
+
+properties:
+  trip_type:
+    maxItems: 1
+    items:
+      enum:
+        - rider
+        - rebalance
+        - maintenance
+  accessibility_attributes:
+    $ref: ./accessibility-attributes.yaml
+    description: The accessibility options utilized for a given trip. Required if available.

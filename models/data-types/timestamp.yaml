@@ -1,0 +1,10 @@
+title: data-types/timestamp
+description: Integer milliseconds since Unix epoch.
+examples:
+  - 1514764800000
+  - 1681855703000
+minimum: 1514764800000
+multipleOf: 1
+type: number
+x-stoplight:
+  id: vliol1hqlxw6y

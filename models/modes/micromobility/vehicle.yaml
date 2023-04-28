@@ -1,0 +1,21 @@
+title: modes/micromobility/vehicle
+description: Vehicle definition for the `micromobility` mode.
+type: object
+
+x-stoplight:
+  id: f0dry8u608trk
+
+properties:
+  accessibility_attributes:
+    $ref: ./accessibility-attributes.yaml
+    description: The accessibility options available on a given vehicle. Required if available.
+  vehicle_attributes:
+    type: object
+    additionalProperties: false
+    properties:
+      year:
+        $ref: ../../data-types/minimum-year.yaml
+      make:
+        $ref: ../../data-types/string.yaml
+      model:
+        $ref: ../../data-types/string.yaml

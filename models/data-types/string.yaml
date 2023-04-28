@@ -1,0 +1,9 @@
+title: data-types/string
+description: A length-limited string type.
+examples:
+  - ABC123
+maxLength: 255
+pattern: ^(.*)$
+type: string
+x-stoplight:
+  id: 2vqv7166161kh

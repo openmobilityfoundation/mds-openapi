@@ -1,0 +1,46 @@
+title: response/paging
+description: If pagination is used for endpoints that support it, the pagination must comply with the [JSON API](http://jsonapi.org/format/#fetching-pagination) specification.
+type: object
+
+x-stoplight:
+  id: y6kgbr644ng4u
+
+properties:
+  links:
+    type: object
+    required:
+      - next
+    additionalProperties: false
+    properties:
+      first:
+        type:
+          - "null"
+          - string
+        title: The URL to the first page of data.
+        examples:
+          - https://data.provider.co/trips/first
+        format: uri
+      last:
+        type:
+          - "null"
+          - string
+        title: The URL to the last page of data.
+        examples:
+          - https://data.provider.co/trips/last
+        format: uri
+      prev:
+        type:
+          - "null"
+          - string
+        title: The URL to the previous page of data.
+        examples:
+          - https://data.provider.co/trips/prev
+        format: uri
+      next:
+        type:
+          - "null"
+          - string
+        title: The URL to the next page of data.
+        examples:
+          - https://data.provider.co/trips/next
+        format: uri

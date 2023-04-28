@@ -1,0 +1,9 @@
+title: data-types/iso-time
+description: Time-of-day expressed as ISO 8601 `hh:mm:ss`.
+examples:
+  - "23:59:59"
+  - 00:00:01
+pattern: ([0-2][0-3]|[01]\d):[0-5]\d:[0-5]\d
+type: string
+x-stoplight:
+  id: v656sfdmwq9s0

@@ -1,0 +1,14 @@
+title: data-types/propulsion-type
+description: The allowed types of propulsion in MDS. Based off of `propulsion_type` in [GBFS vehicle_types](https://github.com/MobilityData/gbfs/blob/master/gbfs.md#vehicle_typesjson)
+enum:
+  - human
+  - electric_assist
+  - electric
+  - combustion
+  - combustion_diesel
+  - hybrid
+  - hydrogen_fuel_cell
+  - plug_in_hybrid
+type: string
+x-stoplight:
+  id: 1ucdttnwhf2bo

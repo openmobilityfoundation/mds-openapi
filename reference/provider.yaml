@@ -1,0 +1,516 @@
+openapi: 3.1.0
+
+x-stoplight:
+  id: uffrjoub3dm0o
+
+info:
+  title: "Mobility Data Specification: Provider"
+  version: "2.0"
+  summary: The Provider API endpoints are intended to be implemented by mobility providers and consumed by regulatory agencies.
+  contact:
+    url: https://github.com/openmobilityfoundation/mobility-data-specification
+    name: Open Mobility Foundation
+    email: info@openmobilityfoundation.org
+  license:
+    name: Creative Commons Attribution 4.0 International Public License
+    url: https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/LICENSE
+  description: |-
+    The Provider API endpoints are intended to be implemented by mobility providers and consumed by regulatory agencies.
+
+    Data is **pulled** from providers by agencies. When a municipality queries information from a mobility provider, the
+    Provider API has a historical view of operations in a standard format.
+
+    This specification contains a data standard for _mobility as a service_ providers to define a RESTful API for
+    municipalities to access on-demand.
+
+    <img src="https://i.imgur.com/yzXrKpo.png" width="120" align="right" alt="MDS Provider Icon" border="0">
+
+components:
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      description: |-
+        All MDS Provider endpoints require authentication.
+
+        JSON Web Token ([JWT](https://jwt.io/introduction/)) is RECOMMENDED as the token format.
+
+        MDS API producers MAY include any metadata in the JWT they wish that helps to route, log, permission, or debug agency requests, leaving their internal implementation flexible.
+
+paths:
+  /vehicles:
+    get:
+      operationId: get-vehicles
+      description: Get a list of known vehicles, with properties that do not change often.
+      summary: Get near-realtime vehicle information.
+      responses:
+        "200":
+          description: Vehicles found.
+          content:
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - $ref: ../models/response/paging.yaml
+                  - $ref: ../models/response/last_updated.yaml
+                  - $ref: ../models/response/ttl.yaml
+                  - type: object
+                    description: Vehicles data payload
+                    required:
+                      - vehicles
+                    properties:
+                      vehicles:
+                        type: array
+                        items:
+                          $ref: ../models/vehicle.yaml
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "404":
+          description: Vehicles not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /vehicles/{device_id}:
+    parameters:
+      - name: device_id
+        schema:
+          $ref: ../models/data-types/uuid.yaml
+        in: path
+        required: true
+        description: The `device_id` of a Provider's Vehicle.
+    get:
+      operationId: get-vehicles-device_id
+      description: Get the specified vehicle, with properties that do not change often.
+      summary: Get near-realtime information for a vehicle.
+      responses:
+        "200":
+          description: Vehicle found.
+          content:
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - $ref: ../models/response/paging.yaml
+                  - $ref: ../models/response/last_updated.yaml
+                  - $ref: ../models/response/ttl.yaml
+                  - type: object
+                    description: Vehicle data payload
+                    required:
+                      - vehicles
+                    properties:
+                      vehicles:
+                        type: array
+                        minItems: 1
+                        maxItems: 1
+                        items:
+                          $ref: ../models/vehicle.yaml
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "404":
+          description: Vehicle not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /vehicles/status:
+    get:
+      operationId: get-vehicles-status
+      description: Get a list of known vehicles, with specific vehicle status records that are updated frequently.
+      summary: Get near-realtime vehicle status.
+      responses:
+        "200":
+          description: Vehicles found.
+          content:
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - $ref: ../models/response/paging.yaml
+                  - $ref: ../models/response/last_updated.yaml
+                  - $ref: ../models/response/ttl.yaml
+                  - type: object
+                    description: Vehicles status data payload
+                    required:
+                      - vehicles_status
+                    properties:
+                      vehicles_status:
+                        type: array
+                        items:
+                          $ref: ../models/vehicle-status.yaml
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "404":
+          description: Vehicles not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /vehicles/status/{device_id}:
+    parameters:
+      - name: device_id
+        schema:
+          $ref: ../models/data-types/uuid.yaml
+        in: path
+        required: true
+        description: The `device_id` of a Provider's Vehicle.
+    get:
+      operationId: get-vehicles-status-device_id
+      description: Get the specified vehicle, with specific vehicle status records that are updated frequently.
+      summary: Get near-realtime status of a vehicle.
+      responses:
+        "200":
+          description: Vehicle found.
+          content:
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - $ref: ../models/response/paging.yaml
+                  - $ref: ../models/response/last_updated.yaml
+                  - $ref: ../models/response/ttl.yaml
+                  - type: object
+                    description: Vehicles status data payload
+                    required:
+                      - vehicles_status
+                    properties:
+                      vehicles_status:
+                        type: array
+                        minItems: 1
+                        maxItems: 1
+                        items:
+                          $ref: ../models/vehicle-status.yaml
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "404":
+          description: Vehicle not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /trips:
+    parameters:
+      - name: end_time
+        schema:
+          $ref: ../models/data-types/iso-dayhour.yaml
+        in: query
+        required: true
+        description: The UTC hour during which requested trips ended.
+    get:
+      operationId: get-trips-end_time
+      description: Get all trips with an end time occurring within the hour.
+      summary: Query historical trip data.
+      responses:
+        "200":
+          description: Hour has been processed.
+          content:
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - type: object
+                    required:
+                      - trips
+                    properties:
+                      trips:
+                        type: array
+                        items:
+                          $ref: ../models/trip.yaml
+        "202":
+          description: Data is not yet available for this hour.
+        "400":
+          description: Request did not contain an `end_time`.
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "404":
+          description: Hour is not in the past, or no operations during this hour.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /telemetry:
+    parameters:
+      - name: telemetry_time
+        schema:
+          $ref: ../models/data-types/iso-dayhour.yaml
+        in: query
+        required: true
+        description: The UTC hour during which telemetry events occurred.
+    get:
+      operationId: get-telemetry-telemetry_time
+      description: Get all telemetry with timestamp occurring within the hour.
+      summary: Query historical vehicle telemetry data.
+      responses:
+        "200":
+          description: Hour has been processed.
+          content:
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - type: object
+                    description: Telemetry data payload
+                    required:
+                      - telemetry
+                    properties:
+                      telemetry:
+                        type: array
+                        items:
+                          $ref: ../models/telemetry.yaml
+        "400":
+          description: Request did not contain a `telemetry_time`.
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /events/historical:
+    parameters:
+      - name: event_time
+        schema:
+          $ref: ../models/data-types/iso-dayhour.yaml
+        in: query
+        required: true
+        description: The UTC hour during which events occurred.
+    get:
+      operationId: get-events-historical-event_time
+      description: Get all status changes with an event time occurring within the hour.
+      summary: Query historical vehicle activity.
+      responses:
+        "200":
+          description: Hour has been processed.
+          content:
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - type: object
+                    description: Events data payload
+                    required:
+                      - events
+                    properties:
+                      events:
+                        type: array
+                        items:
+                          $ref: ../models/event.yaml
+        "202":
+          description: Data is not yet available for this hour.
+        "400":
+          description: Request did not contain an `event_time`.
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "404":
+          description: Hour is not in the past, or no operations during this hour.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /events/recent:
+    parameters:
+      - name: start_time
+        schema:
+          $ref: ../models/data-types/timestamp.yaml
+        in: query
+        required: true
+        description: status changes where start_time <= event.timestamp
+      - name: end_time
+        schema:
+          $ref: ../models/data-types/timestamp.yaml
+        in: query
+        required: true
+        description: status changes where event.timestamp < end_time
+    get:
+      operationId: get-events-recent-start_time-end_time
+      description: Get all status changes at most two weeks old.
+      summary: Query recent vehicle activity.
+      responses:
+        "200":
+          description: Range was valid and within the prior two weeks.
+          content:
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - $ref: ../models/response/paging.yaml
+                  - type: object
+                    description: Events data payload
+                    required:
+                      - events
+                    properties:
+                      events:
+                        type: array
+                        items:
+                          $ref: ../models/event.yaml
+        "400":
+          description: Request did not contain a `start_time`, `end_time`, or the range was more than 2 weeks in the past.
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /stops:
+    get:
+      operationId: get-stops
+      description: Stop information should be updated on a near-realtime basis by providers who operate docked mobility devices in a given municipality.
+      summary: Get near-realtime stop information.
+      responses:
+        "200":
+          description: Stops found.
+          content:
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - $ref: ../models/response/last_updated.yaml
+                  - $ref: ../models/response/ttl.yaml
+                  - type: object
+                    description: Stops data payload
+                    required:
+                      - stops
+                    properties:
+                      stops:
+                        type: array
+                        items:
+                          $ref: ../models/stop.yaml
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /stops/{stop_id}:
+    parameters:
+      - name: stop_id
+        schema:
+          $ref: ../models/data-types/uuid.yaml
+        in: path
+        required: true
+        description: The `stop_id` for a Provider's Stop.
+    get:
+      operationId: get-stops-stop_id
+      description: Stop information should be updated on a near-realtime basis by providers who operate docked mobility devices in a given municipality.
+      summary: Get near-realtime stop information.
+      responses:
+        "200":
+          description: Stop found.
+          content:
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - $ref: ../models/response/last_updated.yaml
+                  - $ref: ../models/response/ttl.yaml
+                  - type: object
+                    description: Stops data payload
+                    required:
+                      - stops
+                    properties:
+                      stops:
+                        type: array
+                        minItems: 1
+                        maxItems: 1
+                        items:
+                          $ref: ../models/stop.yaml
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "404":
+          description: Stop not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /reports/{filename}:
+    parameters:
+      - name: filename
+        schema:
+          type: string
+          pattern: \d{4}-\d{2}\.csv
+          examples:
+            - "2023-12.csv"
+        in: path
+        required: true
+        description: The name of the report to retrieve, formatted by year and month like `YYYY-MM.csv`
+    get:
+      operationId: get-reports-filename
+      description: Reports are information that providers can send back to agencies containing aggregated data that is not contained within other MDS endpoints, like counts of special groups of riders.
+      summary: Get a monthly CSV report.
+      responses:
+        "200":
+          description: Report found.
+          content:
+            text/vnd.mds+csv:
+              schema:
+                type: string
+                pattern: ^provider_id,start_date,duration,special_group_type,geography_id,vehicle_type,trip_count,rider_count
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "404":
+          description: Report not found.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string

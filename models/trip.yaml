@@ -1,0 +1,107 @@
+title: models/trip
+description: A trip represents a journey taken by a _mobility as a service_ customer with a geo-tagged start and stop point.
+type: object
+
+x-stoplight:
+  id: 6s0dm1r2gk9x0
+
+required:
+  - provider_id
+  - device_id
+  - trip_id
+  - start_time
+  - end_time
+  - start_location
+  - end_location
+  - duration
+  - distance
+
+allOf:
+  - properties:
+      provider_id:
+        $ref: ./data-types/uuid.yaml
+        description: A UUID for the Provider, unique within MDS. See MDS [provider list](https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/providers.csv).
+      data_provider_id:
+        $ref: ./data-types/uuid.yaml
+        description: If different than `provider_id`, a UUID for the data solution provider managing the data feed in this endpoint.
+      device_id:
+        $ref: ./data-types/uuid.yaml
+        description: A unique device ID in UUID format.
+      trip_id:
+        $ref: ./data-types/uuid.yaml
+        description: A unique ID for each trip
+      trip_type:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+      trip_attributes:
+        type: object
+      fare_attributes:
+        type: object
+      start_time:
+        $ref: ./data-types/timestamp.yaml
+        description: Start of the passenger/driver trip.
+      end_time:
+        $ref: ./data-types/timestamp.yaml
+        description: End of the passenger/driver trip.
+      start_location:
+        $ref: ./data-types/gps.yaml
+        description: Location of the start of the trip.
+      end_location:
+        $ref: ./data-types/gps.yaml
+        description: Location of the end of the trip.
+      duration:
+        $ref: ./data-types/integer-positive.yaml
+        description: Trip duration, in seconds.
+        examples:
+          - 600
+      distance:
+        $ref: ./data-types/integer-positive.yaml
+        description: Trip distance, in meters.
+        examples:
+          - 1000
+      publication_time:
+        $ref: ./data-types/timestamp.yaml
+        description: Date/time that trip became available through the trips endpoint.
+      accessibility_attributes:
+        type:
+          - array
+          - object
+      parking_verification_url:
+        type:
+          - string
+          - "null"
+        format: uri
+        description: A URL to a photo (or other evidence) of proper vehicle parking at the end of a trip, provided by customer or operator.
+        examples:
+          - https://data.provider.co/parking_verify/1234.jpg
+      parking_category:
+        type: string
+        description: |-
+          The type of parking location detected or provided and the end of a trip. Note that `other_valid` covers any other
+          allowed parking location beyond what is enumerated, and `invalid` is any improper parking based on agency parking rules.
+        enum:
+          - corral
+          - curb
+          - rack
+          - other_valid
+          - invalid
+      standard_cost:
+        $ref: ./data-types/currency-cost.yaml
+        description: The cost, in the currency defined in `currency`, that it would cost to perform that trip in the standard operation of the System.
+        examples:
+          - 500
+      actual_cost:
+        $ref: ./data-types/currency-cost.yaml
+        description: The actual cost, in the currency defined in `currency`, paid by the customer of the _mobility as a service_ provider.
+        examples:
+          - 520
+      currency:
+        $ref: ./data-types/currency.yaml
+
+  - oneOf:
+      - $ref: ./modes/car-share/trip.yaml
+      - $ref: ./modes/delivery-robots/trip.yaml
+      - $ref: ./modes/micromobility/trip.yaml
+      - $ref: ./modes/passenger-services/trip.yaml

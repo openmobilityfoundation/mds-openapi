@@ -1,0 +1,65 @@
+title: modes/delivery-robots/trip
+description: Trip definition for the `delivery-robots` mode.
+type: object
+
+x-stoplight:
+  id: 0gzaszwxukf5a
+
+required:
+  - trip_type
+
+properties:
+  journey_id:
+    $ref: ../../data-types/uuid.yaml
+    description: |-
+      The `journey_id` field shall have a consistent value in overlapping trips. Journeys may be point-to-point, multi-segment,
+      or multi-segment overlapping.
+  trip_type:
+    minItems: 1
+    maxItems: 1
+    items:
+      enum:
+        - delivery
+        - return
+        - advertising
+        - mapping
+        - roaming
+  trip_attributes:
+    required:
+      - driver_type
+    properties:
+      driver_type:
+        enum:
+          - human
+          - semi-autonomous
+          - autonomous
+      driver_id:
+        $ref: ../../data-types/uuid.yaml
+        description: Consistent unique identifier of the primary driver. Could be based on software version or an internal human driver id.
+      app_name:
+        $ref: ../../data-types/string.yaml
+        description: Name of the app used to reserve the trip which could be provider's app or 3rd party app.
+      request_time:
+        $ref: ../../data-types/timestamp.yaml
+        description: When the customer requested the trip.
+      has_payload:
+        type: boolean
+        description: is there any payload for any delivery included in the device at trip start.
+  fare_attributes:
+    properties:
+      payment_type:
+        type: string
+        enum:
+          - account_number
+          - cash
+          - credit_card
+          - mobile_app
+          - no payment
+          - phone
+          - test
+          - voucher
+      price:
+        $ref: ../../data-types/currency-cost.yaml
+  accessibility_attributes:
+    $ref: ./accessibility-attributes.yaml
+    description: The accessibility options available on a given delivery robot device. Required if available.

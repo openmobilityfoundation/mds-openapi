@@ -1,0 +1,16 @@
+title: data-types/currency-cost
+description: Represents an optional cost defined in a [`currency`](./currency.yaml).
+
+x-stoplight:
+  id: 1l6vqu5tyd5at
+
+type:
+  - integer
+  - "null"
+
+minimum: 0
+
+examples:
+  - 500
+  - 520
+  - 1000

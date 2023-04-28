@@ -1,0 +1,56 @@
+title: models/vehicle
+description: Vehicle object in MDS.
+type: object
+
+x-stoplight:
+  id: e7es4zmeat7ai
+
+required:
+  - device_id
+  - provider_id
+  - vehicle_id
+  - vehicle_type
+  - propulsion_types
+
+allOf:
+  - properties:
+      device_id:
+        $ref: ./data-types/uuid.yaml
+        description: A unique device ID in UUID format.
+      provider_id:
+        $ref: ./data-types/uuid.yaml
+        description: A UUID for the Provider, unique within MDS. See MDS [provider list](https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/providers.csv).
+      data_provider_id:
+        $ref: ./data-types/uuid.yaml
+        description: If different than `provider_id`, a UUID for the data solution provider managing the data feed in this endpoint.
+      vehicle_id:
+        $ref: ./data-types/string.yaml
+        description: A unique vehicle identifier (visible code, license plate, etc), visible on the vehicle itself.
+      vehicle_type:
+        $ref: ./data-types/vehicle-type.yaml
+        description: The type of vehicle.
+      vehicle_attributes:
+        type: object
+      propulsion_types:
+        $ref: ./data-types/propulsion-type-array.yaml
+        description: The type of propulsion; allows multiple values.
+        minItems: 1
+      accessibility_attributes:
+        type:
+          - array
+          - object
+      battery_capacity:
+        $ref: ./data-types/integer-positive.yaml
+        description: Capacity of battery expressed as milliamp hours (mAh).
+      fuel_capacity:
+        $ref: ./data-types/integer-positive.yaml
+        description: Capacity of fuel tank (liquid, solid, gaseous) expressed in liters.
+      maximum_speed:
+        $ref: ./data-types/integer-positive.yaml
+        description: Maximum speed (kph) possible with vehicle under normal, flat incline, smooth surface conditions. Applicable if the device has a built-in or intelligent speed limiter/governor.
+
+  - oneOf:
+      - $ref: ./modes/car-share/vehicle.yaml
+      - $ref: ./modes/delivery-robots/vehicle.yaml
+      - $ref: ./modes/micromobility/vehicle.yaml
+      - $ref: ./modes/passenger-services/vehicle.yaml

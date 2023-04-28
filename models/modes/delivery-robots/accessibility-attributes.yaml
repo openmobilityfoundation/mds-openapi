@@ -1,0 +1,19 @@
+title: modes/delivery-robots/accessibility-attributes
+description: Accessibility options definition for the `delivery-robots` mode.
+type: object
+
+x-stoplight:
+  id: zsnl5o3q9d0a0
+
+additionalProperties: false
+
+properties:
+  audio_cue:
+    type: boolean
+    description: Is the device equipped with audio cues upon delivery.
+  visual_cue:
+    type: boolean
+    description: Is the device equipped with visual cues upon delivery.
+  remote_open:
+    type: boolean
+    description: Can the device door be remotely opened to retrieve cargo upon delivery.

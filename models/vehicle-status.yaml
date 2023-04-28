@@ -1,0 +1,27 @@
+title: models/vehicles-status
+description: A vehicle status record represents the current or last-known event and telemetry from a [vehicle](./vehicle.yaml).
+type: object
+
+x-stoplight:
+  id: cuu383rzjelef
+
+required:
+  - device_id
+  - provider_id
+  - last_event
+  - last_telemetry
+
+properties:
+  device_id:
+    $ref: ./data-types/uuid.yaml
+    description: A unique device ID in UUID format.
+  provider_id:
+    $ref: ./data-types/uuid.yaml
+    description: A UUID for the Provider, unique within MDS. See MDS [provider list](https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/providers.csv).
+  data_provider_id:
+    $ref: ./data-types/uuid.yaml
+    description: If different than `provider_id`, a UUID for the data solution provider managing the data feed in this endpoint.
+  last_event:
+    $ref: ./event.yaml
+  last_telemetry:
+    $ref: ./telemetry.yaml

@@ -1,0 +1,10 @@
+extends:
+  - "spectral:oas"
+
+formats:
+  - json-schema-loose
+
+rules:
+  oas3-api-servers: off
+  openapi-tags: off
+  operation-tags: off

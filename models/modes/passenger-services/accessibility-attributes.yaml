@@ -1,0 +1,13 @@
+title: modes/passenger-services/accessibility-attributes
+description: Accessibility options definition for the `passenger-services` mode.
+type: array
+
+x-stoplight:
+  id: 62ab40s0bfzrw
+
+uniqueItems: true
+
+items:
+  type: string
+  enum:
+    - wheelchair_accessible

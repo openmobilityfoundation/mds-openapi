@@ -1,0 +1,13 @@
+title: modes/micromobility/accessibility-attributes
+description: Accessibility options definition for the `micromobility` mode.
+type: array
+
+x-stoplight:
+  id: 15do56zc6v30i
+
+uniqueItems: true
+
+items:
+  type: string
+  enum:
+    - adaptive

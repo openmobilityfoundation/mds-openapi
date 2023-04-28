@@ -506,8 +506,7 @@ paths:
           content:
             text/vnd.mds+csv:
               schema:
-                type: string
-                pattern: ^provider_id,start_date,duration,special_group_type,geography_id,vehicle_type,trip_count,rider_count
+                $ref: ../models/report.yaml
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":

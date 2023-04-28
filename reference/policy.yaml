@@ -1,0 +1,119 @@
+openapi: 3.1.0
+
+x-stoplight:
+  id: q6wapocoxbhs1
+
+info:
+  title: Policy
+  version: "2.0"
+  summary: The Policy API endpoints are intended to be implemented by regulatory agencies and consumed by mobility providers.
+  contact:
+    url: https://github.com/openmobilityfoundation/mobility-data-specification
+    name: Open Mobility Foundation
+    email: info@openmobilityfoundation.org
+  license:
+    name: Creative Commons Attribution 4.0 International Public License
+    url: https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/LICENSE
+  description: |-
+    The Policy API endpoints are intended to be implemented by regulatory agencies and consumed by mobility providers.
+    Providers query the Policy API to get information about local rules that may affect the operation of their mobility service
+    or which may be used to determine compliance.
+
+    This specification describes the digital relationship between _mobility as a service_ providers and the agencies that regulate
+    them. The Policy API communicates municipal policies (such as as vehicle deployment caps and speed limits) in a clear,
+    consistent manner.
+
+    All Policy endpoints should be made public. Authorization is not required.
+
+paths:
+  /policies:
+    get:
+      operationId: get-policies
+      description: Get all policy documents, optionally between a given date range.
+      summary: Get all policy documents.
+      responses:
+        "200":
+          description: Policies found.
+          content:
+            application/vnd.mds+json: {}
+        "404":
+          description: Policies not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /policies.json:
+    get:
+      operationId: get-policies.json
+      description: Get all policy documents in a single JSON file.
+      summary: Get a flat file of policy documents.
+      responses:
+        "200":
+          description: Policies found.
+          content:
+            application/json: {}
+        "404":
+          description: Policies not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+
+  /policies/{policy_id}:
+    parameters:
+      - name: policy_id
+        schema:
+          $ref: ../models/data-types/uuid.yaml
+        in: path
+        required: true
+        description: The `policy_id` of a Policy document.
+    get:
+      operationId: get-policies-policy_id
+      description: Get the specified policy document.
+      summary: Get a policy document.
+      responses:
+        "200":
+          description: Policy document found.
+          content:
+            application/vnd.mds+json: {}
+        "400":
+          description: Bad request.
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "404":
+          description: Policy not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /requirements:
+    get:
+      operationId: get-requirements
+      description: |-
+        Enumerates all of the parts of MDS, CDS, GBFS, and other specifications that an agency requires from
+        providers for certain programs, including APIs, endpoints, and optional fields, as well as information for providers
+        about the APIs the agency is hosting.
+      summary: Get agency program requirements.
+      responses:
+        "200":
+          description: Requirements found.
+          content:
+            application/vnd.mds+json: {}
+        "404":
+          description: Requirements not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string

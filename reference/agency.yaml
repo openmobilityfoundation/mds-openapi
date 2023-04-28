@@ -39,7 +39,7 @@ components:
 paths:
   /vehicles:
     post:
-      operationId: vehicles-register
+      operationId: post-vehicles
       description: Register vehicles for use in the Agency's jurisdiction.
       summary: Register new vehicles.
       responses:
@@ -53,8 +53,37 @@ paths:
           description: Vehicles not found.
         "406":
           description: MDS version in Accept header is unsupported or invalid.
+        "409":
+          description: Vehicle(s) already exist and an update is not possible.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+    put:
+      operationId: put-vehicles
+      description: Change vehicle information, should some aspect of the vehicle change, such as the `vehicle_id`. Each vehicle must already be registered.
+      summary: Update vehicle information.
+      responses:
+        "200":
+          description: Vehicles updated.
+          content:
+            application/vnd.mds+json: {}
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "404":
+          description: Vehicles not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
     get:
-      operationId: vehicles-list
+      operationId: get-vehicles
       description: Get a list of vehicles in a Provider's registered fleet, with properties that do not change often.
       summary: Get registered vehicle information.
       responses:
@@ -68,3 +97,277 @@ paths:
           description: Vehicles not found.
         "406":
           description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /vehicles/{device_id}:
+    parameters:
+      - name: device_id
+        schema:
+          $ref: ../models/data-types/uuid.yaml
+        in: path
+        required: true
+        description: The `device_id` of a Provider's Vehicle.
+    get:
+      operationId: get-vehicles-device_id
+      description: Get the specified vehicle, with properties that do not change often.
+      summary: Get information for a registered vehicle.
+      responses:
+        "200":
+          description: Vehicle found.
+          content:
+            application/vnd.mds+json: {}
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "404":
+          description: Vehicle not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /vehicles/status:
+    get:
+      operationId: get-vehicles-status
+      description: Get a list of known vehicles, with specific vehicle status records that are updated frequently.
+      summary: Get status for all registered vehicles.
+      responses:
+        "200":
+          description: Vehicles found.
+          content:
+            application/vnd.mds+json: {}
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "404":
+          description: Vehicles not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /vehicles/status/{device_id}:
+    parameters:
+      - name: device_id
+        schema:
+          $ref: ../models/data-types/uuid.yaml
+        in: path
+        required: true
+        description: The `device_id` of a Provider's vehicle.
+    get:
+      operationId: get-vehicles-status-device_id
+      description: Get the specified vehicle, with vehicle status records that are updated frequently.
+      summary: Get status of a registered vehicle.
+      responses:
+        "200":
+          description: Vehicle found.
+          content:
+            application/vnd.mds+json: {}
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "404":
+          description: Vehicle not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /trips:
+    post:
+      operationId: post-trips
+      description: Send an update about one or more trips to the agency.
+      summary: Update trip data.
+      responses:
+        "201":
+          description: Trip(s) processed.
+          content:
+            application/vnd.mds+json: {}
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "409":
+          description: Trip(s) already exist and an update is not possible.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /telemetry:
+    post:
+      operationId: post-telemetry
+      description: Send vehicle telemetry data in a batch for any number of vehicles in the fleet.
+      summary: Update vehicle telemetry.
+      responses:
+        "201":
+          description: Vehicle telemetry processed.
+          content:
+            application/vnd.mds+json: {}
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "409":
+          description: Telemetry already exists and an update is not possible.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /events:
+    post:
+      operationId: post-events
+      description: Send vehicle state change events for multiple vehicles.
+      summary: Update vehicle state.
+      responses:
+        "201":
+          description: Events processed.
+          content:
+            application/vnd.mds+json: {}
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "409":
+          description: Event(s) already exist and an update is not possible.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /stops:
+    post:
+      operationId: post-stops
+      description: Allows an agency to register city-managed Stops, or a provider to register self-managed Stops.
+      summary: Register new stops.
+      responses:
+        "201":
+          description: Stops registered.
+          content:
+            application/vnd.mds+json: {}
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "409":
+          description: Stop(s) already exist and an update is not possible.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+    put:
+      operationId: put-stops
+      description: Update stop information. Each stop must already be registered.
+      summary: Update stop information.
+      responses:
+        "200":
+          description: Stop(s) updated.
+          content:
+            application/vnd.mds+json: {}
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+    get:
+      operationId: get-stops
+      description: Get a list of all stop records.
+      summary: Get all stops.
+      responses:
+        "200":
+          description: Stops found.
+          content:
+            application/vnd.mds+json: {}
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "404":
+          description: Stops not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /stops/{stop_id}:
+    parameters:
+      - name: stop_id
+        schema:
+          $ref: ../models/data-types/uuid.yaml
+        in: path
+        required: true
+        description: The `stop_id` for a Stop.
+    get:
+      operationId: get-stops-stop_id
+      description: Get information about the specified stop.
+      summary: Get a stop.
+      responses:
+        "200":
+          description: Stop found.
+          content:
+            application/vnd.mds+json: {}
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "404":
+          description: Stop not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /reports:
+    post:
+      operationId: post-reports
+      description: Allows an agency to register aggregated report counts in CSV structure.
+      summary: Register a new monthly report.
+      responses:
+        "201":
+          description: Report registered.
+          content:
+            application/vnd.mds+json: {}
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "409":
+          description: Report already exists and an update is not possible.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string

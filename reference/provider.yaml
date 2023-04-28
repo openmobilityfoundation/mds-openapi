@@ -70,6 +70,12 @@ paths:
           description: Vehicles not found.
         "406":
           description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
 
   /vehicles/{device_id}:
     parameters:
@@ -112,6 +118,12 @@ paths:
           description: Vehicle not found.
         "406":
           description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
 
   /vehicles/status:
     get:
@@ -145,6 +157,12 @@ paths:
           description: Vehicles not found.
         "406":
           description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
 
   /vehicles/status/{device_id}:
     parameters:
@@ -187,6 +205,12 @@ paths:
           description: Vehicle not found.
         "406":
           description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
 
   /trips:
     parameters:
@@ -227,6 +251,12 @@ paths:
           description: Hour is not in the past, or no operations during this hour.
         "406":
           description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
 
   /telemetry:
     parameters:
@@ -264,6 +294,12 @@ paths:
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "406":
           description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
 
   /events/historical:
     parameters:
@@ -305,6 +341,12 @@ paths:
           description: Hour is not in the past, or no operations during this hour.
         "406":
           description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
 
   /events/recent:
     parameters:
@@ -349,6 +391,12 @@ paths:
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "406":
           description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
 
   /stops:
     get:
@@ -379,6 +427,12 @@ paths:
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "406":
           description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
 
   /stops/{stop_id}:
     parameters:
@@ -420,6 +474,12 @@ paths:
           description: Stop not found.
         "406":
           description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
 
   /reports/{filename}:
     parameters:
@@ -448,3 +508,9 @@ paths:
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":
           description: Report not found.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string

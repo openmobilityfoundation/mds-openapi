@@ -1,4 +1,4 @@
-# MDS OpenAPI
+# Mobility Data Specification OpenAPI
 
 > _DRAFT since Feb 3 2023_
 >
@@ -8,10 +8,10 @@ The [Mobility Data Specification (MDS)](https://github.com/openmobilityfoundatio
 
 This is the OpenAPI description for MDS data feeds, managed by the [Open Mobility Foundation](https://github.com/openmobilityfoundation).
 
-Online documentation will be available on [Stoplight](https://openmobilityfnd.stoplight.io/docs/mds-openapi).
+Online documentation is available on [Stoplight](https://openmobilityfnd.stoplight.io/docs/mds-openapi).
 
-The versions will be organized by branches starting with a branch for `v2.0`.
+MDS versions are organized by branches starting with a branch for `v2.0`.
 
 ## License
 
-The MDS OpenAPI, like MDS itself, is licensed under [Creative Commons Attribution 4.0 International Public License](./LICENSE)
+The MDS OpenAPI, like MDS itself, is licensed under [Creative Commons Attribution 4.0 International Public License](../LICENSE)

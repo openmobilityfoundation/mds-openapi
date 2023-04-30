@@ -1,5 +1,4 @@
 title: response/paging
-description: If pagination is used for endpoints that support it, the pagination must comply with the [JSON API](http://jsonapi.org/format/#fetching-pagination) specification.
 type: object
 
 x-stoplight:
@@ -7,6 +6,7 @@ x-stoplight:
 
 properties:
   links:
+    description: If pagination is used for endpoints that support it, the pagination must comply with the [JSON API](http://jsonapi.org/format/#fetching-pagination) specification.
     type: object
     required:
       - next

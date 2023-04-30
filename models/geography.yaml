@@ -1,0 +1,66 @@
+title: models/geography
+description: A Geography object is a description of geographical information, e.g. a multi-polygon, represented via GeoJSON.
+type: object
+
+x-stoplight:
+  id: zk1g7bjjxke2l
+
+additionalProperties: false
+
+required:
+  - name
+  - geography_id
+  - geography_json
+  - published_date
+
+properties:
+  name:
+    $ref: ./data-types/string.yaml
+    description: Name of geography
+  description:
+    $ref: ./data-types/string.yaml
+    description: Description of geography.
+  geography_type:
+    type: string
+    description: The type of geography.
+    examples:
+      - municipal_boundary
+      - policy_zone
+      - county_boundary
+      - stop
+      - council_district
+      - political_district
+      - neighborhood
+      - market_area
+      - opportunity_zone
+      - overlay_district
+      - post_code
+      - traffic_zone
+      - property_line
+      - right_of_way
+      - census_block
+      - census_block_group
+      - census_tract
+  geography_id:
+    $ref: ./data-types/uuid.yaml
+    description: Unique ID of geography.
+  geography_json:
+    $ref: ./data-types/geojson-featurecollection.yaml
+    description: The [GeoJSON `FeatureCollection`](https://geojson.org/) that defines the geographical coordinates.
+  effective_date:
+    $ref: ./data-types/timestamp.yaml
+    description: The date at which a Geography is considered 'live'. Must be at or after `published_date`.
+  published_date:
+    $ref: ./data-types/timestamp.yaml
+    description: Timestamp at which the geography was published i.e. made immutable.
+  retire_date:
+    $ref: ./data-types/timestamp.yaml
+    description: |-
+      Time that the geography is slated to retire. Once the retire date
+      is passed, new policies can no longer reference it and old policies
+      referencing it should be updated. Retired geographies should continue
+      to be returned in the geographies list. Must be after effective_date.
+  prev_geographies:
+    $ref: ./data-types/uuid-array.yaml
+    description: Unique IDs of prior geographies replaced by this one.
+    uniqueItems: true

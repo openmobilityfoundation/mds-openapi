@@ -1,0 +1,49 @@
+title: models/jurisdiction
+description: |-
+  A jurisdiction is:
+
+      * A representation of an agency's authority to the outside world
+      * Human-readable name
+      * Uniquely identified
+      * Purview to make rules over physical boundaries and modal boundaries (e.g. a jurisdiction could be for taxis only)
+      * A way of tracking revisions in an agency's authority
+
+type: object
+
+x-stoplight:
+  id: 36fv404hae7bo
+
+required:
+  - jurisdiction_id
+  - agency_key
+  - description
+  - mode_ids
+  - timestamp
+
+properties:
+  jurisdiction_id:
+    $ref: ./data-types/uuid.yaml
+    description: Unique ID of Jurisdiction. This field is immutable.
+  agency_key:
+    $ref: ./data-types/string.yaml
+    description: |-
+      A unique string key for the Jurisdiction. This field must also be immutable. Allows for easier management of
+      Jurisdiction-based access control in JWTs.
+  agency_name:
+    $ref: ./data-types/string.yaml
+    description: Human-readable agency name for display purposes.
+  description:
+    $ref: ./data-types/string.yaml
+    description: Description of Jurisdiction.
+  geography_id:
+    $ref: ./data-types/uuid.yaml
+    description: The unique ID of the geography covered by this Jurisdiction.
+  mode_ids:
+    type: array
+    uniqueItems: true
+    minItems: 1
+    items:
+      $ref: ./data-types/modes.yaml
+  timestamp:
+    $ref: ./data-types/timestamp.yaml
+    description: Creation or update time of a Jurisdiction.

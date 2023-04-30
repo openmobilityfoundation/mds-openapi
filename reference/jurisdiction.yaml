@@ -36,6 +36,13 @@ info:
 
 paths:
   /jurisdictions:
+    parameters:
+      - name: effective
+        schema:
+          $ref: ../models/data-types/timestamp.yaml
+        in: query
+        required: false
+        description: See the state of all the Jurisdictions (i.e. which ones are effective) at that point in time. If not supplied, the default is to show only Jurisdictions that are currently in effect.
     get:
       operationId: get-jurisdictions
       description: Get all jurisdiction objects.
@@ -45,6 +52,8 @@ paths:
           description: Jurisdictions found.
           content:
             application/vnd.mds+json: {}
+        "400":
+          description: Bad request.
         "404":
           description: Jurisdictions not found.
         "406":
@@ -85,6 +94,12 @@ paths:
         in: path
         required: true
         description: The `jurisdiction_id` of a jurisdiction object.
+      - name: effective
+        schema:
+          $ref: ../models/data-types/timestamp.yaml
+        in: query
+        required: false
+        description: See the version of the Jurisdiction that was in effect at that point in time.
     get:
       operationId: get-jurisdictions-jurisdiction_id
       description: Get the specified jurisdiction object.

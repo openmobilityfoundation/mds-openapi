@@ -1,5 +1,4 @@
 title: response/last_updated
-description: The data returned by a near-realtime endpoint should be as close to realtime as possible.
 type: object
 
 x-stoplight:

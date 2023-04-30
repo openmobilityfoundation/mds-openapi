@@ -1,10 +1,13 @@
 title: response/version
-x-stoplight:
-  id: ivd8jadc3rqf7
 description: Response bodies must be a UTF-8 encoded JSON object and must minimally include the MDS `version`.
 type: object
+
+x-stoplight:
+  id: ivd8jadc3rqf7
+
 required:
   - version
+
 properties:
   version:
     type: string

@@ -39,7 +39,21 @@ paths:
         "200":
           description: Geographies found.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - $ref: ../models/response/last_updated.yaml
+                  - type: object
+                    description: Geographies data payload
+                    required:
+                      - geographies
+                    properties:
+                      geographies:
+                        type: array
+                        items:
+                          $ref: ../models/geography.yaml
         "404":
           description: Geographies not found.
         "406":
@@ -60,7 +74,21 @@ paths:
         "200":
           description: Geographies found.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - $ref: ../models/response/last_updated.yaml
+                  - type: object
+                    description: Geographies data payload
+                    required:
+                      - geographies
+                    properties:
+                      geographies:
+                        type: array
+                        items:
+                          $ref: ../models/geography.yaml
         "404":
           description: Geographies not found.
         "406":
@@ -88,7 +116,19 @@ paths:
         "200":
           description: Geography found.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - $ref: ../models/response/last_updated.yaml
+                  - type: object
+                    required:
+                      - geography
+                    properties:
+                      geography:
+                        $ref: ../models/geography.yaml
+                        description: Geography data payload.
         "400":
           description: Bad request.
         "404":

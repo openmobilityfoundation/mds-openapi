@@ -1,0 +1,11 @@
+title: data-type/version
+description: The version of MDS this data represents.
+type: string
+
+x-stoplight:
+  id: bt49ntcbcuxbh
+
+pattern: '^2\.(\d|[1-9]\d+)\.(\d|[1-9]\d+)$'
+
+examples:
+  - 2.0.0

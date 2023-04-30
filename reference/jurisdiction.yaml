@@ -21,16 +21,8 @@ info:
 
     The Jurisdictions API helps to solve the following problems when implementing MDS in a multi-jurisdictional environment:
 
-      * Giving agencies a mechanism to communicate boundaries between one another and to mobility providers.
-      * Some agencies manage multiple overlapping jurisdictions and need a mechanism to administer scope and permissions to data.
-
-    A jurisdiction is:
-
-      * A representation of an agency's authority to the outside world
-      * Human-readable name
-      * Uniquely identified
-      * Purview to make rules over physical boundaries and modal boundaries (e.g. a jurisdiction could be for taxis only)
-      * A way of tracking revisions in an agency's authority
+    * Giving agencies a mechanism to communicate boundaries between one another and to mobility providers.
+    * Some agencies manage multiple overlapping jurisdictions and need a mechanism to administer scope and permissions to data.
 
     All Jurisdiction endpoints should be made public. Authorization is not required.
 

@@ -2,11 +2,11 @@ title: models/jurisdiction
 description: |-
   A jurisdiction is:
 
-      * A representation of an agency's authority to the outside world
-      * Human-readable name
-      * Uniquely identified
-      * Purview to make rules over physical boundaries and modal boundaries (e.g. a jurisdiction could be for taxis only)
-      * A way of tracking revisions in an agency's authority
+  * A representation of an agency's authority to the outside world
+  * Human-readable name
+  * Uniquely identified
+  * Purview to make rules over physical boundaries and modal boundaries (e.g. a jurisdiction could be for taxis only)
+  * A way of tracking revisions in an agency's authority
 
 type: object
 
@@ -26,9 +26,7 @@ properties:
     description: Unique ID of Jurisdiction. This field is immutable.
   agency_key:
     $ref: ./data-types/string.yaml
-    description: |-
-      A unique string key for the Jurisdiction. This field must also be immutable. Allows for easier management of
-      Jurisdiction-based access control in JWTs.
+    description: A unique string key for the Jurisdiction. This field must also be immutable. Allows for easier management of Jurisdiction-based access control in JWTs.
   agency_name:
     $ref: ./data-types/string.yaml
     description: Human-readable agency name for display purposes.

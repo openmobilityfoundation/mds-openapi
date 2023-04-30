@@ -51,7 +51,21 @@ paths:
         "200":
           description: Jurisdictions found.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - $ref: ../models/response/last_updated.yaml
+                  - type: object
+                    description: Jurisdictions data payload
+                    required:
+                      - jurisdictions
+                    properties:
+                      jurisdictions:
+                        type: array
+                        items:
+                          $ref: ../models/jurisdiction.yaml
         "400":
           description: Bad request.
         "404":
@@ -74,7 +88,21 @@ paths:
         "200":
           description: Jurisdictions found.
           content:
-            application/vnd.mds+json: {}
+            application/json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - $ref: ../models/response/last_updated.yaml
+                  - type: object
+                    description: Jurisdictions data payload
+                    required:
+                      - jurisdictions
+                    properties:
+                      jurisdictions:
+                        type: array
+                        items:
+                          $ref: ../models/jurisdiction.yaml
         "404":
           description: Jurisdictions not found.
         "406":
@@ -108,7 +136,22 @@ paths:
         "200":
           description: Jurisdiction found.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - $ref: ../models/response/last_updated.yaml
+                  - type: object
+                    description: Jurisdictions data payload
+                    required:
+                      - jurisdictions
+                    properties:
+                      jurisdictions:
+                        type: array
+                        maxItems: 1
+                        items:
+                          $ref: ../models/jurisdiction.yaml
         "400":
           description: Bad request.
         "404":

@@ -76,6 +76,12 @@ paths:
           description: Policies not found.
         "406":
           description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
 
   /policies/{policy_id}:
     parameters:
@@ -96,8 +102,6 @@ paths:
             application/vnd.mds+json: {}
         "400":
           description: Bad request.
-        "401":
-          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":
           description: Policy not found.
         "406":

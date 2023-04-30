@@ -48,10 +48,10 @@ paths:
           description: Vehicles registered.
           content:
             application/vnd.mds+json: {}
+        "400":
+          description: Bad request.
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
-        "404":
-          description: Vehicles not found.
         "406":
           description: MDS version in Accept header is unsupported or invalid.
         "409":
@@ -71,6 +71,8 @@ paths:
           description: Vehicles updated.
           content:
             application/vnd.mds+json: {}
+        "400":
+          description: Bad request.
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":
@@ -122,6 +124,8 @@ paths:
           description: Vehicle found.
           content:
             application/vnd.mds+json: {}
+        "400":
+          description: Bad request.
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":
@@ -175,6 +179,8 @@ paths:
           description: Vehicle found.
           content:
             application/vnd.mds+json: {}
+        "400":
+          description: Bad request.
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":
@@ -198,6 +204,8 @@ paths:
           description: Trip(s) processed.
           content:
             application/vnd.mds+json: {}
+        "400":
+          description: Bad request.
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "406":
@@ -221,6 +229,8 @@ paths:
           description: Vehicle telemetry processed.
           content:
             application/vnd.mds+json: {}
+        "400":
+          description: Bad request.
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "406":
@@ -244,6 +254,8 @@ paths:
           description: Events processed.
           content:
             application/vnd.mds+json: {}
+        "400":
+          description: Bad request.
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "406":
@@ -267,6 +279,8 @@ paths:
           description: Stops registered.
           content:
             application/vnd.mds+json: {}
+        "400":
+          description: Bad request.
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "406":
@@ -288,8 +302,12 @@ paths:
           description: Stop(s) updated.
           content:
             application/vnd.mds+json: {}
+        "400":
+          description: Bad request.
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "404":
+          description: Stops not found.
         "406":
           description: MDS version in Accept header is unsupported or invalid.
         "500":
@@ -337,6 +355,8 @@ paths:
           description: Stop found.
           content:
             application/vnd.mds+json: {}
+        "400":
+          description: Bad request.
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":
@@ -360,6 +380,8 @@ paths:
           description: Report registered.
           content:
             application/vnd.mds+json: {}
+        "400":
+          description: Bad request.
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "406":

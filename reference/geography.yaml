@@ -1,0 +1,103 @@
+openapi: 3.1.0
+
+x-stoplight:
+  id: rbnz5mewkvb8i
+
+info:
+  title: "Mobility Data Specification: Geography"
+  version: "2.0"
+  summary: Providers query the Geography API to get information about geographical regions for regulatory and other purposes.
+  contact:
+    url: https://github.com/openmobilityfoundation/mobility-data-specification
+    name: Open Mobility Foundation
+    email: info@openmobilityfoundation.org
+  license:
+    name: Creative Commons Attribution 4.0 International Public License
+    url: https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/LICENSE
+  description: |-
+    This specification contains a collection of RESTful APIs used to read Geographies
+    (descriptions of geographical information, e.g. multi-polygons, currently represented via GeoJSON).
+
+    Geographical data has many applications in the context of mobility, such as the description of municipal boundaries,
+    locations for pick-up and drop-off zones, and areas of temporary closure for special events or emergencies. This API is
+    intended to support a variety of other APIs, including the [Policy API](./policy.yaml).
+
+    Geographical data will be stored as GeoJSON and read from either `geographies.json` or the `/geographies` endpoint,
+    referenced by UUID. Geography data once published through this API shall be treated as immutable, to ensure that any
+    rules or regulations referring to the boundaries cannot be retroactively changed. A Geography may be deprecated and
+    replaced by updated version with a new UUID.
+
+    All Geography endpoints should be made public. Authorization is not required.
+
+paths:
+  /geographies:
+    get:
+      operationId: get-geographies
+      description: Get all geography objects.
+      summary: Get all geography objects.
+      responses:
+        "200":
+          description: Geographies found.
+          content:
+            application/vnd.mds+json: {}
+        "404":
+          description: Geographies not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /geographies.json:
+    get:
+      operationId: get-geographies.json
+      description: Get all geography objects in a single JSON file.
+      summary: Get a flat file of geography objects.
+      responses:
+        "200":
+          description: Geographies found.
+          content:
+            application/vnd.mds+json: {}
+        "404":
+          description: Geographies not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /geographies/{geography_id}:
+    parameters:
+      - name: geography_id
+        schema:
+          $ref: ../models/data-types/uuid.yaml
+        in: path
+        required: true
+        description: The `geography_id` of a geography object.
+    get:
+      operationId: get-geographies-geography_id
+      description: Get the specified geography object.
+      summary: Get a geography object.
+      responses:
+        "200":
+          description: Geography found.
+          content:
+            application/vnd.mds+json: {}
+        "400":
+          description: Bad request.
+        "404":
+          description: Geography not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string

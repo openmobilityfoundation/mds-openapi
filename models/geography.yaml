@@ -45,7 +45,7 @@ properties:
     $ref: ./data-types/uuid.yaml
     description: Unique ID of geography.
   geography_json:
-    $ref: https://geojson.org/schema/FeatureCollection.json
+    $ref: ./data-types/geojson-featurecollection.yaml
     description: The [GeoJSON `FeatureCollection`](https://geojson.org/) that defines the geographical coordinates.
   effective_date:
     $ref: ./data-types/timestamp.yaml

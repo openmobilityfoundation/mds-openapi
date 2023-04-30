@@ -1,0 +1,108 @@
+openapi: 3.1.0
+
+x-stoplight:
+  id: 0c8f6q3fjyzbi
+
+info:
+  title: Jurisdiction
+  version: "2.0"
+  summary: Providers query the Jurisdiction API to get information about agency jurisdictions.
+  contact:
+    url: https://github.com/openmobilityfoundation/mobility-data-specification
+    name: Open Mobility Foundation
+    email: info@openmobilityfoundation.org
+  license:
+    name: Creative Commons Attribution 4.0 International Public License
+    url: https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/LICENSE
+  description: |-
+    City and transportation agencies need to regulate mobility within their own jurisdictions. Within a collection of agencies
+    under a single MDS software deployment, those agencies need to coordinate and share relevant data between one another when
+    their jurisdictions overlap.
+
+    The Jurisdictions API helps to solve the following problems when implementing MDS in a multi-jurisdictional environment:
+
+      * Giving agencies a mechanism to communicate boundaries between one another and to mobility providers.
+      * Some agencies manage multiple overlapping jurisdictions and need a mechanism to administer scope and permissions to data.
+
+    A jurisdiction is:
+
+      * A representation of an agency's authority to the outside world
+      * Human-readable name
+      * Uniquely identified
+      * Purview to make rules over physical boundaries and modal boundaries (e.g. a jurisdiction could be for taxis only)
+      * A way of tracking revisions in an agency's authority
+
+    All Jurisdiction endpoints should be made public. Authorization is not required.
+
+paths:
+  /jurisdictions:
+    get:
+      operationId: get-jurisdictions
+      description: Get all jurisdiction objects.
+      summary: Get all jurisdiction objects.
+      responses:
+        "200":
+          description: Jurisdictions found.
+          content:
+            application/vnd.mds+json: {}
+        "404":
+          description: Jurisdictions not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /jurisdictions.json:
+    get:
+      operationId: get-jurisdictions.json
+      description: Get all jurisdiction objects in a single JSON file.
+      summary: Get a flat file of jurisdiction objects.
+      responses:
+        "200":
+          description: Jurisdictions found.
+          content:
+            application/vnd.mds+json: {}
+        "404":
+          description: Jurisdictions not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /jurisdictions/{jurisdiction_id}:
+    parameters:
+      - name: jurisdiction_id
+        schema:
+          $ref: ../models/data-types/uuid.yaml
+        in: path
+        required: true
+        description: The `jurisdiction_id` of a jurisdiction object.
+    get:
+      operationId: get-jurisdictions-jurisdiction_id
+      description: Get the specified jurisdiction object.
+      summary: Get a jurisdiction object.
+      responses:
+        "200":
+          description: Jurisdiction found.
+          content:
+            application/vnd.mds+json: {}
+        "400":
+          description: Bad request.
+        "404":
+          description: Jurisdiction not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string

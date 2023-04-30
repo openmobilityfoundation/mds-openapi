@@ -4,7 +4,7 @@ x-stoplight:
   id: rbnz5mewkvb8i
 
 info:
-  title: "Mobility Data Specification: Geography"
+  title: Geography
   version: "2.0"
   summary: Providers query the Geography API to get information about geographical regions for regulatory and other purposes.
   contact:

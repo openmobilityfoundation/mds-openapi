@@ -4,7 +4,7 @@ x-stoplight:
   id: uffrjoub3dm0o
 
 info:
-  title: "Mobility Data Specification: Provider"
+  title: Provider
   version: "2.0"
   summary: The Provider API endpoints are intended to be implemented by mobility providers and consumed by regulatory agencies.
   contact:

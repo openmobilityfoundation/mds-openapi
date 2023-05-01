@@ -127,9 +127,9 @@ $defs:
         type:
           - "null"
           - object
-        description: Message to rider user, if desired, in various languages, keyed by [BCP 47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag
+        description: Message to rider user, if desired, in various languages, keyed by [BCP 47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
         propertyNames:
-          pattern: "([A-Za-z]{2,3})([-][A-Za-z]{3}){0,3}([-]([A-Za-z]{4}))?([-]([A-Za-z]{2}|[0-9]{3}))?"
+          $ref: ./data-types/language-tag.yaml
         examples:
           - "en-US": "Remember to stay under 10 MPH on Venice Beach on weekends!"
             "es-US": "¡Recuerda mantener por debajo 10 millas por hora en Venice Beach los fines de semana!"

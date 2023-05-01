@@ -227,3 +227,20 @@ $defs:
         type: string
         format: uri
         description: Location of API endpoint url. Required if the API is unauthenticated and public, optional if endpoint is authenticated and private.
+
+additionalProperties: false
+
+required:
+  - metadata
+  - programs
+
+properties:
+  metadata:
+    $ref: "#/$defs/metadata"
+    description: Contains metadata applicable to the agency.
+  programs:
+    type: array
+    description: Contains information about an agency's programs, with links to policy documents.
+    minItems: 1
+    items:
+      $ref: "#/$defs/program"

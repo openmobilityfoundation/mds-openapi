@@ -125,7 +125,9 @@ paths:
         "200":
           description: Requirements found.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                $ref: ../models/requirements.yaml
         "404":
           description: Requirements not found.
         "406":

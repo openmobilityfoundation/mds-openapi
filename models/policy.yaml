@@ -57,11 +57,8 @@ $defs:
           - kph
           - devices
       vehicle_types:
-        type: array
+        $ref: ./data-types/vehicle-type-array.yaml
         description: Applicable vehicle types, default "all"
-        uniqueItems: true
-        items:
-          $ref: ./data-types/vehicle-type.yaml
       propulsion_types:
         $ref: ./data-types/propulsion-type-array.yaml
         description: Applicable vehicle propulsion types, default "all"

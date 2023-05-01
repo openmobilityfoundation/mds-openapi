@@ -1,0 +1,62 @@
+title: models/requirements
+description: Enumerates all of the parts of MDS, CDS, GBFS, and other specifications that an agency requires from providers for certain programs.
+type: object
+
+x-stoplight:
+  id: aymm62fj9psek
+
+$defs:
+  metadata:
+    required:
+      - mds_release
+      - file_version
+      - last_updated
+      - max_update_interval
+      - agency_id
+      - agency_name
+      - agency_timezone
+      - agency_language
+      - agency_currency
+      - agency_website_url
+      - url
+    properties:
+      mds_release:
+        $ref: ./data-types/version.yaml
+        description: Release of MDS that the requirements data feed aligns to, based on official MDS releases.
+      file_version:
+        $ref: ./data-types/integer-positive.yaml
+        description: Version of this file. Increment 1 with each modification.
+      last_updated:
+        $ref: ./data-types/timestamp.yaml
+        description: When this `file_version` was last updated.
+      max_update_interval:
+        $ref: ./data-types/iso-duration.yaml
+        description: The expected maximum frequency with which this file could be updated.
+      agency_id:
+        $ref: ./data-types/uuid.yaml
+        description: UUID of the agency this file applies to.
+      agency_name:
+        $ref: ./data-types/string.yaml
+        description: Name of the agency this file applies to.
+      agency_timezone:
+        $ref: ./data-types/string.yaml
+        description: |-
+          [TZ Database Name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) used for dates and times in
+          Requirements and across all MDS endpoints.
+        examples:
+          - America/Los_Angeles
+          - Europe/London
+      agency_language:
+        $ref: ./data-types/language-tag.yaml
+        description: The language used across all MDS endpoints.
+      agency_currency:
+        $ref: ./data-types/currency.yaml
+        description: Currency used for all monetary values across all MDS endpoints.
+      agency_website_url:
+        type: string
+        format: uri
+        description: URL of the agency's general transportation page.
+      url:
+        type: string
+        format: uri
+        description: URL of this file on the agency's website.

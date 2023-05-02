@@ -1,0 +1,66 @@
+openapi: 3.1.0
+
+x-stoplight:
+  id: 7r4jdgpio4wn8
+
+info:
+  title: Metrics
+  version: "2.0"
+  summary: Metrics API endpoints are intended to be implemented by regulatory agencies for requesting historical calculated core metrics and aggregations of MDS data.
+  contact:
+    url: https://github.com/openmobilityfoundation/mobility-data-specification
+    name: Open Mobility Foundation
+    email: info@openmobilityfoundation.org
+  license:
+    name: Creative Commons Attribution 4.0 International Public License
+    url: https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/LICENSE
+  description: |-
+    The Metrics API endpoints are intended to be implemented by regulatory agencies, their third party appointed
+    representatives, or city designated partners for requesting historical calculated core metrics and aggregations of MDS data.
+
+    The Metrics API allows viewing of aggregate report data derived from some MDS endpoints that may be used for use cases like
+    compliance, program effectiveness, and alignment on counts. The metrics methodology definitions may be used by providers
+    and third parties in their own calculations.
+
+paths:
+  /metrics:
+    get:
+      operationId: get-metrics
+      description: Get a discovery response describing the supported metrics, times, intervals, dimensions and filters.
+      summary: /metrics
+      responses:
+        "200":
+          description: Metrics discovery found.
+          content:
+            application/vnd.mds+json: {}
+        "404":
+          description: Metrics discovery not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+    post:
+      operationId: post-metrics
+      description: Query metrics.
+      summary: /metrics
+      responses:
+        "200":
+          description: Metrics found.
+          content:
+            application/vnd.mds+json: {}
+        "400":
+          description: Bad request.
+        "404":
+          description: Metrics not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string

@@ -24,6 +24,38 @@ info:
 
 components:
   schemas:
+    measures:
+      type: array
+      minItems: 1
+      uniqueItems: true
+      items:
+        type: string
+        examples:
+          - vehicles.[status].avg
+          - vehicles.[status].min
+          - vehicles.[status].max
+          - vehicles.[status].duration.sum
+          - events.[event_type].count
+          - trips.[start_loc/end_loc].count
+          - trips.[start_loc/end_loc].duration.avg
+          - trips.[start_loc/end_loc].duration.med
+          - trips.[start_loc/end_loc].duration.std
+          - trips.[start_loc/end_loc].duration.sum
+          - trips.[start_loc/end_loc].distance.avg
+          - trips.[start_loc/end_loc].distance.med
+          - trips.[start_loc/end_loc].distance.std
+          - trips.[start_loc/end_loc].distance.sum
+    dimensions:
+      type: array
+      description: List of dimension names.
+      minItems: 1
+      uniqueItems: true
+      items:
+        type: string
+        examples:
+          - provider_id
+          - geography_id
+          - vehicle_type
     query:
       required:
         - measures
@@ -31,27 +63,8 @@ components:
         - start_date
       properties:
         measures:
-          type: array
+          $ref: "#/components/schemas/measures"
           description: List of measures to return.
-          minItems: 1
-          uniqueItems: true
-          items:
-            type: string
-            examples:
-              - vehicles.[status].avg
-              - vehicles.[status].min
-              - vehicles.[status].max
-              - vehicles.[status].duration.sum
-              - events.[event_type].count
-              - trips.[start_loc/end_loc].count
-              - trips.[start_loc/end_loc].duration.avg
-              - trips.[start_loc/end_loc].duration.med
-              - trips.[start_loc/end_loc].duration.std
-              - trips.[start_loc/end_loc].duration.sum
-              - trips.[start_loc/end_loc].distance.avg
-              - trips.[start_loc/end_loc].distance.med
-              - trips.[start_loc/end_loc].distance.std
-              - trips.[start_loc/end_loc].distance.sum
         interval:
           $ref: ../models/data-types/iso-duration.yaml
           description: ISO 8601 duration for metrics intervals.
@@ -68,16 +81,7 @@ components:
         timezone:
           $ref: ../models/data-types/timezone.yaml
         dimensions:
-          type: array
-          description: List of dimension names.
-          minItems: 1
-          uniqueItems: true
-          items:
-            type: string
-            examples:
-              - provider_id
-              - geography_id
-              - vehicle_type
+          $ref: "#/components/schemas/dimensions"
         filters:
           type: array
           description: List of dimension names.
@@ -111,7 +115,54 @@ paths:
         "200":
           description: Metrics discovery found.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                required:
+                  - metrics
+                  - max_intervals
+                  - dimensions
+                  - filters
+                properties:
+                  metrics:
+                    type: array
+                    minItems: 1
+                    items:
+                      required:
+                        - measures
+                        - since
+                        - intervals
+                      properties:
+                        measures:
+                          $ref: "#/components/schemas/measures"
+                          description: List of measure names.
+                        since:
+                          oneOf:
+                            - $ref: ../models/data-types/iso-dayhourminute.yaml
+                            - $ref: ../models/data-types/timestamp.yaml
+                          description: Earliest supported start date for fetching metrics. Minute (`mm`) must be divisible by minimum `interval`.
+                        intervals:
+                          type: array
+                          minItems: 1
+                          uniqueItems: true
+                          items:
+                            $ref: ../models/data-types/iso-duration.yaml
+                  max_intervals:
+                    $ref: ../models/data-types/integer-positive.yaml
+                    description: Maximum number intervals that can be returned.
+                  dimensions:
+                    $ref: "#/components/schemas/dimensions"
+                    description: List of supported dimensions.
+                  filters:
+                    type: array
+                    minItems: 1
+                    uniqueItems: true
+                    items:
+                      type: string
+                      examples:
+                        - provider_id
+                        - geography_id
+                        - geography_type
+                        - vehicle_type
         "404":
           description: Metrics discovery not found.
         "406":

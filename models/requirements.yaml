@@ -40,13 +40,8 @@ $defs:
         $ref: ./data-types/string.yaml
         description: Name of the agency this file applies to.
       agency_timezone:
-        $ref: ./data-types/string.yaml
-        description: |-
-          [TZ Database Name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) used for dates and times in
-          Requirements and across all MDS endpoints.
-        examples:
-          - America/Los_Angeles
-          - Europe/London
+        $ref: ./data-types/timezone.yaml
+        description: Used for dates and times in Requirements and across all MDS endpoints.
       agency_language:
         $ref: ./data-types/language-tag.yaml
         description: The language used across all MDS endpoints.

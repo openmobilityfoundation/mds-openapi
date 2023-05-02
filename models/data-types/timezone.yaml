@@ -1,0 +1,12 @@
+title: data-types/timezone
+description: "[TZ Database Name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (default: UTC)"
+type: string
+
+x-stoplight:
+  id: sv8rgu97fxmop
+
+default: UTC
+
+examples:
+  - America/Los_Angeles
+  - Europe/London

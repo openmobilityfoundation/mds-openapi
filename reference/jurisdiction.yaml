@@ -38,7 +38,7 @@ paths:
     get:
       operationId: get-jurisdictions
       description: Get all jurisdiction objects.
-      summary: Get all jurisdiction objects.
+      summary: /jurisdictions
       responses:
         "200":
           description: Jurisdictions found.
@@ -75,7 +75,7 @@ paths:
     get:
       operationId: get-jurisdictions.json
       description: Get all jurisdiction objects in a single JSON file.
-      summary: Get a flat file of jurisdiction objects.
+      summary: /jurisdictions.json
       responses:
         "200":
           description: Jurisdictions found.
@@ -123,7 +123,7 @@ paths:
     get:
       operationId: get-jurisdictions-jurisdiction_id
       description: Get the specified jurisdiction object.
-      summary: Get a jurisdiction object.
+      summary: /jurisdictions/{jurisdiction_id}
       responses:
         "200":
           description: Jurisdiction found.

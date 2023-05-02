@@ -76,44 +76,6 @@ paths:
               schema:
                 type: string
 
-  /policies.json:
-    get:
-      operationId: get-policies.json
-      description: Get all policy documents in a single JSON file.
-      summary: /policies.json
-      responses:
-        "200":
-          description: Policies found.
-          content:
-            application/json:
-              schema:
-                type: object
-                allOf:
-                  - $ref: ../models/response/version.yaml
-                  - $ref: ../models/response/last_updated.yaml
-                  - type: object
-                    description: Policies data payload
-                    required:
-                      - policies
-                    properties:
-                      end_date:
-                        $ref: ../models/data-types/timestamp.yaml
-                        description: Optional timestamp that applies to the file as a whole.
-                      policies:
-                        type: array
-                        items:
-                          $ref: ../models/policy.yaml
-        "404":
-          description: Policies not found.
-        "406":
-          description: MDS version in Accept header is unsupported or invalid.
-        "500":
-          description: Internal server error.
-          content:
-            text/plain:
-              schema:
-                type: string
-
   /policies/{policy_id}:
     parameters:
       - name: policy_id
@@ -151,6 +113,44 @@ paths:
           description: Bad request.
         "404":
           description: Policy not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /policies.json:
+    get:
+      operationId: get-policies.json
+      description: Get all policy documents in a single JSON file.
+      summary: /policies.json
+      responses:
+        "200":
+          description: Policies found.
+          content:
+            application/json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - $ref: ../models/response/last_updated.yaml
+                  - type: object
+                    description: Policies data payload
+                    required:
+                      - policies
+                    properties:
+                      end_date:
+                        $ref: ../models/data-types/timestamp.yaml
+                        description: Optional timestamp that applies to the file as a whole.
+                      policies:
+                        type: array
+                        items:
+                          $ref: ../models/policy.yaml
+        "404":
+          description: Policies not found.
         "406":
           description: MDS version in Accept header is unsupported or invalid.
         "500":

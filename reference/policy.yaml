@@ -160,6 +160,41 @@ paths:
               schema:
                 type: string
 
+  /value:
+    get:
+      operationId: get-value
+      description: |-
+        An Agency may wish to provide dynamic or global rules, e.g.
+
+        > "Within 300 yards of the stadium, 1000 total extra scooters may be deployed, across all Provider(s)."
+
+        In this case, compliance is not computable from the information available to a single Provider. The Agency may provide
+        an endpoint to get the current count of vehicles in the service-area, so that individual Providers could decide whether
+        adding some number to those present is allowed.
+      summary: /value
+      responses:
+        "200":
+          description: Value found.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                required:
+                  - value
+                  - timestamp
+                  - policy_id
+                properties:
+                  value:
+                    type: integer
+                    description: Value of whatever the rule measures.
+                  timestamp:
+                    $ref: ../models/data-types/timestamp.yaml
+                    description: Timestamp the value was recorded.
+                  policy_id:
+                    $ref: ../models/data-types/uuid.yaml
+                    description: Relevant `policy_id` for reference.
+
   /requirements:
     get:
       operationId: get-requirements

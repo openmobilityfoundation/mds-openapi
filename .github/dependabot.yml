@@ -5,6 +5,15 @@
 
 version: 2
 updates:
+  - package-ecosystem: pip
+    directory: / # pyproject.toml
+    schedule:
+      interval: daily
+    commit-message:
+      prefix: chore
+      include: scope
+    labels:
+      - dependencies
   - package-ecosystem: npm
     directory: / # package.json
     schedule:

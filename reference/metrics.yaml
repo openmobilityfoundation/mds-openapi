@@ -22,6 +22,85 @@ info:
     compliance, program effectiveness, and alignment on counts. The metrics methodology definitions may be used by providers
     and third parties in their own calculations.
 
+components:
+  schemas:
+    query:
+      required:
+        - measures
+        - interval
+        - start_date
+      properties:
+        measures:
+          type: array
+          description: List of measures to return.
+          minItems: 1
+          uniqueItems: true
+          items:
+            type: string
+            examples:
+              - vehicles.[status].avg
+              - vehicles.[status].min
+              - vehicles.[status].max
+              - vehicles.[status].duration.sum
+              - events.[event_type].count
+              - trips.[start_loc/end_loc].count
+              - trips.[start_loc/end_loc].duration.avg
+              - trips.[start_loc/end_loc].duration.med
+              - trips.[start_loc/end_loc].duration.std
+              - trips.[start_loc/end_loc].duration.sum
+              - trips.[start_loc/end_loc].distance.avg
+              - trips.[start_loc/end_loc].distance.med
+              - trips.[start_loc/end_loc].distance.std
+              - trips.[start_loc/end_loc].distance.sum
+        interval:
+          $ref: ../models/data-types/iso-duration.yaml
+          description: ISO 8601 duration for metrics intervals.
+        start_date:
+          oneOf:
+            - $ref: ../models/data-types/iso-dayhourminute.yaml
+            - $ref: ../models/data-types/timestamp.yaml
+          description: ISO 8601 formatted start date or numeric timestamp to fetch metrics.
+        end_date:
+          oneOf:
+            - $ref: ../models/data-types/iso-dayhourminute.yaml
+            - $ref: ../models/data-types/timestamp.yaml
+          description: ISO 8601 formatted end date or numeric timestamp to fetch metrics.
+        timezone:
+          $ref: ../models/data-types/timezone.yaml
+        dimensions:
+          type: array
+          description: List of dimension names.
+          minItems: 1
+          uniqueItems: true
+          items:
+            type: string
+            examples:
+              - provider_id
+              - geography_id
+              - vehicle_type
+        filters:
+          type: array
+          description: List of dimension names.
+          minItems: 1
+          uniqueItems: true
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of filter.
+              values:
+                type: array
+                description: List of values to filter for.
+                minItems: 1
+                uniqueItems: true
+                items:
+                  type: object
+            examples:
+              - name: geography_type
+                values:
+                  - census_block
+
 paths:
   /metrics:
     get:
@@ -47,6 +126,12 @@ paths:
       operationId: post-metrics
       description: Query metrics.
       summary: /metrics
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/query"
       responses:
         "200":
           description: Metrics found.

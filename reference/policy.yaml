@@ -43,7 +43,7 @@ paths:
     get:
       operationId: get-policies
       description: Get all policy documents, optionally between a given date range.
-      summary: Get all policy documents.
+      summary: /policies
       responses:
         "200":
           description: Policies found.
@@ -80,7 +80,7 @@ paths:
     get:
       operationId: get-policies.json
       description: Get all policy documents in a single JSON file.
-      summary: Get a flat file of policy documents.
+      summary: /policies.json
       responses:
         "200":
           description: Policies found.
@@ -125,7 +125,7 @@ paths:
     get:
       operationId: get-policies-policy_id
       description: Get the specified policy document.
-      summary: Get a policy document.
+      summary: /policies/{policy_id}
       responses:
         "200":
           description: Policy document found.
@@ -167,7 +167,7 @@ paths:
         Enumerates all of the parts of MDS, CDS, GBFS, and other specifications that an agency requires from
         providers for certain programs, including APIs, endpoints, and optional fields, as well as information for providers
         about the APIs the agency is hosting.
-      summary: Get agency program requirements.
+      summary: /requirements
       responses:
         "200":
           description: Requirements found.

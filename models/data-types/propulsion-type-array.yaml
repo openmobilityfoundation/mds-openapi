@@ -1,7 +1,7 @@
 title: data-types/propulsion-type-array
 description: Array of propulsion types, allowing multiple values.
 items:
-  $ref: propulsion-type.yaml
+  $ref: ./propulsion-type.yaml
 type: array
 uniqueItems: true
 x-stoplight:

@@ -155,7 +155,7 @@ properties:
     $ref: ./data-types/string.yaml
     description: Name of policy.
   mode_id:
-    $ref: ./data-types/modes.yaml
+    $ref: ./data-types/mode.yaml
     description: Mode this rule should apply, see MDS mode list for options. Default `micromobility` for backwards compatibility (this default will likely be removed in a subsequent MDS release).
     default: micromobility
   policy_id:

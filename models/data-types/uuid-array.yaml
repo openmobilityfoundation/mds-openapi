@@ -1,8 +1,11 @@
 title: data-types/uuid-array
 description: Array of UUID.
-items:
-  $ref: uuid.yaml
 type: array
-uniqueItems: true
+
 x-stoplight:
   id: v932clitbqv31
+
+uniqueItems: true
+
+items:
+  $ref: ./uuid.yaml

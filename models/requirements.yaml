@@ -119,7 +119,7 @@ $defs:
           - "2.0.0"
           - "v1.2"
       mode_id:
-        $ref: ./data-types/modes.yaml
+        $ref: ./data-types/mode.yaml
         description: The mode list shortname for MDS.
       required_apis:
         type: array

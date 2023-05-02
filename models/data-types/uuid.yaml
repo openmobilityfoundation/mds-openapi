@@ -1,8 +1,12 @@
 title: data-types/uuid
 description: A UUID used to uniquely identity an object.
-examples:
-  - 3c9604d6-b5ee-11e8-96f8-529269fb1459
-pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
 type: string
+
 x-stoplight:
   id: np9kodwmy2kqa
+
+format: uuid
+pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+
+examples:
+  - 3c9604d6-b5ee-11e8-96f8-529269fb1459

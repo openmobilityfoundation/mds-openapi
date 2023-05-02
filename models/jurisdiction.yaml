@@ -41,7 +41,7 @@ properties:
     uniqueItems: true
     minItems: 1
     items:
-      $ref: ./data-types/modes.yaml
+      $ref: ./data-types/mode.yaml
   timestamp:
     $ref: ./data-types/timestamp.yaml
     description: Creation or update time of a Jurisdiction.

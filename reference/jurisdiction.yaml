@@ -71,41 +71,6 @@ paths:
               schema:
                 type: string
 
-  /jurisdictions.json:
-    get:
-      operationId: get-jurisdictions.json
-      description: Get all jurisdiction objects in a single JSON file.
-      summary: /jurisdictions.json
-      responses:
-        "200":
-          description: Jurisdictions found.
-          content:
-            application/json:
-              schema:
-                type: object
-                allOf:
-                  - $ref: ../models/response/version.yaml
-                  - $ref: ../models/response/last_updated.yaml
-                  - type: object
-                    description: Jurisdictions data payload
-                    required:
-                      - jurisdictions
-                    properties:
-                      jurisdictions:
-                        type: array
-                        items:
-                          $ref: ../models/jurisdiction.yaml
-        "404":
-          description: Jurisdictions not found.
-        "406":
-          description: MDS version in Accept header is unsupported or invalid.
-        "500":
-          description: Internal server error.
-          content:
-            text/plain:
-              schema:
-                type: string
-
   /jurisdictions/{jurisdiction_id}:
     parameters:
       - name: jurisdiction_id
@@ -148,6 +113,41 @@ paths:
           description: Bad request.
         "404":
           description: Jurisdiction not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /jurisdictions.json:
+    get:
+      operationId: get-jurisdictions.json
+      description: Get all jurisdiction objects in a single JSON file.
+      summary: /jurisdictions.json
+      responses:
+        "200":
+          description: Jurisdictions found.
+          content:
+            application/json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - $ref: ../models/response/last_updated.yaml
+                  - type: object
+                    description: Jurisdictions data payload
+                    required:
+                      - jurisdictions
+                    properties:
+                      jurisdictions:
+                        type: array
+                        items:
+                          $ref: ../models/jurisdiction.yaml
+        "404":
+          description: Jurisdictions not found.
         "406":
           description: MDS version in Accept header is unsupported or invalid.
         "500":

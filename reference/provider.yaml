@@ -42,7 +42,7 @@ paths:
     get:
       operationId: get-vehicles
       description: Get a list of known vehicles, with properties that do not change often.
-      summary: Get near-realtime vehicle information.
+      summary: /vehicles
       responses:
         "200":
           description: Vehicles found.
@@ -88,7 +88,7 @@ paths:
     get:
       operationId: get-vehicles-device_id
       description: Get the specified vehicle, with properties that do not change often.
-      summary: Get near-realtime information for a vehicle.
+      summary: /vehicles/{device_id}
       responses:
         "200":
           description: Vehicle found.
@@ -129,7 +129,7 @@ paths:
     get:
       operationId: get-vehicles-status
       description: Get a list of known vehicles, with specific vehicle status records that are updated frequently.
-      summary: Get near-realtime vehicle status.
+      summary: /vehicles/status
       responses:
         "200":
           description: Vehicles found.
@@ -175,7 +175,7 @@ paths:
     get:
       operationId: get-vehicles-status-device_id
       description: Get the specified vehicle, with specific vehicle status records that are updated frequently.
-      summary: Get near-realtime status of a vehicle.
+      summary: /vehicles/status/{device_id}
       responses:
         "200":
           description: Vehicle found.
@@ -223,7 +223,7 @@ paths:
     get:
       operationId: get-trips-end_time
       description: Get all trips with an end time occurring within the hour.
-      summary: Query historical trip data.
+      summary: /trips
       responses:
         "200":
           description: Hour has been processed.
@@ -269,7 +269,7 @@ paths:
     get:
       operationId: get-telemetry-telemetry_time
       description: Get all telemetry with timestamp occurring within the hour.
-      summary: Query historical vehicle telemetry data.
+      summary: /telemetry
       responses:
         "200":
           description: Hour has been processed.
@@ -312,7 +312,7 @@ paths:
     get:
       operationId: get-events-historical-event_time
       description: Get all status changes with an event time occurring within the hour.
-      summary: Query historical vehicle activity.
+      summary: /events/historical
       responses:
         "200":
           description: Hour has been processed.
@@ -365,7 +365,7 @@ paths:
     get:
       operationId: get-events-recent-start_time-end_time
       description: Get all status changes at most two weeks old.
-      summary: Query recent vehicle activity.
+      summary: /events/recent
       responses:
         "200":
           description: Range was valid and within the prior two weeks.
@@ -402,7 +402,7 @@ paths:
     get:
       operationId: get-stops
       description: Stop information should be updated on a near-realtime basis by providers who operate docked mobility devices in a given municipality.
-      summary: Get near-realtime stop information.
+      summary: /stops
       responses:
         "200":
           description: Stops found.
@@ -445,7 +445,7 @@ paths:
     get:
       operationId: get-stops-stop_id
       description: Stop information should be updated on a near-realtime basis by providers who operate docked mobility devices in a given municipality.
-      summary: Get near-realtime stop information.
+      summary: /stops/{stop_id}
       responses:
         "200":
           description: Stop found.
@@ -495,7 +495,7 @@ paths:
     get:
       operationId: get-reports-filename
       description: Reports are information that providers can send back to agencies containing aggregated data that is not contained within other MDS endpoints, like counts of special groups of riders.
-      summary: Get a monthly CSV report.
+      summary: /reports/{filename}
       responses:
         "200":
           description: Report found.

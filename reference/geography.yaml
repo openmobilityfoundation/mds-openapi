@@ -34,47 +34,12 @@ paths:
     get:
       operationId: get-geographies
       description: Get all geography objects.
-      summary: Get all geography objects.
+      summary: /geographies
       responses:
         "200":
           description: Geographies found.
           content:
             application/vnd.mds+json:
-              schema:
-                type: object
-                allOf:
-                  - $ref: ../models/response/version.yaml
-                  - $ref: ../models/response/last_updated.yaml
-                  - type: object
-                    description: Geographies data payload
-                    required:
-                      - geographies
-                    properties:
-                      geographies:
-                        type: array
-                        items:
-                          $ref: ../models/geography.yaml
-        "404":
-          description: Geographies not found.
-        "406":
-          description: MDS version in Accept header is unsupported or invalid.
-        "500":
-          description: Internal server error.
-          content:
-            text/plain:
-              schema:
-                type: string
-
-  /geographies.json:
-    get:
-      operationId: get-geographies.json
-      description: Get all geography objects in a single JSON file.
-      summary: Get a flat file of geography objects.
-      responses:
-        "200":
-          description: Geographies found.
-          content:
-            application/json:
               schema:
                 type: object
                 allOf:
@@ -111,7 +76,7 @@ paths:
     get:
       operationId: get-geographies-geography_id
       description: Get the specified geography object.
-      summary: Get a geography object.
+      summary: /geographies/{geography_id}
       responses:
         "200":
           description: Geography found.
@@ -132,6 +97,41 @@ paths:
           description: Bad request.
         "404":
           description: Geography not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /geographies.json:
+    get:
+      operationId: get-geographies.json
+      description: Get all geography objects in a single JSON file.
+      summary: /geographies.json
+      responses:
+        "200":
+          description: Geographies found.
+          content:
+            application/json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - $ref: ../models/response/last_updated.yaml
+                  - type: object
+                    description: Geographies data payload
+                    required:
+                      - geographies
+                    properties:
+                      geographies:
+                        type: array
+                        items:
+                          $ref: ../models/geography.yaml
+        "404":
+          description: Geographies not found.
         "406":
           description: MDS version in Accept header is unsupported or invalid.
         "500":

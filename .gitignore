@@ -1,2 +1,5 @@
+.pytest_cache
 .stoplight/styleguide.json
 .spectral.mjs
+.vscode
+*.egg-info

@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+classifiers = ["Programming Language :: Python :: 3 :: Only"]
+description = "Utilities and tests for the MDS OpenAPI repo"
+dependencies = [
+    "jsonschema>=4.18.0a6",
+    "PyYAML",
+    "referencing>=0.28",
+]
+license = { file = "LICENSE" }
+name = "mds-openapi"
+readme = "README.md"
+requires-python = ">=3.9"
+version = "2.0"
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "flake8",
+    "pre-commit",
+]
+test = [
+    "pytest",
+]
+
+[project.urls]
+Code = "https://github.com/openmobilityfoundation/mds-openapi"
+Issues = "https://github.com/openmobilityfoundation/mds-openapi/issues"
+
+# Configuration for black
+[tool.black]
+line-length = 127
+target-version = ['py310']
+include = '\.pyi?$'
+
+[tool.setuptools]
+packages = ["tests"]

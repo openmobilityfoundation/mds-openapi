@@ -42,7 +42,7 @@ paths:
     post:
       operationId: post-vehicles
       description: Register vehicles for use in the Agency's jurisdiction.
-      summary: Register new vehicles.
+      summary: /vehicles
       responses:
         "201":
           description: Vehicles registered.
@@ -65,7 +65,7 @@ paths:
     put:
       operationId: put-vehicles
       description: Change vehicle information, should some aspect of the vehicle change, such as the `vehicle_id`. Each vehicle must already be registered.
-      summary: Update vehicle information.
+      summary: /vehicles
       responses:
         "200":
           description: Vehicles updated.
@@ -88,7 +88,7 @@ paths:
     get:
       operationId: get-vehicles
       description: Get a list of vehicles in a Provider's registered fleet, with properties that do not change often.
-      summary: Get registered vehicle information.
+      summary: /vehicles
       responses:
         "200":
           description: Vehicles found.
@@ -118,7 +118,7 @@ paths:
     get:
       operationId: get-vehicles-device_id
       description: Get the specified vehicle, with properties that do not change often.
-      summary: Get information for a registered vehicle.
+      summary: /vehicles/{device_id}
       responses:
         "200":
           description: Vehicle found.
@@ -143,7 +143,7 @@ paths:
     get:
       operationId: get-vehicles-status
       description: Get a list of known vehicles, with specific vehicle status records that are updated frequently.
-      summary: Get status for all registered vehicles.
+      summary: /vehicles/status
       responses:
         "200":
           description: Vehicles found.
@@ -173,7 +173,7 @@ paths:
     get:
       operationId: get-vehicles-status-device_id
       description: Get the specified vehicle, with vehicle status records that are updated frequently.
-      summary: Get status of a registered vehicle.
+      summary: /vehicles/status/{device_id}
       responses:
         "200":
           description: Vehicle found.
@@ -198,7 +198,7 @@ paths:
     post:
       operationId: post-trips
       description: Send an update about one or more trips to the agency.
-      summary: Update trip data.
+      summary: /trips
       responses:
         "201":
           description: Trip(s) processed.
@@ -223,7 +223,7 @@ paths:
     post:
       operationId: post-telemetry
       description: Send vehicle telemetry data in a batch for any number of vehicles in the fleet.
-      summary: Update vehicle telemetry.
+      summary: /telemetry
       responses:
         "201":
           description: Vehicle telemetry processed.
@@ -248,7 +248,7 @@ paths:
     post:
       operationId: post-events
       description: Send vehicle state change events for multiple vehicles.
-      summary: Update vehicle state.
+      summary: /events
       responses:
         "201":
           description: Events processed.
@@ -273,7 +273,7 @@ paths:
     post:
       operationId: post-stops
       description: Allows an agency to register city-managed Stops, or a provider to register self-managed Stops.
-      summary: Register new stops.
+      summary: /stops
       responses:
         "201":
           description: Stops registered.
@@ -296,7 +296,7 @@ paths:
     put:
       operationId: put-stops
       description: Update stop information. Each stop must already be registered.
-      summary: Update stop information.
+      summary: /stops
       responses:
         "200":
           description: Stop(s) updated.
@@ -319,7 +319,7 @@ paths:
     get:
       operationId: get-stops
       description: Get a list of all stop records.
-      summary: Get all stops.
+      summary: /stops
       responses:
         "200":
           description: Stops found.
@@ -349,7 +349,7 @@ paths:
     get:
       operationId: get-stops-stop_id
       description: Get information about the specified stop.
-      summary: Get a stop.
+      summary: /stops/{stop_id}
       responses:
         "200":
           description: Stop found.
@@ -374,7 +374,7 @@ paths:
     post:
       operationId: post-reports
       description: Allows an agency to register aggregated report counts in CSV structure.
-      summary: Register a new monthly report.
+      summary: /reports
       responses:
         "201":
           description: Report registered.

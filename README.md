@@ -12,6 +12,34 @@ Online documentation is available on [Stoplight](https://openmobilityfnd.stoplig
 
 MDS versions are organized by branches starting with a branch for `v2.0`.
 
+## Python project
+
+A small Python project defined in [`pyproject.toml`](./pyproject.toml) supports the schema development process.
+
+```bash
+# install the project and its dependencies
+pip install -e .
+```
+
+### Schema validation
+
+Tests written in [`pytest`](https://pytest.org) check various components of the schemas. These tests can be run locally, and
+also run in GitHub Actions on commits to this repository.
+
+```bash
+# run the tests with pytest from the root of the repo
+pytest
+```
+
+### Notebooks
+
+[Jupyter Notebooks](https://jupyter.org/) to help with one-time data cleanups and issue checking.
+
+```bash
+# install the 'notebooks' extras
+pip install -e .[notebooks]
+```
+
 ## License
 
 The MDS OpenAPI, like MDS itself, is licensed under [Creative Commons Attribution 4.0 International Public License](../LICENSE)

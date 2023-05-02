@@ -142,9 +142,9 @@ paths:
       summary: /metrics
       responses:
         "200":
-          description: Metrics discovery found.
+          description: Metrics discovered.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 required:
                   - metrics
@@ -193,9 +193,7 @@ paths:
                         - geography_type
                         - vehicle_type
         "404":
-          description: Metrics discovery not found.
-        "406":
-          description: MDS version in Accept header is unsupported or invalid.
+          description: Metrics not discovered.
         "500":
           description: Internal server error.
           content:
@@ -216,7 +214,7 @@ paths:
         "200":
           description: Metrics found.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 required:
                   - id
@@ -252,8 +250,6 @@ paths:
           description: Bad request.
         "404":
           description: Metrics not found.
-        "406":
-          description: MDS version in Accept header is unsupported or invalid.
         "500":
           description: Internal server error.
           content:

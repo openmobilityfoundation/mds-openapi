@@ -34,7 +34,7 @@ paths:
     get:
       operationId: get-geographies
       description: Get all geography objects.
-      summary: Get all geography objects.
+      summary: /geographies
       responses:
         "200":
           description: Geographies found.
@@ -69,7 +69,7 @@ paths:
     get:
       operationId: get-geographies.json
       description: Get all geography objects in a single JSON file.
-      summary: Get a flat file of geography objects.
+      summary: /geographies.json
       responses:
         "200":
           description: Geographies found.
@@ -111,7 +111,7 @@ paths:
     get:
       operationId: get-geographies-geography_id
       description: Get the specified geography object.
-      summary: Get a geography object.
+      summary: /geographies/{geography_id}
       responses:
         "200":
           description: Geography found.

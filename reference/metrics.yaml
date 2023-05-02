@@ -85,7 +85,6 @@ components:
         filters:
           type: array
           description: List of dimension names.
-          minItems: 1
           uniqueItems: true
           items:
             type: object
@@ -104,6 +103,36 @@ components:
               - name: geography_type
                 values:
                   - census_block
+    column:
+      required:
+        - name
+        - column_type
+        - data_type
+      properties:
+        name:
+          type: string
+          description: Name of metric or dimension column.
+        column_type:
+          type: string
+          description: Type of column.
+          enum:
+            - metric
+            - dimension
+        data_type:
+          type: string
+          description: Data type of column.
+          enum:
+            - datetime
+            - string
+            - integer
+            - float
+    row:
+      type: array
+      minItems: 1
+      items:
+        type:
+          - string
+          - number
 
 paths:
   /metrics:
@@ -187,7 +216,38 @@ paths:
         "200":
           description: Metrics found.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                required:
+                  - id
+                  - query
+                  - columns
+                  - rows
+                properties:
+                  id:
+                    $ref: "../models/data-types/uuid.yaml"
+                    description: Unique id for query
+                  query:
+                    allOf:
+                      - $ref: "#/components/schemas/query"
+                      - required:
+                          - k_value
+                        properties:
+                          k_value:
+                            type: integer
+                            description: The k-anonymity value used in any data redaction.
+                            examples:
+                              - 10
+                  columns:
+                    type: array
+                    minItems: 1
+                    items:
+                      $ref: "#/components/schemas/column"
+                  rows:
+                    type: array
+                    minItems: 1
+                    items:
+                      $ref: "#/components/schemas/row"
         "400":
           description: Bad request.
         "404":

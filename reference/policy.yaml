@@ -48,7 +48,21 @@ paths:
         "200":
           description: Policies found.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - $ref: ../models/response/last_updated.yaml
+                  - type: object
+                    description: Policies data payload
+                    required:
+                      - policies
+                    properties:
+                      policies:
+                        type: array
+                        items:
+                          $ref: ../models/policy.yaml
         "400":
           description: Bad request.
         "404":
@@ -71,7 +85,24 @@ paths:
         "200":
           description: Policies found.
           content:
-            application/json: {}
+            application/json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - $ref: ../models/response/last_updated.yaml
+                  - type: object
+                    description: Policies data payload
+                    required:
+                      - policies
+                    properties:
+                      end_date:
+                        $ref: ../models/data-types/timestamp.yaml
+                        description: Optional timestamp that applies to the file as a whole.
+                      policies:
+                        type: array
+                        items:
+                          $ref: ../models/policy.yaml
         "404":
           description: Policies not found.
         "406":
@@ -99,7 +130,23 @@ paths:
         "200":
           description: Policy document found.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - $ref: ../models/response/last_updated.yaml
+                  - type: object
+                    description: Policies data payload
+                    required:
+                      - policies
+                    properties:
+                      policies:
+                        type: array
+                        maxItems: 1
+                        minItems: 1
+                        items:
+                          $ref: ../models/policy.yaml
         "400":
           description: Bad request.
         "404":
@@ -127,7 +174,13 @@ paths:
           content:
             application/vnd.mds+json:
               schema:
-                $ref: ../models/requirements.yaml
+                type: object
+                description: Requirements data payload
+                required:
+                  - requirements
+                properties:
+                  requirements:
+                    $ref: ../models/requirements.yaml
         "404":
           description: Requirements not found.
         "406":

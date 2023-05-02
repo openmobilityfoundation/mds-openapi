@@ -8,6 +8,7 @@ description = "Utilities and tests for the MDS OpenAPI repo"
 dependencies = [
     "jsonschema>=4.18.0a6",
     "PyYAML",
+    "pytest",
     "referencing>=0.28",
 ]
 license = { file = "LICENSE" }
@@ -22,8 +23,8 @@ dev = [
     "flake8",
     "pre-commit",
 ]
-test = [
-    "pytest",
+notebooks = [
+    "ipykernel",
 ]
 
 [project.urls]

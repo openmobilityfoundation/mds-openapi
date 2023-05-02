@@ -1,5 +1,10 @@
 title: data-types/vehicle-state
 description: The state of a vehicle.
+type: string
+
+x-stoplight:
+  id: 3j1h7u4vvc7kr
+
 enum:
   - removed
   - available
@@ -10,6 +15,3 @@ enum:
   - non_contactable
   - missing
   - elsewhere
-type: string
-x-stoplight:
-  id: 3j1h7u4vvc7kr

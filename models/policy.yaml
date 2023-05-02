@@ -39,12 +39,14 @@ $defs:
         type: object
         description: Vehicle state to which this rule applies. Optionally provide a list of specific vehicle events as a subset of a given state for the rule to apply to. An empty list or null/absent defaults to "all" for the state.
         propertyNames:
+          # allow any vehicle state to be a property name
           $ref: ./data-types/vehicle-state.yaml
-        additionalProperties:
-          type: array
-          uniqueItems: true
-          items:
-            $ref: ./data-types/event-type.yaml
+        patternProperties:
+          "": # i.e. match all properties of the `states` object
+            type: array
+            uniqueItems: true
+            items:
+              $ref: ./data-types/event-type.yaml
       rule_units:
         type: string
         description: Measured units of policy

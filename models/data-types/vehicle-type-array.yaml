@@ -1,0 +1,10 @@
+title: data-types/vehicle-type-array
+description: An array of `vehicle_type`.
+type: array
+
+x-stoplight:
+  id: 85v330buxsong
+
+uniqueItems: true
+items:
+  $ref: ./vehicle-type.yaml

@@ -1,0 +1,15 @@
+title: data-types/duration
+description: |-
+  An [ISO 8601 duration](https://en.wikipedia.org/wiki/ISO_8601#Durations) string, defining the amount of intervening time
+  in a time interval.
+type: string
+
+x-stoplight:
+  id: ll9uuz5vjj9hj
+
+examples:
+  - P1M
+  - PT1M
+
+# adapted from https://stackoverflow.com/a/32045167
+pattern: ^P(?!$)(\d+(?:\.\d+)?Y)?(\d+(?:\.\d+)?M)?(\d+(?:\.\d+)?W)?(\d+(?:\.\d+)?D)?(T(?=\d)(\d+(?:\.\d+)?H)?(\d+(?:\.\d+)?M)?(\d+(?:\.\d+)?S)?)?$

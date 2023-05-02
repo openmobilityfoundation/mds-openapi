@@ -1,0 +1,12 @@
+title: data-types/language-tag
+description: An [IETF BCP 47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag string.
+type: string
+
+x-stoplight:
+  id: 5qws05ove0u6c
+
+pattern: ([A-Za-z]{2,3})([-][A-Za-z]{3}){0,3}([-]([A-Za-z]{4}))?([-]([A-Za-z]{2}|[0-9]{3}))?
+
+examples:
+  - en-US
+  - es-US

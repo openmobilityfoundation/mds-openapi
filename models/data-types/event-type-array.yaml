@@ -1,7 +1,7 @@
 title: data-types/event-type-array
 description: Array of events indicating a change to a vehicle's state.
 items:
-  $ref: event-type.yaml
+  $ref: ./event-type.yaml
 minItems: 1
 type: array
 uniqueItems: true

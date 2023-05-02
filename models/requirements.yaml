@@ -1,0 +1,246 @@
+title: models/requirements
+description: Enumerates all of the parts of MDS, CDS, GBFS, and other specifications that an agency requires from providers for certain programs.
+type: object
+
+x-stoplight:
+  id: aymm62fj9psek
+
+$defs:
+  metadata:
+    additionalProperties: false
+    required:
+      - mds_release
+      - file_version
+      - last_updated
+      - max_update_interval
+      - agency_id
+      - agency_name
+      - agency_timezone
+      - agency_language
+      - agency_currency
+      - agency_website_url
+      - url
+    properties:
+      mds_release:
+        $ref: ./data-types/version.yaml
+        description: Release of MDS that the requirements data feed aligns to, based on official MDS releases.
+      file_version:
+        $ref: ./data-types/integer-positive.yaml
+        description: Version of this file. Increment 1 with each modification.
+      last_updated:
+        $ref: ./data-types/timestamp.yaml
+        description: When this `file_version` was last updated.
+      max_update_interval:
+        $ref: ./data-types/iso-duration.yaml
+        description: The expected maximum frequency with which this file could be updated.
+      agency_id:
+        $ref: ./data-types/uuid.yaml
+        description: UUID of the agency this file applies to.
+      agency_name:
+        $ref: ./data-types/string.yaml
+        description: Name of the agency this file applies to.
+      agency_timezone:
+        $ref: ./data-types/string.yaml
+        description: |-
+          [TZ Database Name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) used for dates and times in
+          Requirements and across all MDS endpoints.
+        examples:
+          - America/Los_Angeles
+          - Europe/London
+      agency_language:
+        $ref: ./data-types/language-tag.yaml
+        description: The language used across all MDS endpoints.
+      agency_currency:
+        $ref: ./data-types/currency.yaml
+        description: Currency used for all monetary values across all MDS endpoints.
+      agency_website_url:
+        type: string
+        format: uri
+        description: URL of the agency's general transportation page.
+      url:
+        type: string
+        format: uri
+        description: URL of this file on the agency's website.
+  program:
+    additionalProperties: false
+    required:
+      - description
+      - program_website_url
+      - provider_ids
+      - start_date
+      - end_date
+      - required_data_specs
+    properties:
+      description:
+        $ref: ./data-types/string.yaml
+        description: Simple agency program description of this combination of MDS, providers, vehicles, and time frame.
+      program_website_url:
+        type: string
+        format: uri
+        description: URL of the agency's transportation policy page.
+      program_document_url:
+        type: string
+        format: uri
+        description: URL of the agency's operating permit rules that mention data requirements.
+      provider_ids:
+        $ref: ./data-types/uuid-array.yaml
+        description: Array of provider UUIDs that apply to this group of requirements.
+        minItems: 1
+      vehicle_type:
+        $ref: ./data-types/vehicle-type-array.yaml
+        description: Array of Vehicle Types that apply to this requirement. If absent it applies to all vehicle types.
+      start_date:
+        $ref: ./data-types/timestamp.yaml
+        description: Beginning date/time of requirements.
+      end_date:
+        $ref: ./data-types/timestamp.yaml
+        description: End date/time of requirements. Can be null. Keep data at least one year past `end_date` before removing.
+      required_data_specs:
+        type: array
+        minItems: 1
+        items:
+          $ref: "#/$defs/data_spec"
+  data_spec:
+    required:
+      - data_spec_name
+      - version
+    properties:
+      data_spec_name:
+        $ref: ./data-types/string.yaml
+        description: Name of the data spec required.
+        examples:
+          - MDS
+          - CDS
+          - GBFS
+      version:
+        $ref: ./data-types/string.yaml
+        description: Version number of the data spec required.
+        examples:
+          - "2.0.0"
+          - "v1.2"
+      mode_id:
+        $ref: ./data-types/mode.yaml
+        description: The mode list shortname for MDS.
+      required_apis:
+        type: array
+        description: Name of the Requirement APIs that need to be served by providers.
+        minItems: 1
+        items:
+          $ref: "#/$defs/required_api"
+      available_apis:
+        type: array
+        description: Name of the Requirement APIs that are being served by agencies.
+        minItems: 1
+        items:
+          $ref: "#/$defs/available_api"
+      use_cases:
+        type: array
+        description: The list of policy uses cases that this data standard's information covers for your program.
+        minItems: 1
+        items:
+          type: object
+          additionalProperties: false
+          required:
+            - external_url
+            - ids
+          properties:
+            external_url:
+              type: string
+              format: uri
+              description: An HTTP reference list or database of use cases.
+            ids:
+              type: array
+              description: Identifiers for each applicable use case in the external source.
+              minItems: 1
+              uniqueItems: true
+              items:
+                type: string
+    anyOf:
+      - title: Required API
+        required:
+          - required_apis
+      - title: Available API
+        required:
+          - available_apis
+  required_api:
+    additionalProperties: false
+    required:
+      - api_name
+      - required_endpoints
+    properties:
+      api_name:
+        $ref: ./data-types/string.yaml
+        description: Name of the applicable API required.
+      required_endpoints:
+        type: array
+        description: Array of optional endpoints required by the agency.
+        minItems: 1
+        items:
+          $ref: "#/$defs/required_endpoint"
+  available_api:
+    additionalProperties: false
+    required:
+      - api_name
+      - available_endpoints
+    properties:
+      api_name:
+        $ref: ./data-types/string.yaml
+        description: Name of the applicable API required.
+      available_endpoints:
+        type: array
+        description: Array of endpoints provided by the agency.
+        minItems: 1
+        items:
+          $ref: "#/$defs/available_endpoint"
+  required_endpoint:
+    additionalProperties: false
+    required:
+      - endpoint_name
+    properties:
+      endpoint_name:
+        $ref: ./data-types/string.yaml
+        description: Name of the endpoint under the API.
+      required_fields:
+        type: array
+        description: Array of optional field names required by the agency.
+        items:
+          type: string
+      disallowed_fields:
+        type: array
+        description: Array of optional field names which must not be returned by in the endpoint, even if required in MDS.
+        items:
+          type: string
+  available_endpoint:
+    additionalProperties: false
+    required:
+      - endpoint_name
+    properties:
+      endpoint_name:
+        $ref: ./data-types/string.yaml
+        description: Name of the endpoint under the API.
+      available_fields:
+        type: array
+        description: Array of optional field names provided by the agency.
+        items:
+          type: string
+      url:
+        type: string
+        format: uri
+        description: Location of API endpoint url. Required if the API is unauthenticated and public, optional if endpoint is authenticated and private.
+
+additionalProperties: false
+
+required:
+  - metadata
+  - programs
+
+properties:
+  metadata:
+    $ref: "#/$defs/metadata"
+    description: Contains metadata applicable to the agency.
+  programs:
+    type: array
+    description: Contains information about an agency's programs, with links to policy documents.
+    minItems: 1
+    items:
+      $ref: "#/$defs/program"

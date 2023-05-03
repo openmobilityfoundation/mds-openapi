@@ -417,7 +417,7 @@ paths:
               type: array
               minItems: 1
               items:
-                $ref: ../models/stop.yaml
+                $ref: ../models/mutable-stop.yaml
       responses:
         "200":
           description: Stop(s) updated.

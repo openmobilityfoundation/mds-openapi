@@ -1,0 +1,65 @@
+title: models/mutable-stop
+description: The fields of a Stop that can be changed in the Agency API.
+
+type: object
+
+x-stoplight:
+  id: xs6ehwfn5b629
+
+required:
+  - stop_id
+  - last_updated
+
+properties:
+  stop_id:
+    $ref: ./data-types/uuid.yaml
+    description: UUID for the stop.
+  last_updated:
+    $ref: ./data-types/timestamp.yaml
+    description: Date/Time of the the stop was last updated.
+  status:
+    type: object
+    required:
+      - is_installed
+      - is_renting
+      - is_returning
+    properties:
+      is_installed:
+        type: boolean
+        description: See GBFS [station_status.json](https://github.com/NABSA/gbfs/blob/master/gbfs.md#station_statusjson)
+      is_renting:
+        type: boolean
+        description: See GBFS [station_status.json](https://github.com/NABSA/gbfs/blob/master/gbfs.md#station_statusjson)
+      is_returning:
+        type: boolean
+        description: See GBFS [station_status.json](https://github.com/NABSA/gbfs/blob/master/gbfs.md#station_statusjson)
+    description: The status of the stop.
+  num_vehicles_available:
+    $ref: ./data-types/vehicle-type-counts.yaml
+    description: How many vehicles are available per [`vehicle_type`](./data-types/vehicle-type.yaml) at this stop?.
+  num_vehicles_disabled:
+    $ref: ./data-types/vehicle-type-counts.yaml
+    description: How many vehicles are unavailable/reserved per [`vehicle_type`](./data-types/vehicle-type.yaml) at this stop?.
+  rental_methods:
+    type: array
+    uniqueItems: true
+    items:
+      enum:
+        - key
+        - creditcard
+        - paypass
+        - applepay
+        - androidpay
+        - transitcard
+        - accountnumber
+        - phone
+    description: List of payment methods accepted at stop, see [GBFS Rental Methods](https://github.com/NABSA/gbfs/blob/master/gbfs.md#station_informationjson).
+  num_places_available:
+    $ref: ./data-types/vehicle-type-counts.yaml
+    description: How many places are free to be populated with vehicles per [`vehicle_type`](./data-types/vehicle-type.yaml) at this stop?
+  num_places_disabled:
+    $ref: ./data-types/vehicle-type-counts.yaml
+    description: How many places are disabled and unable to accept vehicles per [`vehicle_type`](./data-types/vehicle-type.yaml) at this stop?
+  devices:
+    $ref: ./data-types/uuid-array.yaml
+    description: List of `device_id` for [vehicles](./vehicle.yaml) currently at this stop.

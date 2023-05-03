@@ -98,7 +98,6 @@ paths:
                 type: object
                 allOf:
                   - $ref: ../models/response/version.yaml
-                  - $ref: ../models/response/paging.yaml
                   - $ref: ../models/response/last_updated.yaml
                   - $ref: ../models/response/ttl.yaml
                   - type: object
@@ -187,7 +186,6 @@ paths:
                 type: object
                 allOf:
                   - $ref: ../models/response/version.yaml
-                  - $ref: ../models/response/paging.yaml
                   - $ref: ../models/response/last_updated.yaml
                   - $ref: ../models/response/ttl.yaml
                   - type: object

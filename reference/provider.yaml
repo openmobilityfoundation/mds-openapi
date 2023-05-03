@@ -112,6 +112,8 @@ paths:
                         maxItems: 1
                         items:
                           $ref: ../models/vehicle.yaml
+        "400":
+          description: Bad request.
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":
@@ -199,6 +201,8 @@ paths:
                         maxItems: 1
                         items:
                           $ref: ../models/vehicle-status.yaml
+        "400":
+          description: Bad request.
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":
@@ -468,6 +472,8 @@ paths:
                         maxItems: 1
                         items:
                           $ref: ../models/stop.yaml
+        "400":
+          description: Bad request.
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":

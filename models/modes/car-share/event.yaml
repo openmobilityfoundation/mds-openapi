@@ -107,13 +107,12 @@ if:
         - provider_cancellation
         - reservation_start
         - reservation_stop
-        - trip_cancel
         - trip_end
         - trip_enter_jurisdiction
         - trip_leave_jurisdiction
-        - trip_pause
         - trip_resume
         - trip_start
+        - trip_stop
 then:
   properties:
     trip_ids:

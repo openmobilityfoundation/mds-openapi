@@ -111,7 +111,21 @@ paths:
         "200":
           description: Vehicles found.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - $ref: ../models/response/paging.yaml
+                  - type: object
+                    description: Vehicles data payload
+                    required:
+                      - vehicles
+                    properties:
+                      vehicles:
+                        type: array
+                        items:
+                          $ref: ../models/vehicle.yaml
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":
@@ -141,7 +155,22 @@ paths:
         "200":
           description: Vehicle found.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - type: object
+                    description: Vehicle data payload
+                    required:
+                      - vehicles
+                    properties:
+                      vehicles:
+                        type: array
+                        minItems: 1
+                        maxItems: 1
+                        items:
+                          $ref: ../models/vehicle.yaml
         "400":
           description: Bad request.
         "401":
@@ -166,7 +195,21 @@ paths:
         "200":
           description: Vehicles found.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - $ref: ../models/response/paging.yaml
+                  - type: object
+                    description: Vehicles status data payload
+                    required:
+                      - vehicles_status
+                    properties:
+                      vehicles_status:
+                        type: array
+                        items:
+                          $ref: ../models/vehicle-status.yaml
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":
@@ -196,7 +239,22 @@ paths:
         "200":
           description: Vehicle found.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - type: object
+                    description: Vehicles status data payload
+                    required:
+                      - vehicles_status
+                    properties:
+                      vehicles_status:
+                        type: array
+                        minItems: 1
+                        maxItems: 1
+                        items:
+                          $ref: ../models/vehicle-status.yaml
         "400":
           description: Bad request.
         "401":
@@ -387,7 +445,20 @@ paths:
         "200":
           description: Stops found.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - type: object
+                    description: Stops data payload
+                    required:
+                      - stops
+                    properties:
+                      stops:
+                        type: array
+                        items:
+                          $ref: ../models/stop.yaml
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":
@@ -417,7 +488,22 @@ paths:
         "200":
           description: Stop found.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - type: object
+                    description: Stops data payload
+                    required:
+                      - stops
+                    properties:
+                      stops:
+                        type: array
+                        minItems: 1
+                        maxItems: 1
+                        items:
+                          $ref: ../models/stop.yaml
         "400":
           description: Bad request.
         "401":

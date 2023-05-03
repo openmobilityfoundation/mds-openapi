@@ -98,7 +98,6 @@ paths:
                 type: object
                 allOf:
                   - $ref: ../models/response/version.yaml
-                  - $ref: ../models/response/paging.yaml
                   - $ref: ../models/response/last_updated.yaml
                   - $ref: ../models/response/ttl.yaml
                   - type: object
@@ -112,6 +111,8 @@ paths:
                         maxItems: 1
                         items:
                           $ref: ../models/vehicle.yaml
+        "400":
+          description: Bad request.
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":
@@ -185,7 +186,6 @@ paths:
                 type: object
                 allOf:
                   - $ref: ../models/response/version.yaml
-                  - $ref: ../models/response/paging.yaml
                   - $ref: ../models/response/last_updated.yaml
                   - $ref: ../models/response/ttl.yaml
                   - type: object
@@ -199,6 +199,8 @@ paths:
                         maxItems: 1
                         items:
                           $ref: ../models/vehicle-status.yaml
+        "400":
+          description: Bad request.
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":
@@ -468,6 +470,8 @@ paths:
                         maxItems: 1
                         items:
                           $ref: ../models/stop.yaml
+        "400":
+          description: Bad request.
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":

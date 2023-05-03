@@ -23,6 +23,17 @@ info:
     and third parties in their own calculations.
 
 components:
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      description: |-
+        MDS Metrics endpoint producers SHALL provide authorization for API endpoints via a bearer token based auth system.
+
+        When making requests, the endpoints expect one of two scopes `metrics:read` or `metrics:read:provider` to be present as
+        part of the scope claims in a JSON Web Token (JWT).
+
+        Further scopes and requirements may be added at the discretion of the agency, depending on their particular access control needs.
   schemas:
     measures:
       type: array

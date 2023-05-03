@@ -43,6 +43,15 @@ paths:
       operationId: post-vehicles
       description: Register vehicles for use in the Agency's jurisdiction.
       summary: /vehicles
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              minItems: 1
+              items:
+                $ref: ../models/vehicle.yaml
       responses:
         "201":
           description: Vehicles registered.
@@ -66,6 +75,15 @@ paths:
       operationId: put-vehicles
       description: Change vehicle information, should some aspect of the vehicle change, such as the `vehicle_id`. Each vehicle must already be registered.
       summary: /vehicles
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              minItems: 1
+              items:
+                $ref: ../models/vehicle.yaml
       responses:
         "200":
           description: Vehicles updated.
@@ -199,6 +217,15 @@ paths:
       operationId: post-trips
       description: Send an update about one or more trips to the agency.
       summary: /trips
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              minItems: 1
+              items:
+                $ref: ../models/trip.yaml
       responses:
         "201":
           description: Trip(s) processed.
@@ -224,6 +251,15 @@ paths:
       operationId: post-telemetry
       description: Send vehicle telemetry data in a batch for any number of vehicles in the fleet.
       summary: /telemetry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              minItems: 1
+              items:
+                $ref: ../models/telemetry.yaml
       responses:
         "201":
           description: Vehicle telemetry processed.
@@ -249,6 +285,15 @@ paths:
       operationId: post-events
       description: Send vehicle state change events for multiple vehicles.
       summary: /events
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              minItems: 1
+              items:
+                $ref: ../models/event.yaml
       responses:
         "201":
           description: Events processed.
@@ -274,6 +319,15 @@ paths:
       operationId: post-stops
       description: Allows an agency to register city-managed Stops, or a provider to register self-managed Stops.
       summary: /stops
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              minItems: 1
+              items:
+                $ref: ../models/stop.yaml
       responses:
         "201":
           description: Stops registered.
@@ -297,6 +351,15 @@ paths:
       operationId: put-stops
       description: Update stop information. Each stop must already be registered.
       summary: /stops
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              minItems: 1
+              items:
+                $ref: ../models/stop.yaml
       responses:
         "200":
           description: Stop(s) updated.
@@ -375,6 +438,12 @@ paths:
       operationId: post-reports
       description: Allows an agency to register aggregated report counts in CSV structure.
       summary: /reports
+      requestBody:
+        required: true
+        content:
+          text/csv:
+            schema:
+              $ref: ../models/report.yaml
       responses:
         "201":
           description: Report registered.

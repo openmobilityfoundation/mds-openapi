@@ -12,14 +12,6 @@ required:
   - error_details
 
 properties:
-  item:
-    oneOf:
-      - ../event.yaml
-      - ../report.yaml
-      - ../stop.yaml
-      - ../telemetry.yaml
-      - ../trip.yaml
-      - ../vehicle.yaml
   error:
     const: bad_param
   error_description:

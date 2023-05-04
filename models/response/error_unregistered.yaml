@@ -11,13 +11,6 @@ required:
   - error_description
 
 properties:
-  item:
-    oneOf:
-      - ../event.yaml
-      - ../stop.yaml
-      - ../telemetry.yaml
-      - ../trip.yaml
-      - ../vehicle.yaml
   error:
     const: unregistered
   error_description:

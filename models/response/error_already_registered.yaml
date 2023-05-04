@@ -11,10 +11,6 @@ required:
   - error_description
 
 properties:
-  item:
-    oneOf:
-      - ../stop.yaml
-      - ../vehicle.yaml
   error:
     const: already_registered
   error_description:

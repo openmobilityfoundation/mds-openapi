@@ -70,6 +70,9 @@ paths:
                       failures:
                         minItems: 1
                         items:
+                          properties:
+                            item:
+                              $ref: ../models/vehicle.yaml
                           oneOf:
                             - $ref: ../models/response/error_bad_param.yaml
                             - $ref: ../models/response/error_missing_param.yaml
@@ -90,7 +93,11 @@ paths:
                       failures:
                         minItems: 1
                         items:
-                          $ref: ../models/response/error_already_registered.yaml
+                          allOf:
+                            - $ref: ../models/response/error_already_registered.yaml
+                            - properties:
+                                item:
+                                  $ref: ../models/vehicle.yaml
         "500":
           description: Internal server error.
           content:
@@ -128,7 +135,11 @@ paths:
                       failures:
                         minItems: 1
                         items:
-                          $ref: ../models/response/error_bad_param.yaml
+                          allOf:
+                            - $ref: ../models/response/error_bad_param.yaml
+                            - properties:
+                                item:
+                                  $ref: ../models/vehicle.yaml
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":
@@ -144,7 +155,11 @@ paths:
                       failures:
                         minItems: 1
                         items:
-                          $ref: ../models/response/error_unregistered.yaml
+                          allOf:
+                            - $ref: ../models/response/error_unregistered.yaml
+                            - properties:
+                                item:
+                                  $ref: ../models/vehicle.yaml
         "406":
           description: MDS version in Accept header is unsupported or invalid.
         "500":
@@ -352,6 +367,9 @@ paths:
                       failures:
                         minItems: 1
                         items:
+                          properties:
+                            item:
+                              $ref: ../models/trip.yaml
                           oneOf:
                             - $ref: ../models/response/error_bad_param.yaml
                             - $ref: ../models/response/error_missing_param.yaml
@@ -368,13 +386,15 @@ paths:
                       failures:
                         minItems: 1
                         items:
-                          $ref: ../models/response/error_unregistered.yaml
+                          allOf:
+                            - $ref: ../models/response/error_unregistered.yaml
+                            - properties:
+                                item:
+                                  $ref: ../models/trip.yaml
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "406":
           description: MDS version in Accept header is unsupported or invalid.
-        "409":
-          description: Trip(s) already exist and an update is not possible.
         "500":
           description: Internal server error.
           content:
@@ -414,6 +434,9 @@ paths:
                       failures:
                         minItems: 1
                         items:
+                          properties:
+                            item:
+                              $ref: ../models/telemetry.yaml
                           oneOf:
                             - $ref: ../models/response/error_bad_param.yaml
                             - $ref: ../models/response/error_missing_param.yaml
@@ -430,7 +453,11 @@ paths:
                       failures:
                         minItems: 1
                         items:
-                          $ref: ../models/response/error_unregistered.yaml
+                          allOf:
+                            - $ref: ../models/response/error_unregistered.yaml
+                            - properties:
+                                item:
+                                  $ref: ../models/telemetry.yaml
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "406":
@@ -474,6 +501,9 @@ paths:
                       failures:
                         minItems: 1
                         items:
+                          properties:
+                            item:
+                              $ref: ../models/event.yaml
                           oneOf:
                             - $ref: ../models/response/error_bad_param.yaml
                             - $ref: ../models/response/error_missing_param.yaml
@@ -490,7 +520,11 @@ paths:
                       failures:
                         minItems: 1
                         items:
-                          $ref: ../models/response/error_unregistered.yaml
+                          allOf:
+                            - $ref: ../models/response/error_unregistered.yaml
+                            - properties:
+                                item:
+                                  $ref: ../models/event.yaml
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "406":
@@ -534,6 +568,9 @@ paths:
                       failures:
                         minItems: 1
                         items:
+                          properties:
+                            item:
+                              $ref: ../models/stop.yaml
                           oneOf:
                             - $ref: ../models/response/error_bad_param.yaml
                             - $ref: ../models/response/error_missing_param.yaml
@@ -554,7 +591,11 @@ paths:
                       failures:
                         minItems: 1
                         items:
-                          $ref: ../models/response/error_already_registered.yaml
+                          allOf:
+                            - $ref: ../models/response/error_already_registered.yaml
+                            - properties:
+                                item:
+                                  $ref: ../models/stop.yaml
         "500":
           description: Internal server error.
           content:
@@ -592,6 +633,9 @@ paths:
                       failures:
                         minItems: 1
                         items:
+                          properties:
+                            item:
+                              $ref: ../models/mutable-stop.yaml
                           oneOf:
                             - $ref: ../models/response/error_bad_param.yaml
                             - $ref: ../models/response/error_missing_param.yaml
@@ -610,7 +654,11 @@ paths:
                       failures:
                         minItems: 1
                         items:
-                          $ref: ../models/response/error_unregistered.yaml
+                          allOf:
+                            - $ref: ../models/response/error_unregistered.yaml
+                            - properties:
+                                item:
+                                  $ref: ../models/mutable-stop.yaml
         "406":
           description: MDS version in Accept header is unsupported or invalid.
         "500":
@@ -730,13 +778,15 @@ paths:
                       failures:
                         minItems: 1
                         items:
-                          $ref: ../models/response/error_bad_param.yaml
+                          allOf:
+                            - $ref: ../models/response/error_bad_param.yaml
+                            - properties:
+                                item:
+                                  $ref: ../models/report.yaml
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "406":
           description: MDS version in Accept header is unsupported or invalid.
-        "409":
-          description: Report already exists and an update is not possible.
         "500":
           description: Internal server error.
           content:

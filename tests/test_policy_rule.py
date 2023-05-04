@@ -6,16 +6,16 @@ from jsonschema import ValidationError
 
 
 @pytest.fixture
-def schema_policy(load_schema):
-    return load_schema("./policy.yaml")
+def schema_policy_rule(load_schema):
+    return load_schema("./policy-rule.yaml")
 
 
 @pytest.fixture
-def policy_rule_states_validator(get_schema_validator, schema_policy):
+def policy_rule_states_validator(get_schema_validator, schema_policy_rule):
     """
     Get a jsonschema.Validator for the policy.rule.states property
     """
-    policy_rule_states = schema_policy.contents["$defs"]["states"]
+    policy_rule_states = schema_policy_rule.contents["$defs"]["states"]
     return get_schema_validator(policy_rule_states)
 
 

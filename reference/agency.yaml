@@ -1,0 +1,811 @@
+openapi: 3.1.0
+
+x-stoplight:
+  id: f3thjnkfyv60k
+
+info:
+  title: Agency
+  version: "2.0"
+  summary: The Agency API endpoints are intended to be implemented by regulatory agencies and consumed by mobility providers.
+  contact:
+    url: https://github.com/openmobilityfoundation/mobility-data-specification
+    name: Open Mobility Foundation
+    email: info@openmobilityfoundation.org
+  license:
+    name: Creative Commons Attribution 4.0 International Public License
+    url: https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/LICENSE
+  description: |-
+    The Agency API endpoints are intended to be implemented by regulatory agencies and consumed by mobility providers.
+
+    Data is **pushed** to agencies by providers. Providers query the Agency API when events (such as a trip start or vehicle
+    status change) occur in their systems.
+
+    This specification contains a collection of RESTful APIs used to specify the digital relationship between _mobility as a service_
+    providers and the agencies that regulate them.
+
+components:
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |-
+        All MDS Agency endpoints require authentication.
+
+        JSON Web Token ([JWT](https://jwt.io/introduction/)) is RECOMMENDED as the token format.
+
+        When making requests, the endpoints expect `provider_id` to be part of the claims the JWT. The token issuance,
+        expiration and revocation policies are at the discretion of the agency.
+
+paths:
+  /vehicles:
+    post:
+      operationId: post-vehicles
+      description: Register vehicles for use in the Agency's jurisdiction.
+      summary: /vehicles
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              minItems: 1
+              items:
+                $ref: ../models/vehicle.yaml
+      responses:
+        "201":
+          description: Vehicles registered.
+          content:
+            application/json:
+              schema:
+                $ref: ../models/response/bulk.yaml
+        "400":
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          properties:
+                            item:
+                              $ref: ../models/vehicle.yaml
+                          oneOf:
+                            - $ref: ../models/response/error_bad_param.yaml
+                            - $ref: ../models/response/error_missing_param.yaml
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "409":
+          description: Vehicle(s) already exist and an update is not possible.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          allOf:
+                            - $ref: ../models/response/error_already_registered.yaml
+                            - properties:
+                                item:
+                                  $ref: ../models/vehicle.yaml
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+    put:
+      operationId: put-vehicles
+      description: Change vehicle information, should some aspect of the vehicle change, such as the `vehicle_id`. Each vehicle must already be registered.
+      summary: /vehicles
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              minItems: 1
+              items:
+                $ref: ../models/vehicle.yaml
+      responses:
+        "200":
+          description: Vehicles updated.
+          content:
+            application/json:
+              schema:
+                $ref: ../models/response/bulk.yaml
+        "400":
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          allOf:
+                            - $ref: ../models/response/error_bad_param.yaml
+                            - properties:
+                                item:
+                                  $ref: ../models/vehicle.yaml
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "404":
+          description: Vehicles not found.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          allOf:
+                            - $ref: ../models/response/error_unregistered.yaml
+                            - properties:
+                                item:
+                                  $ref: ../models/vehicle.yaml
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+    get:
+      operationId: get-vehicles
+      description: Get a list of vehicles in a Provider's registered fleet, with properties that do not change often.
+      summary: /vehicles
+      responses:
+        "200":
+          description: Vehicles found.
+          content:
+            application/json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - $ref: ../models/response/paging.yaml
+                  - type: object
+                    description: Vehicles data payload
+                    required:
+                      - vehicles
+                    properties:
+                      vehicles:
+                        type: array
+                        items:
+                          $ref: ../models/vehicle.yaml
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "404":
+          description: Vehicles not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /vehicles/{device_id}:
+    parameters:
+      - name: device_id
+        schema:
+          $ref: ../models/data-types/uuid.yaml
+        in: path
+        required: true
+        description: The `device_id` of a Provider's Vehicle.
+    get:
+      operationId: get-vehicles-device_id
+      description: Get the specified vehicle, with properties that do not change often.
+      summary: /vehicles/{device_id}
+      responses:
+        "200":
+          description: Vehicle found.
+          content:
+            application/json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - type: object
+                    description: Vehicle data payload
+                    required:
+                      - vehicles
+                    properties:
+                      vehicles:
+                        type: array
+                        minItems: 1
+                        maxItems: 1
+                        items:
+                          $ref: ../models/vehicle.yaml
+        "400":
+          description: Bad request.
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "404":
+          description: Vehicle not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /vehicles/status:
+    get:
+      operationId: get-vehicles-status
+      description: Get a list of known vehicles, with specific vehicle status records that are updated frequently.
+      summary: /vehicles/status
+      responses:
+        "200":
+          description: Vehicles found.
+          content:
+            application/json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - $ref: ../models/response/paging.yaml
+                  - type: object
+                    description: Vehicles status data payload
+                    required:
+                      - vehicles_status
+                    properties:
+                      vehicles_status:
+                        type: array
+                        items:
+                          $ref: ../models/vehicle-status.yaml
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "404":
+          description: Vehicles not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /vehicles/status/{device_id}:
+    parameters:
+      - name: device_id
+        schema:
+          $ref: ../models/data-types/uuid.yaml
+        in: path
+        required: true
+        description: The `device_id` of a Provider's vehicle.
+    get:
+      operationId: get-vehicles-status-device_id
+      description: Get the specified vehicle, with vehicle status records that are updated frequently.
+      summary: /vehicles/status/{device_id}
+      responses:
+        "200":
+          description: Vehicle found.
+          content:
+            application/json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - type: object
+                    description: Vehicles status data payload
+                    required:
+                      - vehicles_status
+                    properties:
+                      vehicles_status:
+                        type: array
+                        minItems: 1
+                        maxItems: 1
+                        items:
+                          $ref: ../models/vehicle-status.yaml
+        "400":
+          description: Bad request.
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "404":
+          description: Vehicle not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /trips:
+    post:
+      operationId: post-trips
+      description: Send an update about one or more trips to the agency.
+      summary: /trips
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              minItems: 1
+              items:
+                $ref: ../models/trip.yaml
+      responses:
+        "201":
+          description: Trip(s) processed.
+          content:
+            application/json:
+              schema:
+                $ref: ../models/response/bulk.yaml
+        "400":
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          properties:
+                            item:
+                              $ref: ../models/trip.yaml
+                          oneOf:
+                            - $ref: ../models/response/error_bad_param.yaml
+                            - $ref: ../models/response/error_missing_param.yaml
+        "404":
+          description: The `device_id` is unregistered.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          allOf:
+                            - $ref: ../models/response/error_unregistered.yaml
+                            - properties:
+                                item:
+                                  $ref: ../models/trip.yaml
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /telemetry:
+    post:
+      operationId: post-telemetry
+      description: Send vehicle telemetry data in a batch for any number of vehicles in the fleet.
+      summary: /telemetry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              minItems: 1
+              items:
+                $ref: ../models/telemetry.yaml
+      responses:
+        "201":
+          description: Vehicle telemetry processed.
+          content:
+            application/json:
+              schema:
+                $ref: ../models/response/bulk.yaml
+        "400":
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          properties:
+                            item:
+                              $ref: ../models/telemetry.yaml
+                          oneOf:
+                            - $ref: ../models/response/error_bad_param.yaml
+                            - $ref: ../models/response/error_missing_param.yaml
+        "404":
+          description: The `device_id` is unregistered.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          allOf:
+                            - $ref: ../models/response/error_unregistered.yaml
+                            - properties:
+                                item:
+                                  $ref: ../models/telemetry.yaml
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /events:
+    post:
+      operationId: post-events
+      description: Send vehicle state change events for multiple vehicles.
+      summary: /events
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              minItems: 1
+              items:
+                $ref: ../models/event.yaml
+      responses:
+        "201":
+          description: Events processed.
+          content:
+            application/json:
+              schema:
+                $ref: ../models/response/bulk.yaml
+        "400":
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          properties:
+                            item:
+                              $ref: ../models/event.yaml
+                          oneOf:
+                            - $ref: ../models/response/error_bad_param.yaml
+                            - $ref: ../models/response/error_missing_param.yaml
+        "404":
+          description: The `device_id` is unregistered.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          allOf:
+                            - $ref: ../models/response/error_unregistered.yaml
+                            - properties:
+                                item:
+                                  $ref: ../models/event.yaml
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /stops:
+    post:
+      operationId: post-stops
+      description: Allows an agency to register city-managed Stops, or a provider to register self-managed Stops.
+      summary: /stops
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              minItems: 1
+              items:
+                $ref: ../models/stop.yaml
+      responses:
+        "201":
+          description: Stops registered.
+          content:
+            application/json:
+              schema:
+                $ref: ../models/response/bulk.yaml
+        "400":
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          properties:
+                            item:
+                              $ref: ../models/stop.yaml
+                          oneOf:
+                            - $ref: ../models/response/error_bad_param.yaml
+                            - $ref: ../models/response/error_missing_param.yaml
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "409":
+          description: A stop with `stop_id` is already registered.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          allOf:
+                            - $ref: ../models/response/error_already_registered.yaml
+                            - properties:
+                                item:
+                                  $ref: ../models/stop.yaml
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+    put:
+      operationId: put-stops
+      description: Update stop information. Each stop must already be registered.
+      summary: /stops
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              minItems: 1
+              items:
+                $ref: ../models/mutable-stop.yaml
+      responses:
+        "200":
+          description: Stop(s) updated.
+          content:
+            application/json:
+              schema:
+                $ref: ../models/response/bulk.yaml
+        "400":
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          properties:
+                            item:
+                              $ref: ../models/mutable-stop.yaml
+                          oneOf:
+                            - $ref: ../models/response/error_bad_param.yaml
+                            - $ref: ../models/response/error_missing_param.yaml
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "404":
+          description: This `stop_id` is unregistered
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          allOf:
+                            - $ref: ../models/response/error_unregistered.yaml
+                            - properties:
+                                item:
+                                  $ref: ../models/mutable-stop.yaml
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+    get:
+      operationId: get-stops
+      description: Get a list of all stop records.
+      summary: /stops
+      responses:
+        "200":
+          description: Stops found.
+          content:
+            application/json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - type: object
+                    description: Stops data payload
+                    required:
+                      - stops
+                    properties:
+                      stops:
+                        type: array
+                        items:
+                          $ref: ../models/stop.yaml
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "404":
+          description: Stops not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /stops/{stop_id}:
+    parameters:
+      - name: stop_id
+        schema:
+          $ref: ../models/data-types/uuid.yaml
+        in: path
+        required: true
+        description: The `stop_id` for a Stop.
+    get:
+      operationId: get-stops-stop_id
+      description: Get information about the specified stop.
+      summary: /stops/{stop_id}
+      responses:
+        "200":
+          description: Stop found.
+          content:
+            application/json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: ../models/response/version.yaml
+                  - type: object
+                    description: Stops data payload
+                    required:
+                      - stops
+                    properties:
+                      stops:
+                        type: array
+                        minItems: 1
+                        maxItems: 1
+                        items:
+                          $ref: ../models/stop.yaml
+        "400":
+          description: Bad request.
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "404":
+          description: Stop not found.
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /reports:
+    post:
+      operationId: post-reports
+      description: Allows an agency to register aggregated report counts in CSV structure.
+      summary: /reports
+      requestBody:
+        required: true
+        content:
+          text/csv:
+            schema:
+              $ref: ../models/report.yaml
+      responses:
+        "201":
+          description: Report registered.
+          content:
+            application/json:
+              schema:
+                $ref: ../models/response/bulk.yaml
+        "400":
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          allOf:
+                            - $ref: ../models/response/error_bad_param.yaml
+                            - properties:
+                                item:
+                                  $ref: ../models/report.yaml
+        "401":
+          description: "Unauthorized: Invalid, expired, or insufficient scope of token."
+        "406":
+          description: MDS version in Accept header is unsupported or invalid.
+        "500":
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string

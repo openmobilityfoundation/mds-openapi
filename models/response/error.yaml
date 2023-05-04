@@ -1,0 +1,25 @@
+title: response/error
+description: An error message for troubleshooting.
+type: object
+
+x-stoplight:
+  id: 90yc58ni8u0ch
+
+required:
+  - error
+  - error_description
+  - error_details
+
+properties:
+  error:
+    type: string
+    description: Error message string.
+  error_description:
+    type: string
+    description: Human readable error description (can be localized).
+  error_details:
+    type: array
+    description: Human readable error description (can be localized).
+    minItems: 1
+    items:
+      type: string

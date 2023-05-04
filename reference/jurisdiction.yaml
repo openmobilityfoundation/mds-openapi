@@ -43,7 +43,7 @@ paths:
         "200":
           description: Jurisdictions found.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -93,7 +93,7 @@ paths:
         "200":
           description: Jurisdiction found.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:

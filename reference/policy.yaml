@@ -48,7 +48,7 @@ paths:
         "200":
           description: Policies found.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -92,7 +92,7 @@ paths:
         "200":
           description: Policy document found.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -207,7 +207,7 @@ paths:
         "200":
           description: Requirements found.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 description: Requirements data payload

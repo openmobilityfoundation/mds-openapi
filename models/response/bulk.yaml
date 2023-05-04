@@ -1,0 +1,20 @@
+title: response/bulk
+type: object
+description: For multi-record POST and PUT calls, e.g. sending Events using the Agency API, the bulk-response structure describes a list of results.
+
+x-stoplight:
+  id: sdj75536ytrso
+
+required:
+  - success
+  - total
+
+properties:
+  success:
+    $ref: ../data-types/integer-positive.yaml
+    description: Number of successfully written records.
+  total:
+    $ref: ../data-types/integer-positive.yaml
+    description: Total number of provided records.
+  failures:
+    type: array

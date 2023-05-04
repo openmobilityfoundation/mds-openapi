@@ -30,6 +30,7 @@ components:
     bearer:
       type: http
       scheme: bearer
+      bearerFormat: JWT
       description: |-
         All MDS Provider endpoints require authentication.
 
@@ -47,7 +48,7 @@ paths:
         "200":
           description: Vehicles found.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -93,7 +94,7 @@ paths:
         "200":
           description: Vehicle found.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -135,7 +136,7 @@ paths:
         "200":
           description: Vehicles found.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -181,7 +182,7 @@ paths:
         "200":
           description: Vehicle found.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -230,7 +231,7 @@ paths:
         "200":
           description: Hour has been processed.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -276,7 +277,7 @@ paths:
         "200":
           description: Hour has been processed.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -319,7 +320,7 @@ paths:
         "200":
           description: Hour has been processed.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -372,7 +373,7 @@ paths:
         "200":
           description: Range was valid and within the prior two weeks.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -409,7 +410,7 @@ paths:
         "200":
           description: Stops found.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -452,7 +453,7 @@ paths:
         "200":
           description: Stop found.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -504,10 +505,9 @@ paths:
         "200":
           description: Report found.
           content:
-            text/vnd.mds+csv:
+            text/csv:
               schema:
-                type: string
-                pattern: ^provider_id,start_date,duration,special_group_type,geography_id,vehicle_type,trip_count,rider_count
+                $ref: ../models/report.yaml
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":

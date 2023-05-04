@@ -59,12 +59,38 @@ paths:
             application/vnd.mds+json: {}
         "400":
           description: Bad request.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          oneOf:
+                            - $ref: ../models/response/error_bad_param.yaml
+                            - $ref: ../models/response/error_missing_param.yaml
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "406":
           description: MDS version in Accept header is unsupported or invalid.
         "409":
           description: Vehicle(s) already exist and an update is not possible.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          $ref: ../models/response/error_already_registered.yaml
         "500":
           description: Internal server error.
           content:
@@ -91,10 +117,34 @@ paths:
             application/vnd.mds+json: {}
         "400":
           description: Bad request.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          $ref: ../models/response/error_bad_param.yaml
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":
           description: Vehicles not found.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          $ref: ../models/response/error_unregistered.yaml
         "406":
           description: MDS version in Accept header is unsupported or invalid.
         "500":
@@ -291,6 +341,34 @@ paths:
             application/vnd.mds+json: {}
         "400":
           description: Bad request.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          oneOf:
+                            - $ref: ../models/response/error_bad_param.yaml
+                            - $ref: ../models/response/error_missing_param.yaml
+        "404":
+          description: The `device_id` is unregistered.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          $ref: ../models/response/error_unregistered.yaml
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "406":
@@ -325,12 +403,38 @@ paths:
             application/vnd.mds+json: {}
         "400":
           description: Bad request.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          oneOf:
+                            - $ref: ../models/response/error_bad_param.yaml
+                            - $ref: ../models/response/error_missing_param.yaml
+        "404":
+          description: The `device_id` is unregistered.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          $ref: ../models/response/error_unregistered.yaml
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "406":
           description: MDS version in Accept header is unsupported or invalid.
-        "409":
-          description: Telemetry already exists and an update is not possible.
         "500":
           description: Internal server error.
           content:
@@ -359,12 +463,38 @@ paths:
             application/vnd.mds+json: {}
         "400":
           description: Bad request.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          oneOf:
+                            - $ref: ../models/response/error_bad_param.yaml
+                            - $ref: ../models/response/error_missing_param.yaml
+        "404":
+          description: The `device_id` is unregistered.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          $ref: ../models/response/error_unregistered.yaml
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "406":
           description: MDS version in Accept header is unsupported or invalid.
-        "409":
-          description: Event(s) already exist and an update is not possible.
         "500":
           description: Internal server error.
           content:
@@ -393,12 +523,38 @@ paths:
             application/vnd.mds+json: {}
         "400":
           description: Bad request.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          oneOf:
+                            - $ref: ../models/response/error_bad_param.yaml
+                            - $ref: ../models/response/error_missing_param.yaml
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "406":
           description: MDS version in Accept header is unsupported or invalid.
         "409":
-          description: Stop(s) already exist and an update is not possible.
+          description: A stop with `stop_id` is already registered.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          $ref: ../models/response/error_already_registered.yaml
         "500":
           description: Internal server error.
           content:
@@ -425,10 +581,36 @@ paths:
             application/vnd.mds+json: {}
         "400":
           description: Bad request.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          oneOf:
+                            - $ref: ../models/response/error_bad_param.yaml
+                            - $ref: ../models/response/error_missing_param.yaml
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "404":
-          description: Stops not found.
+          description: This `stop_id` is unregistered
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          $ref: ../models/response/error_unregistered.yaml
         "406":
           description: MDS version in Accept header is unsupported or invalid.
         "500":
@@ -537,6 +719,18 @@ paths:
             application/vnd.mds+json: {}
         "400":
           description: Bad request.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/response/bulk.yaml
+                  - required:
+                      - failures
+                    properties:
+                      failures:
+                        minItems: 1
+                        items:
+                          $ref: ../models/response/error_bad_param.yaml
         "401":
           description: "Unauthorized: Invalid, expired, or insufficient scope of token."
         "406":

@@ -1,8 +1,8 @@
-title: data-types/duration
+title: data-types/iso-duration
+type: string
 description: |-
   An [ISO 8601 duration](https://en.wikipedia.org/wiki/ISO_8601#Durations) string, defining the amount of intervening time
   in a time interval.
-type: string
 
 x-stoplight:
   id: ll9uuz5vjj9hj

@@ -56,7 +56,9 @@ paths:
         "201":
           description: Vehicles registered.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                $ref: ../models/response/bulk.yaml
         "400":
           description: Bad request.
           content:
@@ -121,7 +123,9 @@ paths:
         "200":
           description: Vehicles updated.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                $ref: ../models/response/bulk.yaml
         "400":
           description: Bad request.
           content:
@@ -353,7 +357,9 @@ paths:
         "201":
           description: Trip(s) processed.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                $ref: ../models/response/bulk.yaml
         "400":
           description: Bad request.
           content:
@@ -420,7 +426,9 @@ paths:
         "201":
           description: Vehicle telemetry processed.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                $ref: ../models/response/bulk.yaml
         "400":
           description: Bad request.
           content:
@@ -487,7 +495,9 @@ paths:
         "201":
           description: Events processed.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                $ref: ../models/response/bulk.yaml
         "400":
           description: Bad request.
           content:
@@ -554,7 +564,9 @@ paths:
         "201":
           description: Stops registered.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                $ref: ../models/response/bulk.yaml
         "400":
           description: Bad request.
           content:
@@ -619,7 +631,9 @@ paths:
         "200":
           description: Stop(s) updated.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                $ref: ../models/response/bulk.yaml
         "400":
           description: Bad request.
           content:
@@ -764,7 +778,9 @@ paths:
         "201":
           description: Report registered.
           content:
-            application/vnd.mds+json: {}
+            application/vnd.mds+json:
+              schema:
+                $ref: ../models/response/bulk.yaml
         "400":
           description: Bad request.
           content:

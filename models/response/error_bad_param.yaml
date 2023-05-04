@@ -1,0 +1,34 @@
+title: response/error_bad_param
+description: A validation error occurred.
+type: object
+
+x-stoplight:
+  id: vekidez6dfa4u
+
+required:
+  - item
+  - error
+  - error_description
+  - error_details
+
+properties:
+  item:
+    oneOf:
+      - ../event.yaml
+      - ../report.yaml
+      - ../stop.yaml
+      - ../telemetry.yaml
+      - ../trip.yaml
+      - ../vehicle.yaml
+  error:
+    const: bad_param
+  error_description:
+    type: string
+    examples:
+      - A validation error occurred
+  error_details:
+    type: array
+    description: Array of parameters with errors.
+    minItems: 1
+    items:
+      type: string

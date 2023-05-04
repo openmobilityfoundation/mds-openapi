@@ -1,0 +1,31 @@
+title: response/error_unregistered
+description: An item with that identifier is not registered.
+type: object
+
+x-stoplight:
+  id: cw4q7ycy1a17h
+
+required:
+  - item
+  - error
+  - error_description
+
+properties:
+  item:
+    oneOf:
+      - ../event.yaml
+      - ../stop.yaml
+      - ../telemetry.yaml
+      - ../trip.yaml
+      - ../vehicle.yaml
+  error:
+    const: unregistered
+  error_description:
+    type: string
+    examples:
+      - This device_id is not registered.
+      - This stop_id is unregistered
+  error_details:
+    type: array
+    items:
+      type: string

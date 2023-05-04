@@ -1,0 +1,33 @@
+title: response/error_missing_param
+description: A required parameter is missing.
+type: object
+
+x-stoplight:
+  id: huc7x2g2wfq5a
+
+required:
+  - item
+  - error
+  - error_description
+  - error_details
+
+properties:
+  item:
+    oneOf:
+      - ../event.yaml
+      - ../stop.yaml
+      - ../telemetry.yaml
+      - ../trip.yaml
+      - ../vehicle.yaml
+  error:
+    const: missing_param
+  error_description:
+    type: string
+    examples:
+      - A required parameter is missing.
+  error_details:
+    type: array
+    description: Array of missing parameters.
+    minItems: 1
+    items:
+      type: string

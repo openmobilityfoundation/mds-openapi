@@ -48,7 +48,7 @@ paths:
         "200":
           description: Vehicles found.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -94,7 +94,7 @@ paths:
         "200":
           description: Vehicle found.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -136,7 +136,7 @@ paths:
         "200":
           description: Vehicles found.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -182,7 +182,7 @@ paths:
         "200":
           description: Vehicle found.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -231,7 +231,7 @@ paths:
         "200":
           description: Hour has been processed.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -277,7 +277,7 @@ paths:
         "200":
           description: Hour has been processed.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -320,7 +320,7 @@ paths:
         "200":
           description: Hour has been processed.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -373,7 +373,7 @@ paths:
         "200":
           description: Range was valid and within the prior two weeks.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -410,7 +410,7 @@ paths:
         "200":
           description: Stops found.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -453,7 +453,7 @@ paths:
         "200":
           description: Stop found.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -505,7 +505,7 @@ paths:
         "200":
           description: Report found.
           content:
-            text/vnd.mds+csv:
+            text/csv:
               schema:
                 $ref: ../models/report.yaml
         "401":

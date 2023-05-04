@@ -56,7 +56,7 @@ paths:
         "201":
           description: Vehicles registered.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 $ref: ../models/response/bulk.yaml
         "400":
@@ -123,7 +123,7 @@ paths:
         "200":
           description: Vehicles updated.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 $ref: ../models/response/bulk.yaml
         "400":
@@ -180,7 +180,7 @@ paths:
         "200":
           description: Vehicles found.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -224,7 +224,7 @@ paths:
         "200":
           description: Vehicle found.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -264,7 +264,7 @@ paths:
         "200":
           description: Vehicles found.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -308,7 +308,7 @@ paths:
         "200":
           description: Vehicle found.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -357,7 +357,7 @@ paths:
         "201":
           description: Trip(s) processed.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 $ref: ../models/response/bulk.yaml
         "400":
@@ -426,7 +426,7 @@ paths:
         "201":
           description: Vehicle telemetry processed.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 $ref: ../models/response/bulk.yaml
         "400":
@@ -495,7 +495,7 @@ paths:
         "201":
           description: Events processed.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 $ref: ../models/response/bulk.yaml
         "400":
@@ -564,7 +564,7 @@ paths:
         "201":
           description: Stops registered.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 $ref: ../models/response/bulk.yaml
         "400":
@@ -631,7 +631,7 @@ paths:
         "200":
           description: Stop(s) updated.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 $ref: ../models/response/bulk.yaml
         "400":
@@ -689,7 +689,7 @@ paths:
         "200":
           description: Stops found.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -732,7 +732,7 @@ paths:
         "200":
           description: Stop found.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -778,7 +778,7 @@ paths:
         "201":
           description: Report registered.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 $ref: ../models/response/bulk.yaml
         "400":

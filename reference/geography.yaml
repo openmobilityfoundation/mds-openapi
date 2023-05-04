@@ -39,7 +39,7 @@ paths:
         "200":
           description: Geographies found.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:
@@ -81,7 +81,7 @@ paths:
         "200":
           description: Geography found.
           content:
-            application/vnd.mds+json:
+            application/json:
               schema:
                 type: object
                 allOf:

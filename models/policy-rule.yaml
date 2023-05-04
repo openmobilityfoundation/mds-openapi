@@ -37,11 +37,6 @@ properties:
   rule_type:
     type: string
     description: The type of rule
-    enum:
-      - count
-      - time
-      - speed
-      - user
   geographies:
     $ref: ./data-types/uuid-array.yaml
     description: List of Geography UUIDs (non-overlapping) specifying the covered geography.
@@ -49,16 +44,10 @@ properties:
   states:
     $ref: "#/$defs/states"
   rule_units:
-    type: string
+    type:
+      - string
+      - "null"
     description: Measured units of policy
-    enum:
-      - seconds
-      - minutes
-      - hours
-      - days
-      - mph
-      - kph
-      - devices
   vehicle_types:
     $ref: ./data-types/vehicle-type-array.yaml
     description: Applicable vehicle types, default "all"
@@ -95,18 +84,13 @@ properties:
     description: The amount of the rate.
   rate_recurrence:
     type:
-      - string
       - "null"
+      - string
     description: Recurrence of the rate
-    enum:
-      - once_on_match
-      - once_on_unmatch
-      - each_time_unit
-      - per_complete_time_unit
   rate_applies_when:
     type:
-      - string
       - "null"
+      - string
     description: Specifies when a rate is applied to a rule (defaults to `out_of_bounds`).
     enum:
       - in_bounds
@@ -139,3 +123,62 @@ properties:
       - string
     description: URL to an API endpoint that can provide dynamic information for the measured value
     format: uri
+
+oneOf:
+  - title: Device count rule
+    required:
+      - rule_units
+    properties:
+      rule_type:
+        const: count
+      rule_units:
+        type: string
+        const: devices
+      rate_recurrence:
+        enum:
+          - once_on_match
+          - once_on_unmatch
+  - title: Speed rule
+    required:
+      - rule_units
+    properties:
+      rule_type:
+        const: speed
+      rule_units:
+        type: string
+        enum:
+          - mph
+          - kph
+      rate_recurrence:
+        enum:
+          - once_on_match
+          - once_on_unmatch
+  - title: Time rule
+    required:
+      - rule_units
+    properties:
+      rule_type:
+        const: time
+      rule_units:
+        type: string
+        enum:
+          - seconds
+          - minutes
+          - hours
+          - days
+      rate_recurrence:
+        enum:
+          - each_time_unit
+          - per_complete_time_unit
+  - title: User rule
+    properties:
+      rule_type:
+        const: user
+      rule_units:
+        type: "null"
+      rate_amount:
+        type: "null"
+      rate_recurrence:
+        type: "null"
+      rate_applies_when:
+        type: "null"

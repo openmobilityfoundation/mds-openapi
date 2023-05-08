@@ -72,9 +72,9 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml
 
   /policies/{policy_id}:
     parameters:
@@ -118,9 +118,9 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml
 
   /policies.json:
     get:
@@ -156,9 +156,9 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml
 
   /value:
     get:
@@ -223,6 +223,6 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml

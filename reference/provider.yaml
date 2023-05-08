@@ -74,9 +74,9 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml
 
   /vehicles/{device_id}:
     parameters:
@@ -123,9 +123,9 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml
 
   /vehicles/status:
     get:
@@ -162,9 +162,9 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml
 
   /vehicles/status/{device_id}:
     parameters:
@@ -211,9 +211,9 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml
 
   /trips:
     parameters:
@@ -257,9 +257,9 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml
 
   /telemetry:
     parameters:
@@ -300,9 +300,9 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml
 
   /events/historical:
     parameters:
@@ -347,9 +347,9 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml
 
   /events/recent:
     parameters:
@@ -397,9 +397,9 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml
 
   /stops:
     get:
@@ -433,9 +433,9 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml
 
   /stops/{stop_id}:
     parameters:
@@ -482,9 +482,9 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml
 
   /reports/{filename}:
     parameters:
@@ -515,6 +515,6 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml

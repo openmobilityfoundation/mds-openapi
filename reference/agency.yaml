@@ -103,9 +103,9 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml
     put:
       operationId: put-vehicles
       description: Change vehicle information, should some aspect of the vehicle change, such as the `vehicle_id`. Each vehicle must already be registered.
@@ -169,9 +169,9 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml
     get:
       operationId: get-vehicles
       description: Get a list of vehicles in a Provider's registered fleet, with properties that do not change often.
@@ -204,9 +204,9 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml
 
   /vehicles/{device_id}:
     parameters:
@@ -251,9 +251,9 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml
 
   /vehicles/status:
     get:
@@ -288,9 +288,9 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml
 
   /vehicles/status/{device_id}:
     parameters:
@@ -335,9 +335,9 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml
 
   /trips:
     post:
@@ -404,9 +404,9 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml
 
   /telemetry:
     post:
@@ -473,9 +473,9 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml
 
   /events:
     post:
@@ -542,9 +542,9 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml
 
   /stops:
     post:
@@ -611,9 +611,9 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml
     put:
       operationId: put-stops
       description: Update stop information. Each stop must already be registered.
@@ -678,9 +678,9 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml
     get:
       operationId: get-stops
       description: Get a list of all stop records.
@@ -712,9 +712,9 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml
 
   /stops/{stop_id}:
     parameters:
@@ -759,9 +759,9 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml
 
   /reports:
     post:
@@ -806,6 +806,6 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml

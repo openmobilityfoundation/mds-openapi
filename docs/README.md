@@ -4,10 +4,6 @@ stoplight-id: gqf2ey431nxzh
 
 # Mobility Data Specification OpenAPI
 
-> _DRAFT since Feb 3 2023_
->
-> Not for production use.
-
 The [Mobility Data Specification (MDS)](https://github.com/openmobilityfoundation/mobility-data-specification), a project of the Open Mobility Foundation (OMF), is a data standard to enable right-of-way regulation and two-way communication between mobility companies and local governments.
 
 This is the OpenAPI description for MDS data feeds, managed by the [Open Mobility Foundation](https://github.com/openmobilityfoundation).

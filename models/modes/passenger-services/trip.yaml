@@ -99,7 +99,7 @@ properties:
           - cash
           - credit_card
           - mobile_app
-          - no payment
+          - no_payment
           - paratransit
           - phone
           - test

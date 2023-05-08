@@ -31,7 +31,7 @@ properties:
       driver_type:
         enum:
           - human
-          - semi-autonomous
+          - semi_autonomous
           - autonomous
       driver_id:
         $ref: ../../data-types/uuid.yaml
@@ -39,7 +39,7 @@ properties:
       app_name:
         $ref: ../../data-types/string.yaml
         description: Name of the app used to reserve the trip which could be provider's app or 3rd party app.
-      request_time:
+      requested_time:
         $ref: ../../data-types/timestamp.yaml
         description: When the customer requested the trip.
       has_payload:
@@ -54,7 +54,7 @@ properties:
           - cash
           - credit_card
           - mobile_app
-          - no payment
+          - no_payment
           - phone
           - test
           - voucher

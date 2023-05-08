@@ -208,9 +208,9 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml
     post:
       operationId: post-metrics
       description: Query metrics.
@@ -264,6 +264,6 @@ paths:
         "500":
           description: Internal server error.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: ../models/response/error.yaml

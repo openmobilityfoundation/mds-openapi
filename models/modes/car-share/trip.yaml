@@ -1,4 +1,4 @@
-title: modes/care-share/trip
+title: modes/car-share/trip
 description: Trip definition for the `car-share` mode.
 type: object
 

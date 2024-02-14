@@ -1,4 +1,4 @@
-title: data-type/version
+title: data-types/version
 description: The version of MDS this data represents.
 type: string
 

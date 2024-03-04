@@ -112,11 +112,12 @@ if:
   properties:
     event_types:
       contains:
-        - trip_cancel
-        - trip_end
-        - trip_enter_jurisdiction
-        - trip_leave_jurisdiction
-        - trip_start
+        items:
+          - trip_cancel
+          - trip_end
+          - trip_enter_jurisdiction
+          - trip_leave_jurisdiction
+          - trip_start
 then:
   properties:
     trip_ids:

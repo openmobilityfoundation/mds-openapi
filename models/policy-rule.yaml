@@ -21,7 +21,7 @@ $defs:
       # allow any vehicle state to be a property name
       $ref: ./data-types/vehicle-state.yaml
     patternProperties:
-      "": # i.e. match all properties of the `states` object
+      ".": # i.e. match all properties of the `states` object
         type: array
         uniqueItems: true
         items:

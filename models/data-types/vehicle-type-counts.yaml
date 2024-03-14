@@ -11,5 +11,5 @@ propertyNames:
   $ref: ./vehicle-type.yaml
 
 patternProperties:
-  "": # i.e. match all properties
+  ".": # i.e. match all properties
     $ref: ./integer-positive.yaml

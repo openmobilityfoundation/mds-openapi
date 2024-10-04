@@ -31,10 +31,7 @@ allOf:
         $ref: ./data-types/uuid.yaml
         description: A unique ID for each trip
       trip_type:
-        type: array
-        uniqueItems: true
-        items:
-          type: string
+        type: string
       trip_attributes:
         type: object
       fare_attributes:

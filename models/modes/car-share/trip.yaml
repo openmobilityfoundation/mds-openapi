@@ -24,13 +24,10 @@ properties:
         $ref: ../../data-types/uuid.yaml
         description: A unique identifier for an entire car share reservation, tied across multiple journeys and therefore trips.
   trip_type:
-    minItems: 1
-    maxItems: 1
-    items:
-      enum:
-        - private
-        - reservation
-        - empty
+    enum:
+      - private
+      - reservation
+      - empty
   trip_attributes:
     required:
       - reservation_type

@@ -23,14 +23,11 @@ properties:
         $ref: ../../data-types/uuid.yaml
         description: A unique identifier for an entire driver's work shift, tied across multiple journeys and therefore trips.
   trip_type:
-    minItems: 1
-    maxItems: 1
-    items:
-      enum:
-        - private
-        - shared
-        - reservation
-        - empty
+    enum:
+      - private
+      - shared
+      - reservation
+      - empty
   trip_attributes:
     required:
       - hail_type

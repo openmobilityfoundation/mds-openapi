@@ -15,15 +15,12 @@ properties:
       The `journey_id` field shall have a consistent value in overlapping trips. Journeys may be point-to-point, multi-segment,
       or multi-segment overlapping.
   trip_type:
-    minItems: 1
-    maxItems: 1
-    items:
-      enum:
-        - delivery
-        - return
-        - advertising
-        - mapping
-        - roaming
+    enum:
+      - delivery
+      - return
+      - advertising
+      - mapping
+      - roaming
   trip_attributes:
     required:
       - driver_type

@@ -7,12 +7,10 @@ x-stoplight:
 
 properties:
   trip_type:
-    maxItems: 1
-    items:
-      enum:
-        - rider
-        - rebalance
-        - maintenance
+    enum:
+      - rider
+      - rebalance
+      - maintenance
   accessibility_attributes:
     $ref: ./accessibility-attributes.yaml
     description: The accessibility options utilized for a given trip. Required if available.

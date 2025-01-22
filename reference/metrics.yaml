@@ -142,8 +142,9 @@ components:
       minItems: 1
       items:
         type:
-          - string
-          - number
+          oneOf:
+            - type: string
+            - type: number
 
 paths:
   /metrics:
